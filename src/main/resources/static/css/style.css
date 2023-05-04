@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+#wrap{height:1000px;}
+header{height:100px;}
+section{height:600px;}
+footer{height:100px;}
+
+#signUpForm{margin-left:360px;}
+
+#signInForm{margin-left:360px;}
