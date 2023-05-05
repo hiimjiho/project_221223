@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<form id="signUpForm" method="post" action="/user/sign_Up">
+<form id="signUpForm" method="post" action="/user/sign_up">
 	<h3>회원가입</h3>
 	<div class="membership d-flex mt-3">
 		<input type="text" id="loginId" name="loginId" class="form-control col-6" placeholder="아이디를 입력하시오">
@@ -47,6 +47,7 @@
 </form>
 
 <script>
+
 	$(document).ready(function(){
 		$("#loginIdCheckBtn").on("click", function(){
 			
@@ -154,8 +155,15 @@
 			let params = $(this).serialize();	// form 태그에 있는 name 속성 값들로 파라미터 구성
 			console.log(params);
 			
-			
+			$.post(url, params)
+			.done(function(data){
+				
+				if(data.code == 1){
+					alert("회원가입 성공");
+				}else{
+					alert(data.errorMessage);
+				}		
+			});
 		});
-		
 	});
 </script>

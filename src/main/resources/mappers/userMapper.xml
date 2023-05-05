@@ -34,4 +34,26 @@
 			`nickname` = #{nickname}
  	
  	</select>
+ 	<insert id="insertMembership" parameterType="map">
+ 		INSERT INTO `user`
+ 		(
+ 			
+			`loginId`
+			, `password`
+			, `nickname`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{loginId}
+ 			, #{password}
+ 			, #{nickname}
+ 			, #{email}
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	
+ 	</insert>
  </mapper>

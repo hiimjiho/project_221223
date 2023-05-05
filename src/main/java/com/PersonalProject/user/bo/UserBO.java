@@ -18,4 +18,8 @@ public class UserBO {
 	public User getUserByNickname(String nickname) {
 		return userMapper.selectUserByNickname(nickname);
 	}
+	
+	public int insertMembership(String loginId, String nickname, String password, String email) {
+		return userMapper.insertMembership(loginId, nickname, password, email);
+	}
 }

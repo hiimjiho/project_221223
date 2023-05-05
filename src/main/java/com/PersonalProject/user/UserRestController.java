@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +18,7 @@ public class UserRestController {
 	@Autowired
 	private UserBO userBO;
 	
-	@PostMapping("/is_duplicated_id")
+	@GetMapping("/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId(
 			@RequestParam("loginId") String loginId){
 		
@@ -34,7 +35,7 @@ public class UserRestController {
 		return result;
 	}
 	
-	@PostMapping("/is_duplicated_nickname")
+	@GetMapping("/is_duplicated_nickname")
 	public Map<String, Object> isDuplicatedNickname(
 			@RequestParam("nickname") String nickname){
 		
@@ -49,4 +50,20 @@ public class UserRestController {
 		}
 		return result;
 	}
+	
+	@PostMapping("/sign_up")
+	public Map<String, Object> signUp(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("nickname") String nickname,
+			@RequestParam("password") String password,
+			@RequestParam("email") String email){
+		
+		Map<String, Object> result = new HashMap<>();
+		userBO.insertMembership(loginId, nickname, password, email);
+		result.put("code", 1);
+		result.put("result", "성공");
+		
+		return result;
+	}
+	
 }

@@ -2,7 +2,7 @@
 
 #wrap{height:1000px;}
 header{height:100px;}
-section{height:600px;}
+.contents{height:600px;}
 footer{height:100px;}
 
 #signUpForm{margin-left:360px;}

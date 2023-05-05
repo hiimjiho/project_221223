@@ -22,8 +22,8 @@
 		<section class="contents">
 			<jsp:include page="../${view}.jsp" />
 		</section>
-		<footer>
-			<jsp:include page="../include/footer.jsp" />
+		<footer class="bg-secondary">
+			<jsp:include page="/WEB-INF/jsp/include/footer.jsp" />
 		</footer>
 	</div>
 </body>

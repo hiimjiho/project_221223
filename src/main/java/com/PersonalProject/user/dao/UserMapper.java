@@ -1,5 +1,6 @@
 package com.PersonalProject.user.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.PersonalProject.user.model.User;
@@ -9,4 +10,10 @@ public interface UserMapper {
 	public User selectUserByLoginId(String loginId);
 	
 	public User selectUserByNickname(String nickname);
+	
+	public int insertMembership(
+			@Param("loginId") String loginId,
+			@Param("nickname") String nickname,
+			@Param("password") String password,
+			@Param("email") String email);
 }
