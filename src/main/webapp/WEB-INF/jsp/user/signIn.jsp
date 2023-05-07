@@ -35,6 +35,7 @@
 			$.post(url, params)
 			.done(function(data){
 				if(data.code == 1) {
+					// 홈 화면으로 보내기
 					location.href="/home/main_view";
 				} else{
 					alert(data.errorMessage);
