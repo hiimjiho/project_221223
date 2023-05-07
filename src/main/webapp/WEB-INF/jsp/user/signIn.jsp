@@ -14,7 +14,34 @@
 
 <script>
 	$(document).ready(function(){
-		let loginId = $("#loginId").val().trim();
-		let password = $("#password").val();
+		$("#submitBtn").on("click", function(){
+			let loginId = $("#loginId").val().trim();
+			let password = $("#password").val();
+			
+			if(!loginId){
+				alert("아이디를 입력해주세요");
+				return false;
+			}
+			if(!password){
+				alert("비밀번호를 입력해주세요");
+				return false;
+			}
+			
+			let url = $("#signInForm").attr("action");
+			console.log(url);
+			let params = $("#signInForm").serialize();
+			console.log(params);
+			
+			$.post(url, params)
+			.done(function(data){
+				if(data.code == 1) {
+					location.href="/home/main_view";
+				} else{
+					alert(data.errorMessage);
+				}
+			});
+			
+		});
+		
 	});
 </script>

@@ -22,4 +22,8 @@ public class UserBO {
 	public int insertMembership(String loginId, String nickname, String password, String email) {
 		return userMapper.insertMembership(loginId, nickname, password, email);
 	}
+	
+	public User getUserByLoginIdPassword(String loginId, String password){
+		return userMapper.selectUserByLoginIdPassword(loginId, password);
+	}
 }

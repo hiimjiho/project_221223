@@ -4,12 +4,14 @@ import java.util.Date;
 
 public class User {
 	private int id;
-	private int userId;
-	private String subject;
-	private String content;
-	private String imagePath;
+	private String loginId;
+	private String password;
+	private String nickname;
+	private String email;
+	private String profileImagePath;
 	private Date createdAt;
 	private Date updatedAt;
+	
 	
 	public int getId() {
 		return id;
@@ -17,29 +19,35 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserId() {
-		return userId;
+	public String getLoginId() {
+		return loginId;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
-	public String getSubject() {
-		return subject;
+	public String getPassword() {
+		return password;
 	}
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public String getContent() {
-		return content;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
-	public String getImagePath() {
-		return imagePath;
+	public String getEmail() {
+		return email;
 	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getProfileImagePath() {
+		return profileImagePath;
+	}
+	public void setProfileImagePath(String profileImagePath) {
+		this.profileImagePath = profileImagePath;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -53,7 +61,6 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
 	
 	
 }
