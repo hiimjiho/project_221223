@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <form id="signUpForm" method="post" action="/user/sign_up">
+	<div id="signUpDiv">
 	<h3>회원가입</h3>
 	<div class="membership d-flex mt-3">
 		<input type="text" id="loginId" name="loginId" class="form-control col-6" placeholder="아이디를 입력하시오">
@@ -44,6 +45,7 @@
 	</div>
 	
 	<button type="submit" id="submitBtn" class="btn btn-info mt-3 col-6">회원가입</button>
+	</div>
 </form>
 
 <script>
@@ -160,6 +162,7 @@
 				
 				if(data.code == 1){
 					alert("회원가입 성공");
+					location.href = "/user/sign_in_view";
 				}else{
 					alert(data.errorMessage);
 				}		

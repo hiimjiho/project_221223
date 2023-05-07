@@ -8,3 +8,10 @@ footer{height:100px;}
 #signUpForm{margin-left:360px;}
 
 #signInForm{margin-left:360px;}
+
+.nav-link{color:black;}
+
+.nav-link:hover{color:black;
+background-color:white;}
+
+#signUpDiv{margin-top:50px;}

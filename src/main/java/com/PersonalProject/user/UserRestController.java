@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.PersonalProject.common.EncryptUtils;
 import com.PersonalProject.user.bo.UserBO;
 import com.PersonalProject.user.model.User;
 @RequestMapping("/user")
@@ -58,12 +59,19 @@ public class UserRestController {
 			@RequestParam("password") String password,
 			@RequestParam("email") String email){
 		
+		String hashedPassword = EncryptUtils.md5(password);
+		
 		Map<String, Object> result = new HashMap<>();
-		userBO.insertMembership(loginId, nickname, password, email);
+		userBO.insertMembership(loginId, nickname, hashedPassword, email);
 		result.put("code", 1);
 		result.put("result", "성공");
 		
 		return result;
 	}
+	
+//	@PostMapping("/sign_in")
+//	public Map<String, Object> signIn(){
+//		
+//	}
 	
 }

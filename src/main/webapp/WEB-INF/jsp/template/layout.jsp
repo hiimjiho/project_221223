@@ -19,6 +19,9 @@
 		<header>
 			<jsp:include page="../include/header.jsp" />
 		</header>
+		<nav class="bg-secondary">
+			<jsp:include page="../include/nav.jsp" />
+		</nav>
 		<section class="contents">
 			<jsp:include page="../${view}.jsp" />
 		</section>
