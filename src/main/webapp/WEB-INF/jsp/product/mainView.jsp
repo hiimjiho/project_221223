@@ -6,7 +6,7 @@
 <div class="d-flex">
 	<c:forEach items="${productList}" var="postList">
 		<div>
-			<img src="${productList.}}">
+			<img src="${postList.productImagePath}}">
 		</div>
 	</c:forEach>
 </div>
