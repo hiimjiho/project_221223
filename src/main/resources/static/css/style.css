@@ -1,17 +1,82 @@
 @charset "UTF-8";
 
-#wrap{height:1000px;}
-header{height:100px;}
-.contents{height:600px;}
-footer{height:100px;}
+#wrap {
+	height: 1000px;
+}
 
-#signUpForm{margin-left:360px;}
+header {
+	height: 100px;
+}
 
-#signInForm{margin-left:360px;}
+.contents {
+	height: 600px;
+}
 
-.nav-link{color:black;}
+footer {
+	height: 100px;
+}
 
-.nav-link:hover{color:black;
-background-color:white;}
+#signUpForm {
+	margin-left: 360px;
+}
 
-#signUpDiv{margin-top:50px;}
+#signInForm {
+	margin-left: 360px;
+}
+
+.nav-link {
+	color: black;
+}
+
+.nav-link:hover {
+	color: black;
+	background-color: white;
+}
+
+#signUpDiv {
+	margin-top: 50px;
+}
+
+.sub-nav {
+	display: none;
+}
+
+.dropbtn {
+	border: none;
+	background-color: grey;
+	width: 370px;
+	text-align: center;
+	font-size: 14px;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	min-width: 200px;
+}
+
+.dropdown-content a {
+	display: block;
+	color: rgb(37, 37, 37);
+	font-size: 14px;
+	padding: 12px 20px;
+	width: 350px;
+}
+
+.dropdown-content a:hover {
+	text-decoration:none;
+	background-color: #ececec
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropbtn > a{
+	text-decoration:none;
+	color:black;
+}
+
+.loginLogo{
+	margin-top:100px;
+}
