@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.PersonalProject.product.dao.ProductMapper">
+ 	<select id="selectProductList" resultType="com.PersonalProject.product.model.Product">
+ 		SELECT
+ 			`id`
+ 			, `name`
+ 			, `brand`
+ 			, `productImagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`product`
+ 	</select>
+ 
+ </mapper>

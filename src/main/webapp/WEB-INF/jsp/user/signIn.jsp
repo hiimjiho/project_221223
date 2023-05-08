@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <form id="signInForm" method="post" action="/user/sign_in">
-	<h2>로그인</h2>
+	<h2 class="loginLogo">로그인</h2>
 	<div class="membership d-flex mt-5">
 		<input type="text" id="loginId" name="loginId" class="form-control col-6" placeholder="아이디를 입력하시오">
 	</div>

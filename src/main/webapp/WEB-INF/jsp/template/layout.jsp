@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>개인 프로젝트</title>
 <!-- cdn -->
 <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 <!-- css -->
@@ -25,7 +25,7 @@
 		<section class="contents">
 			<jsp:include page="../${view}.jsp" />
 		</section>
-		<footer class="bg-secondary">
+		<footer>
 			<jsp:include page="/WEB-INF/jsp/include/footer.jsp" />
 		</footer>
 	</div>

@@ -108,6 +108,7 @@
 				}
 			});
 		});
+		
 		$("#signUpForm").on("submit", function(e){
 			e.preventDefault();
 			
