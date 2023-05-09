@@ -9,4 +9,6 @@ import com.PersonalProject.product.model.Product;
 @Repository
 public interface ProductMapper {
 	public List<Product> selectProductList();
+	
+	public Product selectProductByProductId(int productId);
 }

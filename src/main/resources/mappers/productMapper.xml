@@ -12,6 +12,21 @@
  			, `updatedAt`
  		FROM
  			`product`
+ 		ORDER BY `id` DESC
+ 		
+ 		LIMIT 4		
  	</select>
- 
+ 	<select id="selectProductByProductId" parameterType="int" resultType="com.PersonalProject.product.model.Product">
+ 		SELECT
+ 			`id`
+ 			, `name`
+ 			, `brand`
+ 			, `productImagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`product`
+ 		WHERE
+ 			`id` = #{productId}
+ 	</select>
  </mapper>
