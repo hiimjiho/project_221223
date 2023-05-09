@@ -6,11 +6,11 @@
         <a href="#">신발 정보</a>
       </button>
       <div class="dropdown-content">
-        <a href="#">브랜드1</a>
-        <a href="#">브랜드2</a>
-        <a href="#">브랜드3</a>
-        <a href="#">브랜드4</a>
-        <a href="#">브랜드5</a>
+        <a href="#">NIKE</a>
+        <a href="#">ADIDAS</a>
+        <a href="#">NEW BALANCE</a>
+        <a href="#">CONVERSE</a>
+        <a href="#">ASICS</a>
       </div>
     </div>
 	<li class="nav-item dropbtn"><a class="nav-link" href="#">신발 게시판</a></li>

@@ -9,7 +9,7 @@ header {
 }
 
 .contents {
-	height: 600px;
+	height: 800px;
 }
 
 footer {
@@ -79,4 +79,13 @@ footer {
 
 .loginLogo{
 	margin-top:100px;
+}
+
+#productInfo{
+	text-decoration:none;
+	color:black;
+}
+
+#productInfo:hover{
+	color: grey;
 }
