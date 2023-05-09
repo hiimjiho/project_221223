@@ -11,6 +11,8 @@
         <a href="#">NEW BALANCE</a>
         <a href="#">CONVERSE</a>
         <a href="#">ASICS</a>
+        <a href="#">VANS</a>
+        <a href="#">PUMA</a>
       </div>
     </div>
 	<li class="nav-item dropbtn"><a class="nav-link" href="#">신발 게시판</a></li>
