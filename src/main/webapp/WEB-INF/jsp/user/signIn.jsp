@@ -34,7 +34,7 @@
 			
 			$.post(url, params)
 			.done(function(data){
-				if(data.code == 1) {
+				if(data.result == "success") {
 					// 홈 화면으로 보내기
 					location.href="/product/main_view";
 				} else{

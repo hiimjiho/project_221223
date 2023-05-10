@@ -3,7 +3,6 @@ package com.PersonalProject.user;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +75,7 @@ public class UserRestController {
 	public Map<String, Object> signIn(
 			@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
-			HttpServletRequest request){
+			HttpSession session){
 		
 		String hashedPassword = EncryptUtils.md5(password);
 		
@@ -84,16 +83,12 @@ public class UserRestController {
 		
 		Map<String, Object> result = new HashMap<>();
 		if(user != null) {
-			result.put("code", 1);
-			result.put("result", "성공");
-			
-			HttpSession session = request.getSession();
+			result.put("result", "success");
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userNickname", user.getNickname());
 		} else {
-			result.put("code", 500);
-			result.put("result", "존재하지 않는 사용자입니다.");
+			result.put("error", "다시 입력해주세요");
 		}
 		return result;
 		
