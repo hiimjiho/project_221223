@@ -3,7 +3,7 @@
 <ul class="nav nav-fill">
 	<div class="dropdown">
       <button class="dropbtn nav-link"> 
-        <a href="#">신발 정보</a>
+        <a href="#"><b>신발 정보</b></a>
       </button>
       <div class="dropdown-content">
         <a href="#">NIKE</a>
@@ -15,6 +15,6 @@
         <a href="#">PUMA</a>
       </div>
     </div>
-	<li class="nav-item dropbtn"><a class="nav-link" href="#">신발 게시판</a></li>
-	<li class="nav-item dropbtn"><a class="nav-link" href="#">스타일</a></li>
+	<li class="nav-item dropbtn"><a class="nav-link" href="#"><b>신발 게시판</b></a></li>
+	<li class="nav-item dropbtn"><a class="nav-link" href="#"><b>스타일</b></a></li>
 </ul>
