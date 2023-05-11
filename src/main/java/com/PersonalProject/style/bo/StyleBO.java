@@ -1,5 +1,7 @@
 package com.PersonalProject.style.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +13,7 @@ public class StyleBO {
 	@Autowired
 	private StyleMapper styleMapper;
 	
-	public Style getStyleByProductId(int productId) {
+	public List<Style> getStyleByProductId(int productId) {
 		return styleMapper.selectStyleByProductId(productId);
 	}
 }

@@ -37,11 +37,9 @@
 	</div>
 </div>
 
-<button type="button" class="moreStyleBtn btn btn-outline-primary mb-3"><a href="/style/detail_view?productId=${style.procutId}">더 보기</a></button>
-	
-	
+<button type="button" class="moreStyleBtn btn btn-outline-primary mb-3"><a href="/style/detail_view?productId=${product.id}">더 보기</a></button>
 
-
+	
 
 <script>
 	$(document).ready(function(){
