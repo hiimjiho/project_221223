@@ -14,7 +14,8 @@
 
 <script>
 	$(document).ready(function(){
-		$("#submitBtn").on("click", function(){
+		$("#submitBtn").on("click", function(e){
+			e.preventDefault();
 			let loginId = $("#loginId").val().trim();
 			let password = $("#password").val();
 			

@@ -36,4 +36,5 @@ public class ProductController {
 		model.addAttribute("view", "product/detailView");
 		return "template/layout";
 	}
+	
 }
