@@ -29,4 +29,18 @@
  		WHERE
  			`id` = #{productId}
  	</select>
+ 	
+ 	<select id="selectProductListByBrand" parameterType="String" resultType="com.PersonalProject.product.model.Product">
+ 		SELECT
+ 			`id`
+ 			, `name`
+ 			, `brand`
+ 			, `productImagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`product`
+ 		WHERE
+ 			`brand` = #{brand}
+ 	</select>
  </mapper>

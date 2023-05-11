@@ -11,4 +11,6 @@ public interface ProductMapper {
 	public List<Product> selectProductList();
 	
 	public Product selectProductByProductId(int productId);
+	
+	public List<Product> selectProductListByBrand(String brand);
 }

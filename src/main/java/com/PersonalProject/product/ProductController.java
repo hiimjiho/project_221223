@@ -16,7 +16,7 @@ import com.PersonalProject.product.model.Product;
 public class ProductController {
 	@Autowired
 	private ProductBO productBO;
-	
+
 	@GetMapping("/main_view")
 	public String mainView(Model model) {
 		List<Product> productList = productBO.getProductList();
@@ -34,6 +34,17 @@ public class ProductController {
 		Product product = productBO.getProductByProductId(productId);
 		model.addAttribute("product", product);
 		model.addAttribute("view", "product/detailView");
+		return "template/layout";
+	}
+	
+	@GetMapping("/brand_list_view")
+	public String brandListView(
+			Model model,
+			@RequestParam("brand") String brand) {
+		
+		List<Product> productBrandList = productBO.getProductListByBrand(brand);
+		model.addAttribute("productBrandList", productBrandList);
+		model.addAttribute("view", "product/brandList");
 		return "template/layout";
 	}
 	

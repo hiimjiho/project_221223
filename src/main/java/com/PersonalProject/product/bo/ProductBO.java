@@ -20,4 +20,8 @@ public class ProductBO {
 	public Product getProductByProductId(int productId) {
 		return productMapper.selectProductByProductId(productId);
 	}
+	
+	public List<Product> getProductListByBrand(String brand){
+		return productMapper.selectProductListByBrand(brand);
+	}
 }

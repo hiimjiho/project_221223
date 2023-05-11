@@ -110,3 +110,21 @@ footer {
 .favoriteBtn{
 	margin-left:50px;
 }
+
+.contents-box {width:650px;}
+
+#writeTextArea {height:100px;}
+
+.styleContent{
+	border:2px solid black;
+
+}
+
+.brandLogo{
+	margin-left:50px;
+	margin-top:50px;
+}
+
+.secondLogo{
+	margin-left:150px;
+}
