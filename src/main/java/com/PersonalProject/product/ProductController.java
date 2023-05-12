@@ -38,13 +38,19 @@ public class ProductController {
 	}
 	
 	@GetMapping("/brand_list_view")
-	public String brandListView(
+	public String brandListView(Model model) {
+		model.addAttribute("view", "product/brandList");
+		return "template/layout";
+	}
+	
+	@GetMapping("/brand_detail_list_view")
+	public String brandDetailListView(
 			Model model,
 			@RequestParam("brand") String brand) {
 		
 		List<Product> productBrandList = productBO.getProductListByBrand(brand);
 		model.addAttribute("productBrandList", productBrandList);
-		model.addAttribute("view", "product/brandList");
+		model.addAttribute("view", "product/brandDetailView");
 		return "template/layout";
 	}
 	
