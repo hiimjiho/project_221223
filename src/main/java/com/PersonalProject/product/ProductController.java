@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.PersonalProject.product.bo.ProductBO;
 import com.PersonalProject.product.model.Product;
+import com.PersonalProject.style.bo.StyleBO;
+import com.PersonalProject.style.model.Style;
 @RequestMapping("/product")
 @Controller
 public class ProductController {
 	@Autowired
 	private ProductBO productBO;
-
+	@Autowired
+	private StyleBO styleBO;
+	
 	@GetMapping("/main_view")
 	public String mainView(Model model) {
 		List<Product> productList = productBO.getProductList();
@@ -32,6 +36,9 @@ public class ProductController {
 			@RequestParam("productId") int productId) {
 		
 		Product product = productBO.getProductByProductId(productId);
+		List<Style> styleList = styleBO.getStyleByProductIdLimit5(productId);
+		
+		model.addAttribute("styleList", styleList);
 		model.addAttribute("product", product);
 		model.addAttribute("view", "product/detailView");
 		return "template/layout";

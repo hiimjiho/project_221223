@@ -16,4 +16,8 @@ public class StyleBO {
 	public List<Style> getStyleByProductId(int productId) {
 		return styleMapper.selectStyleByProductId(productId);
 	}
+	
+	public List<Style> getStyleByProductIdLimit5(int productId) {
+		return styleMapper.selectStyleByProductIdLimit4(productId);
+	}
 }

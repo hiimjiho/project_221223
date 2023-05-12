@@ -15,5 +15,22 @@
 			`style`
 		WHERE
 			`productId` = #{productId}
+		ORDER BY `id` DESC
+ 	</select>
+ 	<select id="selectStyleByProductIdLimit4" parameterType="int" resultType="com.PersonalProject.style.model.Style">
+ 		SELECT
+ 			`id`
+			, `productId`
+			, `userId`
+			, `shoesImagePath`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`style`
+		WHERE
+			`productId` = #{productId}
+		ORDER BY `id` DESC
+		LIMIT 4
  	</select>
  </mapper>
