@@ -12,12 +12,14 @@
 		<c:if test="${not empty userId}">
 			<span>${userNickname}님 안녕하세요</span>
 			|
-			<a href="/user/sign_out" class="font-weight-bold">로그아웃</a>
+			<a href="/user/sign_out" class="header-info font-weight-bold">로그아웃</a>
 			|
-			<a href="#">내 정보</a>
+			<a href="#" class="header-info">내 정보</a>
 		</c:if> 
 		<c:if test="${empty userId}">
-			<a href="/user/sign_in_view" class="font-weight-bold">로그인</a>
+			<a href="/user/sign_in_view" class="header-info font-weight-bold">로그인</a>
+			|
+			<a href="/user/sign_up_view" class="header-info font-weight-bold">회원가입</a>
 		</c:if>
 	</div>
 </div>

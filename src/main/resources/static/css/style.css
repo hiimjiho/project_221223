@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-#wrap {
-	height: 1000px;
-}
 
 header {
 	height: 100px;
@@ -10,11 +7,18 @@ header {
 
 .contents {
 	min-height: 800px;
-	max-height: 2000px;
+	max-height: 50000px;
 }
 
 footer {
 	height: 100px;
+}
+
+.shoesList{
+	flex-direction: row;
+	display: flex;
+	flex-wrap: wrap;
+	width:300px;
 }
 
 #signUpForm {
@@ -71,34 +75,25 @@ footer {
 	background-color: #ececec
 }
 
-.dropdown:hover .dropdown-content {
-	display: block;
-}
+.dropdown:hover .dropdown-content {display: block;}
 
 .dropbtn > a{
 	text-decoration:none;
 	color:black;
 }
 
-.loginLogo{
-	margin-top:100px;
-}
+.loginLogo{margin-top:100px;}
 
 #productInfo{
 	text-decoration:none;
 	color:black;
 }
 
-#productInfo:hover{
-	color: grey;
-}
-.headerLogo{
-	color:black;
-}
+#productInfo:hover{color: grey;}
 
-.headerLogo{
-	text-decoration:none;
-}
+.headerLogo{color:black;}
+
+.headerLogo{text-decoration:none;}
 
 .headerLogo:hover{
 	color:black;
@@ -107,24 +102,30 @@ footer {
 
 .comment-input {width:500px;}
 
-.favoriteBtn{
-	margin-left:50px;
-}
+.favoriteBtn{margin-left:50px;}
 
 .contents-box {width:650px;}
 
 #writeTextArea {height:100px;}
 
-.styleContent{
-	border:2px solid black;
-
-}
+.styleContent{border:2px solid grey;}
 
 .brandLogo{
 	margin-left:50px;
 	margin-top:50px;
 }
 
-.secondLogo{
-	margin-left:150px;
+.secondLogo{margin-left:150px;}
+
+.styleWriter{font-size:20px;}
+
+.comment-input{width:560px;}
+
+.header-info{color:black;}
+
+.header-info:hover{
+	color:grey;
+	text-decoration:none;
 }
+
+.productInfo{margin-right:500px;}

@@ -13,8 +13,6 @@
  		FROM
  			`product`
  		ORDER BY `id` DESC
- 		
- 		LIMIT 4		
  	</select>
  	<select id="selectProductByProductId" parameterType="int" resultType="com.PersonalProject.product.model.Product">
  		SELECT
