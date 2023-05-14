@@ -100,7 +100,10 @@ footer {
 	text-decoration:none;
 }
 
-.comment-input {width:500px;}
+.review-input {
+	width:500px;
+	margin-top:5px;
+	}
 
 .favoriteBtn{margin-left:50px;}
 
@@ -129,3 +132,5 @@ footer {
 }
 
 .productInfo{margin-right:500px;}
+
+#reviewBtn{margin-top:5px;}

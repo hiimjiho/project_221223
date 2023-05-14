@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.PersonalProject.review.dao.ReviewMapper">
+ 	<insert id="insertReview" parameterType="map">
+ 		INSERT INTO `review`
+ 		(
+ 			`productId`
+ 			, `userId`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{productId}
+ 			, #{userId}
+ 			, #{content}
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<select id="selectReviewList" resultType="com.PersonalProject.review.model.Review">
+ 		SELECT
+ 			`id`
+			, `productId`
+			, `userId`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`review`
+ 	</select>
+ </mapper>

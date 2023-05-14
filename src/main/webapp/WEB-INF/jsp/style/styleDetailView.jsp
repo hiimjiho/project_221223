@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
     
-<h3 class="mt-4"><b>${product.name}</b></h3>
+<h3 class="mt-4"><a id="productInfo" href="/product/detail_view?productId=${product.id}"><b>${product.name}</b></a></h3>
 <div class="d-flex justify-content-center">
 	<div class="contents-box">
 		<%-- 글쓰기 영역: 로그인 된 상태에서만 보여짐 --%>
@@ -60,3 +60,12 @@
 		</c:forEach>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$("#fileUploadBtn").on("click", function(e) {
+			e.preventDefault(); 
+			$("#file").click(); 
+		});
+	});
+</script>

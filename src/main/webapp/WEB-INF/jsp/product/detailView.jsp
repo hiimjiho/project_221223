@@ -19,14 +19,17 @@
 
 <div class="productInfo">
 <b class="d-flex justify-content-center">제품 한줄 평</b>
-	<div class="m-1 d-flex justify-content-center">
-						<span class="font-weight-bold">닉네임</span>
-						<span>내용</span>
+<c:forEach items="${reviewList}" var="review">
+	<div class="d-flex justify-content-center">
+		<span class="font-weight-bold">${review.userId}</span>
+		<span>${review.content}</span>
 	</div>
+</c:forEach>
+	
 </div>
 <div class="comment-write d-flex border-top mt-3 justify-content-center">
-	<input type="text" class="form-control border-0 mr-2 comment-input" placeholder="댓글 달기" id="comment" />
-	<button type="button" class="comment-btn btn btn-light" data-post-id="">게시</button>
+	<input type="text" class="form-control border-0 mr-2 review-input" placeholder="댓글 달기" id="review" />
+	<button type="button" class="comment-btn btn btn-light" id="reviewBtn" data-product-id="${product.id}">게시</button>
 </div>
 
 <hr>
@@ -45,6 +48,38 @@
 	
 <script>
 	$(document).ready(function(){
-		
+		$("#reviewBtn").on("click",function(e){
+			e.preventDefault();
+			
+			let productId = $(this).data("product-id");
+			//alert(productId);
+			let review = $("#review").val();
+			//alert(review);
+			if(review == ""){
+				alert("한줄평을 입력해주세요");
+				return;
+			}
+			
+			$.ajax({
+				type: "post"
+				, url:"/review/create"
+				, data: {
+					"productId" : productId,
+					"content" : review
+				}
+				
+				, success : function(data){
+					if(data.code == 1){
+						alert("한줄 평이 입력되었습니다.");
+						location.reload();
+					} else {
+						alert(data.errorMessage);
+					}
+				}
+				, error : function(request, status, error){
+					alert("한줄평 입력에 실패하였습니다.");
+				}
+			});
+		});
 	});
 </script>
