@@ -33,4 +33,25 @@
 		ORDER BY `id` DESC
 		LIMIT 4
  	</select>
+ 	
+ 	<insert id="insertStyle" parameterType="map">
+ 		INSERT INTO `style`
+ 		(
+ 			`productId`
+ 			, `userId`
+ 			, `shoesImagePath`
+ 			, `content`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{productId}
+ 			, #{userId}
+ 			, #{shoesImagePath}
+ 			, #{content}
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
  </mapper>

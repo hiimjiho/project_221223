@@ -24,7 +24,7 @@
 					<div id="fileName" class="ml-2">
 					</div>
 				</div>
-				<button type="button" class="favoriteBtn btn btn-outline-primary">게시</button>
+				<button type="button" class="writeBtn btn btn-outline-primary" data-product-id="${product.id}">게시</button>
 			</div>
 		</div>
 		</c:if>
@@ -67,5 +67,81 @@
 			e.preventDefault(); 
 			$("#file").click(); 
 		});
+		
+		$("#file").on('change', function(e) {
+			let fileName = e.target.files[0].name; //예	secured.jpg
+			console.log(fileName);
+
+			// 확장자 유효성 확인
+			let ext = fileName.split(".").pop().toLowerCase();
+			if (ext != "jpg" && ext != "png" && ext != "jpeg" && ext != "gif") {
+				alert("이미지 파일만 업로드할 수 있습니다.");
+				$("#file").val(""); // 파일태그의 파일 제거.
+				$("#fileName").text(""); // 파일 이름 비우기
+				return;
+			}
+
+			// 유효성 통과한 이미지는 상자에 업로드 된 파이 이름 노출
+			$("#fileName").text(fileName);
+		});
+		
+		$(".writeBtn").on("click", function(){
+			// validation
+			let content = $("#writeTextArea").val().trim()
+			let file = $("#file").val();
+			let productId = $(this).data("product-id");
+			
+			if (!content) {
+				alert("내용을 입력해주세요");
+				return;
+			}
+
+			if (!file) {
+				alert("파일을 첨부해주세요");
+				return;
+			}
+
+			// 글내용, 이미지, 확장자 체크
+
+			let ext = file.split(".").pop().toLowerCase();
+			if (ext != "jpg" && ext != "png" && ext != "jpeg" && ext != "gif") {
+				alert("이미지 파일만 업로드할 수 있습니다.");
+				$("#file").val(""); // 파일태그의 파일 제거.
+				return;
+			}
+
+			let formData = new FormData();
+			formData.append("content", content);
+			formData.append("productId", productId);
+			formData.append("file", $("#file")[0].files[0]);
+			
+			$.ajax({
+				// response
+				type : "POST",
+				url : "/style/create",
+				data : formData,
+				enctype : "multipart/form-data" // file 업로드를 위한 필수 설정
+				,
+				processData : false // file 업로드를 위한 필수 설정
+				,
+				contentType : false // file 업로드를 위한 필수 설정
+
+				// response
+				,
+				success : function(data) {
+					if (data.code == 1) {
+						alert("게시글 작성이 완료되었습니다");
+						location.href = "/style/detail_view";
+					} else {
+						alert(data.errorMessage);
+					}
+				},
+				error : function(request, status, error) {
+					alert("글을 저장하는데 실패했습니다.");
+				}
+			});
+		});
+		
+	
 	});
 </script>

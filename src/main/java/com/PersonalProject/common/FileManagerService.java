@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManagerService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	// 업로드 된 이미지가 저장될 경로
-	public static final String FILE_UPLOAD_PATH = "D:\\박지호\\personal_projcet\\workspace\\images/";
+	public static final String FILE_UPLOAD_PATH = "F:\\박지호\\7_personal_project\\workspace\\images/";
 	
 	// input: MultipartFile(이미지 파일), loginId 이미지가 겹치게 하지 않기 위해서 loginId도 받아옴.
 	// output: image path(String)
