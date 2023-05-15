@@ -18,7 +18,7 @@ footer {
 	flex-direction: row;
 	display: flex;
 	flex-wrap: wrap;
-	width:300px;
+	width:1200px;
 }
 
 #signUpForm {
@@ -134,3 +134,40 @@ footer {
 .productInfo{margin-right:500px;}
 
 #reviewBtn{margin-top:5px;}
+
+.review-box{
+	margin-left:260px;
+	width:600px;
+}
+
+#deletePostBtn{color:black;}
+
+#deletePostBtn:hover{
+	color:grey;
+	text-decoration:none;
+}
+	
+#deleteModalBtn{color:black;}
+
+#deleteModalBtn:hover{
+	color:grey;
+	text-decoration:none;
+}
+
+.stylemore-btn{
+	margin-right:30px;
+	margin-bottom:10px;
+}
+
+.styleComment{margin-left:10px;}
+
+.styleCommentContent{margin-left:10px;}
+
+#deleteCommentBtn{
+	color:black;
+}
+
+#deleteCommentBtn:hover{
+	color:grey;
+	text-decoration:none;
+}

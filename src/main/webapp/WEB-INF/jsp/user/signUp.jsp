@@ -10,7 +10,7 @@
 	<div id="idLengthCheck" class="d-none text-danger">
 		ID는 5자 이상 입력해주세요.
 	</div>
-	<div id="idDuplicatedCheck " class="d-none text-danger">
+	<div id="idDuplicatedCheck" class="d-none text-danger">
 		중복된 ID입니다.
 	</div>
 	<div id="AvailableId" class="d-none text-success">
@@ -72,7 +72,7 @@
 				, success:function(data){
 					if(data.result){
 						//중복
-						$("#nicknameDuplicatedCheck").removeClass("d-none")
+						$("#idDuplicatedCheck").removeClass("d-none")
 					}else{
 						$("#AvailableId").removeClass("d-none")
 					}
