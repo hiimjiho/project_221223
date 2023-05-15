@@ -15,4 +15,6 @@ public interface ReviewMapper {
 			@Param("content")String content);
 	
 	public List<Review> selectReviewList();
+	
+	public int deleteReviewById(int reviewId);
 }

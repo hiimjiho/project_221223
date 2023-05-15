@@ -20,4 +20,8 @@ public class ReviewBO {
 	public List<Review> getReviewList(){
 		return reviewMapper.selectReviewList();
 	}
+	
+	public int deleteReview(int reviewId) {
+		return reviewMapper.deleteReviewById(reviewId);
+	}
 }

@@ -31,7 +31,12 @@
 		
 		<c:forEach items="${styleList}" var="style">
 		<div class="styleContent mt-3">
+		<div class="d-flex justify-content-between">
 			<b class="styleWriter">닉네임</b>
+			<a href="#" data-toggle="modal" data-target="#postModal" data-styleComment-id="" class="styleCommentDelBtn">
+				<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
+			</a>
+		</div>
 			<div class="ml-4">
 				<img src="${style.shoesImagePath}" alt="스타일 사진" width=600px height=400px>
 			</div>
@@ -43,12 +48,13 @@
 				<span class="ml-2 mt-2">${style.content}</span>
 			</div>
 			<hr>
-			<div class="card-comment m-1 ml-2">
-						<span class="font-weight-bold">닉네임</span>
-						<span>신발 이쁘네요~~</span>
-						<a href="#" class="commentDelBtn" data-comment-id="${commentView.comment.id}">
-							<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
-						</a>
+			<div class="style-comment d-flex justify-content-between">
+				<div class="styleComment"><span class="font-weight-bold">닉네임</span><span class="styleCommentContent">댓글</span></div>
+				<div class="stylemore-btn">
+					<a href="#" data-toggle="modal" data-target="#modal" data-styleComment-id="" class="styleCommentDelBtn">
+						<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
+					</a>
+				</div>
 			</div>
 			<c:if test="${not empty userId}">
 					<div class="comment-write d-flex border-top mb-2 ml-2">
@@ -60,6 +66,77 @@
 		</c:forEach>
 	</div>
 </div>
+
+
+<!-- commentModal -->
+<div class="modal fade" id="modal">
+	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
+	<%--modal-sm 작은 모달. --%>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center">
+    	<div class="py-3 border-bottom">
+     		<a href="#" id="deleteCommentBtn">댓글 삭제하기</a>
+     	</div>
+     	<div class="py-3">
+     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
+     		<a href="#" data-dismiss="modal" id="deleteModalBtn">취소하기</a>
+     	</div>
+    </div>
+  </div>
+</div>
+
+<!-- commentModal -->
+<div class="modal fade" id="likeModal">
+	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
+	<%--modal-sm 작은 모달. --%>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center">
+    	<div class="py-3 border-bottom">
+     		
+     	</div>
+     	<div class="py-3">
+     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
+     		
+     	</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- postModal -->
+<div class="modal fade" id="postModal">
+	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
+	<%--modal-sm 작은 모달. --%>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center">
+    	<div class="py-3 border-bottom">
+     		<a href="#" id="deletePostBtn">글 삭제하기</a>
+     	</div>
+     	<div class="py-3">
+     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
+     		<a href="#" data-dismiss="modal" id="deleteModalBtn">취소하기</a>
+     	</div>
+    </div>
+  </div>
+</div>
+
+<!-- postModal -->
+<div class="modal fade" id="likeModal">
+	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
+	<%--modal-sm 작은 모달. --%>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center">
+    	<div class="py-3 border-bottom">
+     		
+     	</div>
+     	<div class="py-3">
+     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
+     		
+     	</div>
+    </div>
+  </div>
+</div>
+
 
 <script>
 	$(document).ready(function(){

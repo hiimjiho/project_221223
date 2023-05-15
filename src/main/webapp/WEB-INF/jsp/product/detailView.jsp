@@ -13,16 +13,21 @@
 </div>
 
 <div class="d-flex justify-content-center">
-	<img src="${product.productImagePath}" alt="신발사진" width=500px
-		height=500px>
+	<img src="${product.productImagePath}" alt="신발사진" width=560px height=500px>
 </div>
 
 <div class="productInfo">
 <b class="d-flex justify-content-center">제품 한줄 평</b>
 <c:forEach items="${reviewList}" var="review">
-	<div class="d-flex justify-content-center">
-		<span class="font-weight-bold">${review.userId}</span>
-		<span>${review.content}</span>
+	<div class="review-box d-flex justify-content-between">
+		<div><span class="font-weight-bold">${userNickname}</span><span class="reviewContent">${review.content}</span></div>
+		<c:if test="${review.userId eq userId}">
+		<div class="more-btn">
+			<a href="#" data-toggle="modal" data-target="#modal" data-review-id="${review.id}" class="reviewDelBtn">
+				<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
+			</a>
+		</div>
+		</c:if>
 	</div>
 </c:forEach>
 	
@@ -45,7 +50,45 @@
 </div>
 
 <button type="button" class="moreStyleBtn btn btn-outline-primary mt-5"><a href="/style/detail_view?productId=${product.id}">자세히 보기</a></button>
-	
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal">
+	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
+	<%--modal-sm 작은 모달. --%>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center">
+    	<div class="py-3 border-bottom">
+     		<a href="#" id="deletePostBtn">삭제하기</a>
+     	</div>
+     	<div class="py-3">
+     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
+     		<a href="#" data-dismiss="modal" id="deleteModalBtn">취소하기</a>
+     	</div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="likeModal">
+	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
+	<%--modal-sm 작은 모달. --%>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center">
+    	<div class="py-3 border-bottom">
+     		
+     	</div>
+     	<div class="py-3">
+     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
+     		
+     	</div>
+    </div>
+  </div>
+</div>
+
+
+
 <script>
 	$(document).ready(function(){
 		$("#reviewBtn").on("click",function(e){
@@ -78,6 +121,34 @@
 				}
 				, error : function(request, status, error){
 					alert("한줄평 입력에 실패하였습니다.");
+				}
+			});
+		});
+		
+		$(".reviewDelBtn").on("click", function(e){
+			e.preventDefault();
+			let reviewId = $(this).data("review-id");
+			$("#modal").data('review-id', reviewId);	
+		});
+		
+		$("#modal #deletePostBtn").on("click", function(e){
+			e.preventDefault();
+			let reviewId = $("#modal").data("review-id");
+			$.ajax({
+				type : "delete"
+				, url : "/review/delete"
+				, data : {"id" : reviewId}
+				
+				, success : function(data){
+					if(data.code == 1){
+						alert("댓글이 삭제되었습니다");
+						location.reload();
+					} else{
+						alert(errorMessage);
+					}
+				}
+				, error : function(request, status, error){
+					alert("댓글을 삭제하는데 실패했습니다.");
 				}
 			});
 		});

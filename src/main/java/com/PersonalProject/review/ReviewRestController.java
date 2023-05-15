@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +39,25 @@ public class ReviewRestController {
 		result.put("code", 1);
 		result.put("result", "성공");
 		return result;
+	}
+	
+	@DeleteMapping("/delete")
+	public Map<String, Object> reviewDelete(HttpSession session,
+			@RequestParam("id") int reviewId){
+		Integer userId = (Integer)session.getAttribute("userId");
+		Map<String, Object> result = new HashMap<>();
 		
+		if(userId == null) {
+			result.put("code", 500);
+			result.put("result", "error");
+			result.put("errorMessage", "로그인 해주세요");
+			return result;
+		}
+		
+		reviewBO.deleteReview(reviewId);
+		result.put("code", 1);
+		result.put("result", "성공");
+		return result;
 		
 	}
 }
