@@ -74,7 +74,7 @@
 			`password` = #{password}
  	</select>
  	
- 	<select id="selectUserById" parameterType="int" resultType="com.PersonalProject.user.model.User">
+ 	<select id="selectUserById" resultType="com.PersonalProject.user.model.User">
  		SELECT
  			`id`
 			, `loginId`
@@ -87,6 +87,6 @@
 		FROM
 			`user`
 		WHERE
-			`id` = {userId}
+			`id` = #{id}
  	</select>
  </mapper>

@@ -21,5 +21,5 @@ public interface UserMapper {
 			@Param("loginId") String loginId,
 			@Param("password")String password);
 	
-	public User selectUserById(int userId);
+	public User selectUserById(int id);
 }

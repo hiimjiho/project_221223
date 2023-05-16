@@ -20,7 +20,7 @@
 <b class="d-flex justify-content-center">제품 한줄 평</b>
 <c:forEach items="${reviewList}" var="review">
 	<div class="review-box d-flex justify-content-between">
-		<div><span class="font-weight-bold">${userNickname}</span><span class="reviewContent">${review.content}</span></div>
+		<div><span class="font-weight-bold">${review.user.nickname}</span><span class="reviewContent">${review.review.content}</span></div>
 		<c:if test="${review.userId eq userId}">
 		<div class="more-btn">
 			<a href="#" data-toggle="modal" data-target="#modal" data-review-id="${review.id}" class="reviewDelBtn">

@@ -27,7 +27,7 @@ public class UserBO {
 		return userMapper.selectUserByLoginIdPassword(loginId, password);
 	}
 	
-	public User getUserById(int userId) {
-		return userMapper.selectUserById(userId);
+	public User getUserById(int id) {
+		return userMapper.selectUserById(id);
 	}
 }

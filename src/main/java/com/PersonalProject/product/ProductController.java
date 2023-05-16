@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.PersonalProject.product.bo.ProductBO;
 import com.PersonalProject.product.model.Product;
 import com.PersonalProject.review.bo.ReviewBO;
-import com.PersonalProject.review.model.Review;
+import com.PersonalProject.review.model.ReviewCard;
 import com.PersonalProject.style.bo.StyleBO;
 import com.PersonalProject.style.model.Style;
-import com.PersonalProject.user.bo.UserBO;
-import com.PersonalProject.user.model.User;
 @RequestMapping("/product")
 @Controller
 public class ProductController {
@@ -26,8 +24,6 @@ public class ProductController {
 	private StyleBO styleBO;
 	@Autowired
 	private ReviewBO reviewBO;
-	@Autowired
-	private UserBO userBO;
 	
 	@GetMapping("/main_view")
 	public String mainView(Model model) {
@@ -45,8 +41,7 @@ public class ProductController {
 		
 		Product product = productBO.getProductByProductId(productId);
 		List<Style> styleList = styleBO.getStyleByProductIdLimit5(productId);
-		List<Review> reviewList = reviewBO.getReviewList();
-		User user = userBO.getUserById();
+		List<ReviewCard> reviewList = reviewBO.generateReview(productId);
 		
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("styleList", styleList);
