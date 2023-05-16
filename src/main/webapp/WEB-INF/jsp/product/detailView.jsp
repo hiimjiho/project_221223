@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="d-flex justify-content-center">
-	<h2 class="detailBrand mt-5">${product.brand}</h2>
+	<h2 class="mt-5"><a href="/product/brand_detail_list_view?brand=${product.brand}" class="detailBrand">${product.brand}</a></h2>
 </div>
 <div class="mt-4 d-flex justify-content-center">
 	<h3>${product.name}</h3>
@@ -18,12 +18,12 @@
 
 <div class="productInfo">
 <b class="d-flex justify-content-center">제품 한줄 평</b>
-<c:forEach items="${reviewList}" var="review">
+<c:forEach items="${reviewList}" var="reviewList">
 	<div class="review-box d-flex justify-content-between">
-		<div><span class="font-weight-bold">${review.user.nickname}</span><span class="reviewContent">${review.review.content}</span></div>
-		<c:if test="${review.userId eq userId}">
+		<div><span class="font-weight-bold">${reviewList.user.nickname}</span><span class="reviewContent">${reviewList.review.content}</span></div>
+		<c:if test="${reviewList.review.userId eq userId}">
 		<div class="more-btn">
-			<a href="#" data-toggle="modal" data-target="#modal" data-review-id="${review.id}" class="reviewDelBtn">
+			<a href="#" data-toggle="modal" data-target="#modal" data-review-id="${reviewList.review.id}" class="reviewDelBtn">
 				<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
 			</a>
 		</div>

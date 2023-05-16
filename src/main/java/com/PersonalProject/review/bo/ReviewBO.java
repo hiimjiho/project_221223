@@ -31,16 +31,20 @@ public class ReviewBO {
 		return reviewMapper.deleteReviewById(reviewId);
 	}
 	
+	
 	public List<ReviewCard> generateReview(int productId){
 		List<ReviewCard> reviewCard = new ArrayList<>();
 		
-		List<Review> reviewList = reviewMapper.selectReviewList();
+		// 한줄평 리스트 (신발에 해당하는)
+		List<Review> reviewList = reviewMapper.selectReviewListByProductId(productId);
 		
 		for(Review review : reviewList) {
 			ReviewCard card = new ReviewCard();
 			
+			// 한줄평 한개
 			card.setReview(review);
 			
+			// 평을 쓴 유저 정보
 			User user = userBO.getUserById(review.getUserId());
 			card.setUser(user);
 			

@@ -38,4 +38,18 @@
  		WHERE
  			`id` = #{reviewId}
  	</delete>
+ 	
+ 	<select id="selectReviewListByProductId" parameterType="int" resultType="com.PersonalProject.review.model.Review">
+ 		SELECT
+ 			`id`
+			, `productId`
+			, `userId`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`review`
+		WHERE
+			`productId` = #{productId}
+ 	</select>
  </mapper>

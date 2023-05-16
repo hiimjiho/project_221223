@@ -17,4 +17,6 @@ public interface ReviewMapper {
 	public List<Review> selectReviewList();
 	
 	public int deleteReviewById(int reviewId);
+	
+	public List<Review> selectReviewListByProductId(int productId);
 }
