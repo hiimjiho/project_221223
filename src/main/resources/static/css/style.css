@@ -135,6 +135,8 @@ footer {
 
 #reviewBtn{margin-top:5px;}
 
+.reviewDelBtn{margin-right:20px;}
+
 .review-box{
 	margin-left:260px;
 	width:600px;
@@ -159,9 +161,18 @@ footer {
 	margin-bottom:10px;
 }
 
+.reviewContent{margin-left:10px;}
+
 .styleComment{margin-left:10px;}
 
 .styleCommentContent{margin-left:10px;}
+
+.detailBrand{color:black;}
+
+.detailBrand:hover{
+	color:grey;
+	text-decoration:none;
+}
 
 #deleteCommentBtn{
 	color:black;

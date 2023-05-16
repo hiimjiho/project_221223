@@ -37,7 +37,7 @@
 			.done(function(data){
 				if(data.result == "success") {
 					// 홈 화면으로 보내기
-					location.href="/product/main_view";
+					location.reload();
 				} else{
 					alert(data.errorMessage);
 				}

@@ -59,7 +59,7 @@
 			<c:if test="${not empty userId}">
 					<div class="comment-write d-flex border-top mb-2 ml-2">
 						<input type="text" class="form-control border-0 mr-2 comment-input" placeholder="댓글 달기" id="comment"/> 
-						<button type="button" class="comment-btn btn btn-light">게시</button>
+						<button type="button" class="comment-btn btn btn-light" data-style-id="${style.id}">게시</button>
 					</div>
 			</c:if>
 		</div>
@@ -218,7 +218,38 @@
 				}
 			});
 		});
+		$(".comment-btn").on("click", function(e){
+			e.preventDefault();
+			
+			let content = $(this).siblings("#comment").val();
+			let styleId = $(this).data("style-id");
+			alert(content);
+			
+			if(!content){
+				alert("내용을 입력해주세요");
+				return
+			}
+			
+			$.ajax({
+				type : "post"
+				, url : "/style_comment_create"
+				, data: {
+					"styleId" : styleId ,
+					"content" : content
+					}
+				, success : function(data){
+					if(data.code == 1){
+						location.reload();
+					}else{
+						alert(data.errorMessage);
+					}
+				}
+				, error : function(request, status, error){
+					alert("글을 저장하는데 실패했습니다.");
+				}
+			});
+		});
 		
-	
-	});
+});
+		b
 </script>

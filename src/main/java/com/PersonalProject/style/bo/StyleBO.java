@@ -33,4 +33,5 @@ public class StyleBO {
 		}
 		return styleMapper.insertStyle(productId, content, userId, shoesImagePath);
 	}
+	
 }

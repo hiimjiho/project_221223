@@ -18,4 +18,5 @@ public interface StyleMapper {
 			@Param("content")String content,
 			@Param("userId")int userId,			
 			@Param("shoesImagePath")String shoesImagePath);
+	
 }
