@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.PersonalProject.like.dao.LikeMapper">
+ 	<select id="likeCountByUserIdStyleId" parameterType="map" resultType="int">
+ 		SELECT
+ 			COUNT(1)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		AND
+ 			`styleId` = #{styleId}
+ 	</select>
+ 	<delete id="likeDeleteByUserIdStyleId" parameterType="map">
+ 		DELETE FROM `like`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		AND
+ 			`styleId` = #{styleId}
+ 	</delete>
+ 	
+ 	<insert id="likeInsertByUserIdStyleId" parameterType="map">
+ 		INSERT INTO `like`
+ 		(
+ 			`styleId`
+ 			, `userId`
+ 		)
+ 		VALUES
+ 		(
+ 			#{styleId}
+ 			, #{userId}
+ 		)
+ 	</insert>
+ 	
+ 	<select id="selectLike" parameterType="map" resultType="com.PersonalProject.like.model.Like">
+ 		SELECT
+ 			`styleId`
+ 			, `userId`
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`styleId` = #{styleId}
+ 		AND
+ 			`userId` = #{userId}
+ 	</select>
+ </mapper>

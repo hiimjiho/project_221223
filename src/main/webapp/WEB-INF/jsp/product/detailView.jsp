@@ -70,25 +70,6 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="likeModal">
-	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
-	<%--modal-sm 작은 모달. --%>
-  <div class="modal-dialog modal-dialog-centered modal-sm">
-    <div class="modal-content text-center">
-    	<div class="py-3 border-bottom">
-     		
-     	</div>
-     	<div class="py-3">
-     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
-     		
-     	</div>
-    </div>
-  </div>
-</div>
-
-
-
 <script>
 	$(document).ready(function(){
 		$("#reviewBtn").on("click",function(e){

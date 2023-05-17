@@ -25,6 +25,31 @@
  		DELETE FROM `styleComment`
  		WHERE
  			`id` = #{styleCommentId}
- 			`styleId` = #{styleId}
  	</delete>
+ 	
+ 	<select id="selectStyleComment" resultType="com.PersonalProject.styleComment.model.StyleComment">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `styleId`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`styleComment`
+ 	</select>
+ 	
+ 	<select id="selectStyleCommentListByStyleId" parameterType="int" resultType="com.PersonalProject.styleComment.model.StyleComment">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `styleId`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`styleComment`
+		WHERE
+			`styleId` = #{styleId}
+ 	</select>
  </mapper>

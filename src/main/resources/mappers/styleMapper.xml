@@ -54,4 +54,17 @@
  			, NOW()
  		)
  	</insert>
+ 	
+ 	<select id="selectStyleList" resultType="com.PersonalProject.style.model.Style">
+ 		SELECT
+ 			`id`
+			, `productId`
+			, `userId`
+			, `shoesImagePath`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`style`
+ 	</select>
  </mapper>

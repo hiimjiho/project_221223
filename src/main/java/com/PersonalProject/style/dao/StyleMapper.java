@@ -19,4 +19,6 @@ public interface StyleMapper {
 			@Param("userId")int userId,			
 			@Param("shoesImagePath")String shoesImagePath);
 	
+	public List<Style> selectStyleList();
+	
 }
