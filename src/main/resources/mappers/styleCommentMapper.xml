@@ -52,4 +52,10 @@
 		WHERE
 			`styleId` = #{styleId}
  	</select>
+ 	
+ 	<delete id="deleteCommentByStyleId" parameterType="map">
+ 		DELETE FROM `styleComment`
+ 		WHERE 		
+ 			`styleId` = #{styleId}
+ 	</delete>
  </mapper>

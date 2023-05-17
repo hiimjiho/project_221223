@@ -29,30 +29,48 @@
 		</div>
 		</c:if>
 		
-		<c:forEach items="${styleList}" var="style">
+		<c:forEach items="${styleCardList}" var="styleCard">
 		<div class="styleContent mt-3">
 		<div class="d-flex justify-content-between">
-			<b class="styleWriter">닉네임</b>
-			<a href="#" data-toggle="modal" data-target="#postModal" data-styleComment-id="" class="styleCommentDelBtn">
-				<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
-			</a>
+			<b class="styleWriter">${styleCard.user.nickname}</b>
+			<c:if test="${styleCard.style.userId eq userId}">
+				<a href="#" data-toggle="modal" data-target="#postModal" data-style-id="${styleCard.style.id}" class="styleDelBtn">
+					<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
+				</a>
+			</c:if>
 		</div>
 			<div class="ml-4">
-				<img src="${style.shoesImagePath}" alt="스타일 사진" width=600px height=400px>
+				<img src="${styleCard.style.shoesImagePath}" alt="스타일 사진" width=600px height=400px>
 			</div>
+			<%--좋아요를 누를때(좋아요가 눌러져 있지 않을 때) --%>
+			<c:if test="${styleCard.hetherLike eq false}">
 			<div class="ml-3">
-				<img src="/static/img/style/like-button.png" alt="좋아요" width=30px width=30px><b class="ml-2 mt-3">좋아요 5개</b>
+				<a href="#" class="likeBtn" data-style-id="${styleCard.style.id}">
+					<img src="/static/img/style/like-empty-button.png" alt="좋아요" width=30px width=30px>
+				</a>
+			<b class="ml-2 mt-3">좋아요 ${styleCard.likeCount}개</b>
 			</div>
+			</c:if>
+			<%--좋아요를 취소할 때(좋아요가 눌러져 있을 때) --%>
+			<c:if test="${styleCard.hetherLike}">
+			<div class="ml-3">
+				<a href="#" class="likeBtn" data-style-id="${styleCard.style.id}">
+					<img src="/static/img/style/like-button.png" alt="좋아요" width=30px width=30px>
+				</a>
+				<b class="ml-2 mt-3">좋아요 ${styleCard.likeCount}개</b>
+			</div>
+			</c:if>
+			
 			<div class="d-flex ml-3">
-				<b class="styleWriter mt-2">닉네임</b>
-				<span class="ml-2 mt-2">${style.content}</span>
+				<b class="styleWriter mt-2">${styleCard.user.nickname}</b>
+				<span class="ml-2 mt-2">${styleCard.style.content}</span>
 			</div>
 			<hr>
-			<c:forEach items="${commentList}" var="comment">
+			<c:forEach items="${styleCard.commentList}" var="comment">
 				<div class="style-comment d-flex justify-content-between">
-				<div class="styleComment"><span class="font-weight-bold">닉네임</span><span class="styleCommentContent">${comment.content}</span></div>
+				<div class="styleComment"><span class="font-weight-bold">${comment.user.nickname}</span><span class="styleCommentContent">${comment.styleComment.content}</span></div>
 				<div class="stylemore-btn">
-					<a href="#" data-toggle="modal" data-target="#modal2" data-comment-id="${comment.id}" class="styleCommentDelBtn" id="styleCommentDelBtn">
+					<a href="#" data-toggle="modal" data-target="#modal2" data-comment-id="${comment.styleComment.id}" class="styleCommentDelBtn" id="styleCommentDelBtn">
 						<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
 					</a>
 				</div>
@@ -61,7 +79,7 @@
 			<c:if test="${not empty userId}">
 					<div class="comment-write d-flex border-top mb-2 ml-2">
 						<input type="text" class="form-control border-0 mr-2 comment-input" placeholder="댓글 달기" id="comment"/> 
-						<button type="button" class="comment-btn btn btn-light" data-style-id="${style.id}">게시</button>
+						<button type="button" class="comment-btn btn btn-light" data-style-id="${styleCard.style.id}">게시</button>
 					</div>
 			</c:if>
 		</div>
@@ -200,12 +218,14 @@
 				}
 			});
 		});
+		
+		// 댓글 작성
 		$(".comment-btn").on("click", function(e){
 			e.preventDefault();
 			
 			let content = $(this).siblings("#comment").val();
 			let styleId = $(this).data("style-id");
-			//alert(content);
+			alert(styleId);
 			
 			if(!content){
 				alert("내용을 입력해주세요");
@@ -231,6 +251,8 @@
 				}
 			});
 		});
+		
+		// 댓글 삭제
 		$(".styleCommentDelBtn").on("click", function(e){
 			e.preventDefault();
 			let commentId = $(this).data("comment-id");
@@ -261,6 +283,52 @@
 			});
 		});
 		
+		// 좋아요
+		$(".likeBtn").on("click", function(e){
+			e.preventDefault();
+			
+			let styleId = $(this).data("style-id");
+			//alert(styleId);
+			
+			$.ajax({
+				url: "/like/" + styleId
+				, success:function(data){
+					if(data.code == 1){
+						location.reload(true);
+					}else{
+						alert(data.errorMessage);
+					}
+				}
+				, error:function(request, status, error){
+					alert("다시 시도해주세요");
+				}
+			});
+		});
 		
+		// 글 삭제
+		$("#postModal #deletePostBtn").on("click", function(e){
+			e.preventDefault();
+			let styleId = $(".styleDelBtn").data("style-id");
+			//alert(styleId);
+			
+			$.ajax({
+				type : "delete"
+				, url : "/style/delete"
+				, data : {
+					"styleId" : styleId
+					}
+				, success:function(data){
+					if(data.code == 1){
+						alert("게시글이 삭제되었습니다");
+						location.reload(true);
+					}else{
+						alert(data.errorMessage);
+					}
+				}
+				, error:function(request, status, error){
+					alert("다시 시도해주세요");
+				}
+			});
+		});
 });
 </script>
