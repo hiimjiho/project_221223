@@ -21,4 +21,14 @@ public interface StyleMapper {
 	
 	public List<Style> selectStyleList();
 	
+	public int deleteStyleByStyleId(int styleId);
+	
+	public Style selectStyleByidUserId(
+			@Param("styleId") int styleId,
+			@Param("userId")int userId);
+	
+	// 게시글 삭제
+	public void deleteStyleByUserIdStyleId(
+			@Param("styleId") int styleId,
+			@Param("userId")int userId);
 }

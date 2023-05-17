@@ -88,10 +88,34 @@ public class StyleBO {
 				}
 			}
 			
-			card.setLikeCount();
-			
+			card.setLikeCount(likeBO.likeCountByStyleIdUserId(style.getId()));
+			styleCard.add(card);
 		}
+		return styleCard;
 		
+	}
+	public Style getStyleByidUserId(int styleId, int userId) {
+		return styleMapper.selectStyleByidUserId(styleId, userId);
+	}
+	
+	// 게시글 삭제
+	public void deleteStyleByStyleIdUserId(int styleId, int userId) {
+		// 삭제할 때 좋아요 갯수와 댓글 내용 사진 모두 삭제해 주어야 한다.
+		
+		// 해당 스타일을 가져온다.
+		Style style = getStyleByidUserId(styleId, userId);
+		
+		// 이미지 삭제
+		fileManager.deleteFile(style.getShoesImagePath());
+		
+		// 댓글 삭제
+		styleCommentBO.deleteCommentByStyleId(styleId);
+		
+		// 좋아요 삭제
+		likeBO.deleteLikeByStyleId(styleId);
+		
+		// 게시글 삭제
+		styleMapper.deleteStyleByUserIdStyleId(styleId, userId);
 		
 	}
 	

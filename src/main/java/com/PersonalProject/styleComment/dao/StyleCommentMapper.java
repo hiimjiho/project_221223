@@ -19,4 +19,6 @@ public interface StyleCommentMapper {
 	public List<StyleComment> selectStyleComment();
 	
 	public List<StyleComment> selectStyleCommentListByStyleId(int styleId);
+	
+	public void deleteCommentByStyleId(int StyleId);
 }

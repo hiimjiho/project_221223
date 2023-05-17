@@ -50,4 +50,8 @@ public class StyleCommentBO {
 		}
 		return commentViewList;
 	}
+	
+	public void deleteCommentByStyleId(int StyleId) {
+		styleCommentMapper.deleteCommentByStyleId(StyleId);
+	}
 }
