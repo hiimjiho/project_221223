@@ -1,7 +1,11 @@
 package com.PersonalProject.styleComment.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.PersonalProject.styleComment.model.StyleComment;
 
 @Repository
 public interface StyleCommentMapper {
@@ -10,7 +14,9 @@ public interface StyleCommentMapper {
 			@Param("styleId")int styleId,
 			@Param("content")String content);
 	
-	public int deleteStyleComment(
-			@Param("styleId") int styleId,
-			@Param("styleCommentId")int styleCommentId);
+	public int deleteStyleComment(int styleCommentId);
+	
+	public List<StyleComment> selectStyleComment();
+	
+	public List<StyleComment> selectStyleCommentListByStyleId(int styleId);
 }

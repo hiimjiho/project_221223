@@ -13,6 +13,8 @@ import com.PersonalProject.product.bo.ProductBO;
 import com.PersonalProject.product.model.Product;
 import com.PersonalProject.style.bo.StyleBO;
 import com.PersonalProject.style.model.Style;
+import com.PersonalProject.styleComment.bo.StyleCommentBO;
+import com.PersonalProject.styleComment.model.StyleComment;
 
 @RequestMapping("/style")
 @Controller
@@ -21,6 +23,8 @@ public class StyleController {
 	private ProductBO productBO;
 	@Autowired
 	private StyleBO styleBO;
+	@Autowired
+	private StyleCommentBO styleCommentBO;
 	
 	@GetMapping("/detail_view")
 	public String detailView(Model model,
@@ -28,9 +32,11 @@ public class StyleController {
 		
 		Product product = productBO.getProductByProductId(productId);
 		List<Style> styleList = styleBO.getStyleByProductId(productId);
+		List<StyleComment> commentList = styleCommentBO.getStyleComment();
 		
 		model.addAttribute("styleList", styleList);
 		model.addAttribute("product", product);
+		model.addAttribute("commentList", commentList);
 		model.addAttribute("view", "style/styleDetailView");
 		return "template/layout";
 	}

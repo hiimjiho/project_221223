@@ -44,7 +44,6 @@ public class StyleCommentRestController {
 	@DeleteMapping("/delete")
 	public Map<String, Object> styleCommentDelete(
 			HttpSession session,
-			@RequestParam("styleId") int styleId,
 			@RequestParam("id") int styleCommentId){
 		
 		Integer userId = (Integer)session.getAttribute("userId");
@@ -55,7 +54,7 @@ public class StyleCommentRestController {
 			result.put("result", "errorMessage");
 			return result;
 		}
-		styleCommentBO.deleteStyleComment(styleId, styleCommentId);
+		styleCommentBO.deleteStyleComment(styleCommentId);
 		result.put("code", 1);
 		result.put("result", "성공");
 		return result;

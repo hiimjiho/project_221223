@@ -48,14 +48,16 @@
 				<span class="ml-2 mt-2">${style.content}</span>
 			</div>
 			<hr>
-			<div class="style-comment d-flex justify-content-between">
-				<div class="styleComment"><span class="font-weight-bold">닉네임</span><span class="styleCommentContent">댓글</span></div>
+			<c:forEach items="${commentList}" var="comment">
+				<div class="style-comment d-flex justify-content-between">
+				<div class="styleComment"><span class="font-weight-bold">닉네임</span><span class="styleCommentContent">${comment.content}</span></div>
 				<div class="stylemore-btn">
-					<a href="#" data-toggle="modal" data-target="#modal" data-styleComment-id="" class="styleCommentDelBtn">
+					<a href="#" data-toggle="modal" data-target="#modal2" data-comment-id="${comment.id}" class="styleCommentDelBtn" id="styleCommentDelBtn">
 						<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
 					</a>
 				</div>
 			</div>
+			</c:forEach>
 			<c:if test="${not empty userId}">
 					<div class="comment-write d-flex border-top mb-2 ml-2">
 						<input type="text" class="form-control border-0 mr-2 comment-input" placeholder="댓글 달기" id="comment"/> 
@@ -69,7 +71,7 @@
 
 
 <!-- commentModal -->
-<div class="modal fade" id="modal">
+<div class="modal fade" id="modal2">
 	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
 	<%--modal-sm 작은 모달. --%>
   <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -84,24 +86,6 @@
     </div>
   </div>
 </div>
-
-<!-- commentModal -->
-<div class="modal fade" id="likeModal">
-	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
-	<%--modal-sm 작은 모달. --%>
-  <div class="modal-dialog modal-dialog-centered modal-sm">
-    <div class="modal-content text-center">
-    	<div class="py-3 border-bottom">
-     		
-     	</div>
-     	<div class="py-3">
-     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
-     		
-     	</div>
-    </div>
-  </div>
-</div>
-
 
 <!-- postModal -->
 <div class="modal fade" id="postModal">
@@ -120,7 +104,6 @@
   </div>
 </div>
 
-<!-- postModal -->
 <div class="modal fade" id="likeModal">
 	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
 	<%--modal-sm 작은 모달. --%>
@@ -136,7 +119,6 @@
     </div>
   </div>
 </div>
-
 
 <script>
 	$(document).ready(function(){
@@ -223,7 +205,7 @@
 			
 			let content = $(this).siblings("#comment").val();
 			let styleId = $(this).data("style-id");
-			alert(content);
+			//alert(content);
 			
 			if(!content){
 				alert("내용을 입력해주세요");
@@ -232,7 +214,7 @@
 			
 			$.ajax({
 				type : "post"
-				, url : "/style_comment_create"
+				, url : "/style_comment/create"
 				, data: {
 					"styleId" : styleId ,
 					"content" : content
@@ -249,7 +231,36 @@
 				}
 			});
 		});
+		$(".styleCommentDelBtn").on("click", function(e){
+			e.preventDefault();
+			let commentId = $(this).data("comment-id");
+			//alert(commentId);
+			
+		});
+		$("#modal2 #deleteCommentBtn").on("click", function(e){
+			e.preventDefault();
+			let commentId = $("#styleCommentDelBtn").data("comment-id");
+			//console.log(commentId);
+			$.ajax({
+				type : "delete"
+				, url : "/style_comment/delete"
+				, data : {
+					"id" : commentId
+					}
+			
+				, success : function(data){
+					if(data.code == 1){
+						location.reload(true);
+					}else{
+						alert(errorMessage);
+					}
+				}
+				, errror : function(request, status, error){
+					alert("댓글 삭제에 실패했습니다");
+				}
+			});
+		});
+		
 		
 });
-		b
 </script>
