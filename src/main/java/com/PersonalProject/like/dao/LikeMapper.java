@@ -23,4 +23,10 @@ public interface LikeMapper {
 	public Like selectLike(
 			@Param("styleId") int styleId,
 			@Param("userId") int userId);
+	
+	public int likeCountByStyleIdUserId(
+			@Param("styleId") int styleId,
+			@Param("userId")Integer userId);
+	
+	public void deleteLikeByStyleId(int styleId);
 }

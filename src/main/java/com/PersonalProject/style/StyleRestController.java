@@ -41,22 +41,22 @@ public class StyleRestController {
 		return result;
 	}
 	
-//	@DeleteMapping("/delete")
-//	public Map<String, Object> styleDelete(
-//			HttpSession session,
-//			@RequestParam("styleId") int styleId){
-//		
-//		Integer userId = (Integer)session.getAttribute("userId");
-//		Map<String, Object> result = new HashMap<>();
-//		if(userId == null) {
-//			result.put("code", 500);
-//			result.put("result", "error");
-//			result.put("result", "errorMessage");
-//		}
-//		styleBO;
-//		result.put("code", 1);
-//		result.put("result", "성공");
-//		return result;
-//	}
+	@DeleteMapping("/delete")
+	public Map<String, Object> styleDelete(
+			HttpSession session,
+			@RequestParam("styleId") int styleId){
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		Map<String, Object> result = new HashMap<>();
+		if(userId == null) {
+			result.put("code", 500);
+			result.put("result", "error");
+			result.put("result", "errorMessage");
+		}
+		styleBO.deleteStyleByStyleIdUserId(styleId, userId);
+		result.put("code", 1);
+		result.put("result", "성공");
+		return result;
+	}
 	
 }

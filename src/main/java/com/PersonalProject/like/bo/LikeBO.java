@@ -21,5 +21,12 @@ public class LikeBO {
 		}
 	}
 	
+	public int likeCountByStyleIdUserId(int styleId) {
+		return likeMapper.likeCountByStyleIdUserId(styleId, null);
+	}
+	
+	public void deleteLikeByStyleId(int styleId) {
+		likeMapper.deleteLikeByStyleId(styleId);
+	}
 	
 }

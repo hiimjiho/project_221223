@@ -44,4 +44,24 @@
  		AND
  			`userId` = #{userId}
  	</select>
+ 	
+ 	<select id="likeCountByStyleIdUserId" parameterType="map" resultType="int">
+ 		SELECT
+ 			COUNT(1)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`styleId` = #{styleId}
+ 		<if test="userId != null">
+ 		AND
+ 			`userId` = #{userId}	 		
+ 		</if>
+ 	</select>
+ 	
+ 	<delete id="deleteLikeByStyleId" parameterType="int">
+ 		DELETE FROM `like`
+ 		WHERE
+ 			`styleId` = #{styleId}
+ 	
+ 	</delete>
  </mapper>
