@@ -66,5 +66,38 @@
 			, `updatedAt`
 		FROM
 			`style`
+		ORDER BY `id` desc
  	</select>
+ 	
+ 	<delete id="deleteStyleByStyleId" parameterType="int">
+ 		DELETE FROM
+ 			`style`
+ 		WHERE
+ 			`id` = #{styleId}
+ 	</delete>
+ 	
+ 	<select id="selectStyleByidUserId" resultType="com.PersonalProject.style.model.Style" parameterType="int">
+ 		SELECT
+ 			`id`
+			, `productId`
+			, `userId`
+			, `shoesImagePath`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			 `style`
+		WHERE
+			`id` = #{styleId}
+		AND
+			`userId` = #{userId}
+ 	</select>
+ 	
+ 	<delete id="deleteStyleByUserIdStyleId" parameterType="map">
+ 		DELETE FROM `style`
+ 		WHERE
+ 			`id` = #{styleId}
+ 		AND
+ 			`userId` = #{userId}
+ 	</delete>
  </mapper>

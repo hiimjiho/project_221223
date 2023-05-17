@@ -180,3 +180,5 @@ footer {
 	color:grey;
 	text-decoration:none;
 }
+
+.likeBtn:hover{text-decoration:none;}

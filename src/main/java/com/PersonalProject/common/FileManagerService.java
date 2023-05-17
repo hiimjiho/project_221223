@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManagerService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	// 업로드 된 이미지가 저장될 경로
-	public static final String FILE_UPLOAD_PATH = "F:\\박지호\\7_personal_project\\workspace\\images/";
+	public static final String FILE_UPLOAD_PATH = "C:\\Users\\user\\Documents\\박지호\\박지호\\6_spring_project\\personal project\\workspace\\images/";
 	
 	// input: MultipartFile(이미지 파일), loginId 이미지가 겹치게 하지 않기 위해서 loginId도 받아옴.
 	// output: image path(String)
@@ -47,16 +47,16 @@ public class FileManagerService {
 		
 	}
 	
-public void deleteFile(String imagePath) {	// imagePath:  /images/aaaa_1678687/sun.png
+public void deleteFile(String shoesImagePath) {	// imagePath:  /images/aaaa_1678687/sun.png
 	
 		
-		Path path = Paths.get(FILE_UPLOAD_PATH + imagePath.replace("/images/", ""));
+		Path path = Paths.get(FILE_UPLOAD_PATH + shoesImagePath.replace("/images/", ""));
 		// 이미지 삭제
 		if(Files.exists(path)) {
 			try {
 				Files.delete(path);
 			} catch (IOException e) {
-				logger.error("[이미지 삭제] 이미지 삭제 실패. imagePath:{}", imagePath);
+				logger.error("[이미지 삭제] 이미지 삭제 실패. imagePath:{}", shoesImagePath);
 			}			
 		}
 		
@@ -66,7 +66,7 @@ public void deleteFile(String imagePath) {	// imagePath:  /images/aaaa_1678687/s
 			try {
 				Files.delete(path);
 			} catch (IOException e) {
-				logger.error("[이미지 삭제]" + imagePath);
+				logger.error("[이미지 삭제]" + shoesImagePath);
 			}
 		}
 		
