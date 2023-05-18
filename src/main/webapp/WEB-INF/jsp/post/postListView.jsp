@@ -8,7 +8,7 @@
 	<b><h3 class="mt-4">게시판</h3></b>
 </div>
 <div class="d-flex justify-content-end">
-	<button type="button" class="btn btn-outline-dark mb-2">글 쓰기</button>
+	<button type="button" class="btn btn-outline-dark mb-2"><a href="/post/create_view">글 쓰기</a></button>
 </div>
 	<table class="table">
 		<thead>
