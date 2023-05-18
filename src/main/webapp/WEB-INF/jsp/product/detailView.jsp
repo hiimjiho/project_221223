@@ -44,7 +44,7 @@
 <div class="d-flex mt-4">
 	<div class="ml-5">
 	<c:forEach items="${styleList}" var="style">
-		<img src="${style.shoesImagePath}" alt="스타일 사진" width=250px height=250px>
+		<img src="${style.shoesImagePath}" alt="스타일 사진" width=250px height=250px class="shoesImg">
 	</c:forEach>
 	</div>
 </div>

@@ -48,11 +48,11 @@ public class StyleBO {
 	}
 	
 	public int addStyle(int productId, String content, int userId, MultipartFile file) {
-		String shoesImagePath = null;
+		String imagePath = null;
 		if(file != null) {
-			shoesImagePath = fileManager.saveFile(shoesImagePath, file);
+			imagePath = fileManager.saveFile(imagePath, file);
 		}
-		return styleMapper.insertStyle(productId, content, userId, shoesImagePath);
+		return styleMapper.insertStyle(productId, content, userId, imagePath);
 	}
 	
 	public List<StyleCard> generateStyleCard(Integer userId){

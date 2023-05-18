@@ -46,7 +46,7 @@
  		)
  		VALUES
  		(
- 			#{productId}
+ 			#{productId}	
  			, #{userId}
  			, #{shoesImagePath}
  			, #{content}
