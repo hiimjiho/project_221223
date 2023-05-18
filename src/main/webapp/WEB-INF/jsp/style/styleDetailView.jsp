@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
-    
+
 <h3 class="mt-4"><a id="productInfo" href="/product/detail_view?productId=${product.id}"><b>${product.name}</b></a></h3>
 <div class="d-flex justify-content-center">
 	<div class="contents-box">
