@@ -36,11 +36,10 @@
 			$.post(url, params)
 			.done(function(data){
 				if(data.result == "success") {
-					if ( document.referrer ) { 
+					if (document.referrer) { 
 						// 뒤로가기
 						history.back();
 					}
-					
 					// 히스토리가 없으면,
 					else { 
 						// 메인 페이지로
