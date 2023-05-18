@@ -37,7 +37,16 @@
 			.done(function(data){
 				if(data.result == "success") {
 					// 홈 화면으로 보내기
-					location.reload();
+					if ( document.referrer ) { 
+						// 뒤로가기
+						history.back();
+					}
+					
+					// 히스토리가 없으면,
+					else { 
+						// 메인 페이지로
+						location.href = "/product/main_view";
+					}
 				} else{
 					alert(data.errorMessage);
 				}
