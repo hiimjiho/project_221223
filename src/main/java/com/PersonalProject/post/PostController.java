@@ -14,4 +14,11 @@ public class PostController {
 		model.addAttribute("view", "post/postListView");
 		return "template/layout";
 	}
+	
+	@GetMapping("/create_view")
+	public String postCreateView(Model model) {
+		
+		model.addAttribute("view", "post/postCreate");
+		return "template/layout";
+	}
 }
