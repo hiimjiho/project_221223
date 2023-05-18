@@ -18,6 +18,7 @@ public class UserController {
 	@GetMapping("/sign_in_view")
 	public String signInView(Model model) {
 		model.addAttribute("view", "user/signIn");
+		
 		return "template/layout";
 	}
 	
@@ -31,4 +32,6 @@ public class UserController {
 		// 로그인 화면 이동
 		return "redirect:/user/sign_in_view";
 	}
+
+
 }

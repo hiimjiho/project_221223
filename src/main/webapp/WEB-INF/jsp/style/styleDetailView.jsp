@@ -167,7 +167,7 @@
 			let content = $("#writeTextArea").val().trim()
 			let file = $("#file").val();
 			let productId = $(this).data("product-id");
-			
+	
 			if (!content) {
 				alert("내용을 입력해주세요");
 				return;
@@ -188,8 +188,8 @@
 			}
 
 			let formData = new FormData();
-			formData.append("content", content);
 			formData.append("productId", productId);
+			formData.append("content", content);
 			formData.append("file", $("#file")[0].files[0]);
 			
 			$.ajax({
@@ -208,7 +208,7 @@
 				success : function(data) {
 					if (data.code == 1) {
 						alert("게시글 작성이 완료되었습니다");
-						location.href = "/style/detail_view";
+						location.reload(true);
 					} else {
 						alert(data.errorMessage);
 					}
@@ -225,7 +225,7 @@
 			
 			let content = $(this).siblings("#comment").val();
 			let styleId = $(this).data("style-id");
-			alert(styleId);
+			//alert(styleId);
 			
 			if(!content){
 				alert("내용을 입력해주세요");

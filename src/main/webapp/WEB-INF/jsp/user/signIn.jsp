@@ -36,7 +36,6 @@
 			$.post(url, params)
 			.done(function(data){
 				if(data.result == "success") {
-					// 홈 화면으로 보내기
 					if ( document.referrer ) { 
 						// 뒤로가기
 						history.back();
