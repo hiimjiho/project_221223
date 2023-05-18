@@ -11,6 +11,8 @@ import com.PersonalProject.common.FileManagerService;
 import com.PersonalProject.like.bo.LikeBO;
 import com.PersonalProject.like.dao.LikeMapper;
 import com.PersonalProject.like.model.Like;
+import com.PersonalProject.product.bo.ProductBO;
+import com.PersonalProject.product.model.Product;
 import com.PersonalProject.style.dao.StyleMapper;
 import com.PersonalProject.style.model.Style;
 import com.PersonalProject.style.model.StyleCard;
@@ -21,6 +23,9 @@ import com.PersonalProject.user.model.User;
 
 @Service
 public class StyleBO {
+	@Autowired 
+	private ProductBO productBO;
+	
 	@Autowired
 	private StyleMapper styleMapper;
 	
@@ -94,6 +99,55 @@ public class StyleBO {
 		return styleCard;
 		
 	}
+	
+
+	public List<StyleCard> generateStyleCardByProductId(int productId, Integer userId){
+		List<StyleCard> styleCard = new ArrayList<>();
+		
+		List<Style> styleList = styleMapper.selectStyleList();
+		
+		for(Style style : styleList) {
+			StyleCard card = new StyleCard();
+			
+			// 신발 정보
+			Product product = productBO.getProductByProductId(productId);
+			card.setProduct(product);
+			
+			// 글
+			card.setStyle(style);
+			
+			// 글쓴 사람 정보
+			User user = userBO.getUserById(style.getUserId());
+			card.setUser(user);
+			
+			// 댓글들(styleId)
+			List<CommentView> commentViewList = styleCommentBO.generateCommentViewList(style.getId());
+			card.setCommentList(commentViewList);
+			
+			// 좋아요 눌렀는지 여부
+			if(userId == null) {
+				
+				card.setHetherLike(false);
+			}else {
+				// 좋아요 누른 거
+				Like like = likeMapper.selectLike(style.getId(), userId);
+				if(like == null) {
+					card.setHetherLike(false);
+				}else {
+					card.setHetherLike(true);
+				}
+			}
+			
+			card.setLikeCount(likeBO.likeCountByStyleIdUserId(style.getId()));
+			styleCard.add(card);
+		}
+		return styleCard;
+		
+	}
+	
+	
+	
+	
 	public Style getStyleByidUserId(int styleId, int userId) {
 		return styleMapper.selectStyleByidUserId(styleId, userId);
 	}

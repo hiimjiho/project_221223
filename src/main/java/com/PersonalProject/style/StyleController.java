@@ -37,7 +37,7 @@ public class StyleController {
 //		List<StyleComment> commentList = styleCommentBO.getStyleComment();
 		
 		Integer userId = (Integer)session.getAttribute("userId");
-		List<StyleCard> styleCardList = styleBO.generateStyleCard(userId);
+		List<StyleCard> styleCardList = styleBO.generateStyleCardByProductId(productId, userId);
 		
 		model.addAttribute("styleCardList", styleCardList);
 		//model.addAttribute("styleList", styleList);

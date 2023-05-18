@@ -2,10 +2,15 @@ package com.PersonalProject.style.model;
 
 import java.util.List;
 
+import com.PersonalProject.product.model.Product;
 import com.PersonalProject.styleComment.model.CommentView;
 import com.PersonalProject.user.model.User;
 
 public class StyleCard {
+	
+	// 신발 정보
+	private Product product;
+	
 	// 유저 정보
 	private User user;
 	
@@ -20,6 +25,14 @@ public class StyleCard {
 	
 	// 좋아요 했는지 여부
 	private boolean hetherLike;
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
 	public User getUser() {
 		return user;
@@ -61,7 +74,8 @@ public class StyleCard {
 		this.hetherLike = hetherLike;
 	}
 
-
+	
+	
 	
 	
 }
