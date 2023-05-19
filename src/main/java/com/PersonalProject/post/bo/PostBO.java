@@ -1,11 +1,14 @@
 package com.PersonalProject.post.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.PersonalProject.common.FileManagerService;
 import com.PersonalProject.post.dao.PostMapper;
+import com.PersonalProject.post.model.Post;
 
 @Service
 public class PostBO {
@@ -22,6 +25,10 @@ public class PostBO {
 			imagePath = fileManager.saveFile(loginId, file);
 		}
 		return postMapper.insertPost(userId, loginId, subject, content, imagePath);
+	}
+	
+	public List<Post> getPostList(){
+		return postMapper.selectPostList();
 	}
 
 }

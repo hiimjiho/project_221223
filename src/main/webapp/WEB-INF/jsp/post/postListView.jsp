@@ -19,13 +19,15 @@
 				<th>시간</th>
 			</tr>
 		</thead>
+		<c:forEach items="${postList}" var="post">
 		<tbody>
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${post.id}</td>
+				<td><a href="/post/detail_view?postId=${post.id}">${post.subject}</a></td>
+				<td>${post.userId}</td>
+				<td>${post.createdAt}</td>
 			</tr>
 		</tbody>
+		</c:forEach>
 	</table>
 	

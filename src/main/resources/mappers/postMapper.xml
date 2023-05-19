@@ -22,4 +22,17 @@
  			, NOW()
  		)
  	</insert>
+ 	
+ 	<select id="selectPostList" resultType="com.PersonalProject.post.model.Post">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `subject`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+ 	</select>
  </mapper>

@@ -49,7 +49,7 @@
 	</div>
 </div>
 
-<button type="button" class="moreStyleBtn btn btn-outline-primary mt-5"><a href="/style/detail_view?productId=${product.id}">자세히 보기</a></button>
+<button type="button" class="moreStyleBtn btn btn-outline-primary mt-5" data-product-id="${product.id}"><a href="/style/detail_view?productId=${product.id}">자세히 보기</a></button>
 
 
 
@@ -132,6 +132,11 @@
 					alert("댓글을 삭제하는데 실패했습니다.");
 				}
 			});
+		});
+		
+		$(".moreStyleBtn").on("click", function(){
+			let productId = $(this).data("product-id");
+			alert(productId);
 		});
 	});
 </script>
