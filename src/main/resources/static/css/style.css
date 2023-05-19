@@ -124,7 +124,7 @@ footer {
 
 .styleWriter{font-size:20px;}
 
-.comment-input{width:560px;}
+.review-input{width:560px;}
 
 .header-info{color:black;}
 
@@ -188,3 +188,15 @@ footer {
 .likeBtn:hover{text-decoration:none;}
 
 .postBtnDiv{margin-right:280px;}
+
+.postSubject{font-size:30px;}
+
+.postLogo{font-size:40px;}
+
+.post-content{height:300px;}
+
+.postDetailUserNickname{margin-right:50px;}
+
+.postDetailLink:hover{color:grey;}
+
+.postCmn{font-size:20px;}

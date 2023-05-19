@@ -32,7 +32,7 @@
 </c:forEach>
 	
 </div>
-<div class="comment-write d-flex border-top mt-3 justify-content-center">
+<div class="review-write d-flex border-top mt-3 justify-content-center">
 	<input type="text" class="form-control border-0 mr-2 review-input" placeholder="댓글 달기" id="review" />
 	<button type="button" class="comment-btn btn btn-light" id="reviewBtn" data-product-id="${product.id}">게시</button>
 </div>
