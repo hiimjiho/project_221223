@@ -136,7 +136,7 @@
 		
 		$(".moreStyleBtn").on("click", function(){
 			let productId = $(this).data("product-id");
-			alert(productId);
+			//alert(productId);
 		});
 	});
 </script>

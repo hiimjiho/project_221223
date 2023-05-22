@@ -200,3 +200,7 @@ footer {
 .postDetailLink:hover{color:grey;}
 
 .postCmn{font-size:20px;}
+
+.style-comment-text{width:550px;}
+
+#comment{width:1000px;}

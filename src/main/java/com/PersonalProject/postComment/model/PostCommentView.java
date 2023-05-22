@@ -1,22 +1,15 @@
-package com.PersonalProject.post.model;
+package com.PersonalProject.postComment.model;
 
-import com.PersonalProject.postComment.model.PostComment;
+import java.util.List;
+
 import com.PersonalProject.user.model.User;
 
-public class PostView {
-	private Post post;
-	
+public class PostCommentView {
 	private User user;
 	
 	private PostComment postComment;
-
-	public Post getPost() {
-		return post;
-	}
-
-	public void setPost(Post post) {
-		this.post = post;
-	}
+	
+	private List<PostComment> postCommentList;
 
 	public User getUser() {
 		return user;
@@ -33,5 +26,19 @@ public class PostView {
 	public void setPostComment(PostComment postComment) {
 		this.postComment = postComment;
 	}
+
+	public List<PostComment> getPostCommentList() {
+		return postCommentList;
+	}
+
+	public void setPostCommentList(List<PostComment> postCommentList) {
+		this.postCommentList = postCommentList;
+	}
+	
+	
+	
+	
+	
+	
 	
 }

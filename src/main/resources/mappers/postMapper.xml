@@ -51,4 +51,42 @@
 		WHERE
 			`id` = #{postId}
  	</select>
+ 	
+ 	<select id="selectPostByPostIdUserId" resultType="com.PersonalProject.post.model.Post" parameterType="map">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `subject`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		WHERE
+			`id` = #{postId}
+		AND
+			`userId` = #{userId}
+ 	</select>
+ 	<update id="updatePostByPostId" parameterType="map">
+ 		UPDATE
+ 			`post`
+ 		SET
+ 			`subject` = #{subject}
+ 			, `content` = #{content}
+ 			<if test="imagePath != null">
+ 			, `imagePath` = #{imagePath}
+ 			</if>
+ 		WHERE
+ 			`id` = #{postId}
+ 	</update>
+ 	
+ 	<delete id="deletePostByPostIdUserId" parameterType="map">
+ 		DELETE FROM
+ 			`post`
+ 		WHERE
+ 			`id` = #{postId}
+ 		AND
+ 			`userId` = #{userId}
+ 	</delete>
  </mapper>

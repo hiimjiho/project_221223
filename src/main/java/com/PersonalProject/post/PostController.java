@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.PersonalProject.post.bo.PostBO;
 import com.PersonalProject.post.model.PostView;
+import com.PersonalProject.postComment.bo.PostCommentBO;
+import com.PersonalProject.postComment.model.PostCommentView;
 @RequestMapping("/post")
 @Controller
 public class PostController {
 	@Autowired
 	private PostBO postBO;
+	
+	@Autowired
+	private PostCommentBO postCommentBO;
 	
 	@GetMapping("/list_view")
 	public String postListView(Model model) {
@@ -37,8 +42,10 @@ public class PostController {
 	public String postDetailView(Model model,
 			@RequestParam("postId") int postId) {
 		
+		List<PostCommentView> postCommentList = postCommentBO.generatePostCommentByPostId(postId);
 		PostView postView = postBO.generatePostViewByPostId(postId);
 		model.addAttribute("postView", postView);
+		model.addAttribute("postCommentList", postCommentList);
 		model.addAttribute("view", "post/postDetail");
 		return "template/layout";
 	}

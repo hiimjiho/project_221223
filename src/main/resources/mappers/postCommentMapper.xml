@@ -1,1 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.PersonalProject.postComment.dao.PostCommentMapper">
+ <insert id="addPostCommentByContentPostId" parameterType="map">
+ 	INSERT INTO `postComment`
+ 	(
+ 		`userId`
+ 		, `postId`
+ 		, `content`
+ 		, `createdAt`
+		, `updatedAt`
+ 	)
+ 	VALUES
+ 	(
+ 		#{userId}
+ 		, #{postId}
+ 		, #{content}
+ 		, NOW()
+ 		, NOW()
+ 	)
+</insert> 
+
+<select id="selectPostCommentListByPostId" resultType="com.PersonalProject.postComment.model.PostComment" parameterType="int">
+	SELECT
+		`id`
+		, `userId`
+		, `postId`
+		, `content`
+		, `createdAt`
+		, `updatedAt`
+	FROM `postComment`
+</select>
+
+<delete id="deletePostCommentByCommentId" parameterType="int">
+	DELETE FROM
+		`postComment`
+	WHERE
+		`id` = #{postCommentId}
+</delete>
+
+ </mapper>

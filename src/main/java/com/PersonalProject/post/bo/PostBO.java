@@ -3,6 +3,8 @@ package com.PersonalProject.post.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,8 +16,12 @@ import com.PersonalProject.post.model.PostView;
 import com.PersonalProject.user.bo.UserBO;
 import com.PersonalProject.user.model.User;
 
+
 @Service
 public class PostBO {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private PostMapper postMapper;
 	
@@ -57,6 +63,7 @@ public class PostBO {
 		}
 		return postViewList;
 	}
+	
 	public PostView generatePostViewByPostId(int postId) {
 		PostView postView = new PostView();
 		
@@ -68,8 +75,53 @@ public class PostBO {
 		
 		postView.setUser(user);
 		
-		return postView;
 		
+		return postView;
+	}
+	
+	public Post getPostByPostIdUserId(int postId, int userId) {
+		return postMapper.selectPostByPostIdUserId(postId, userId);
+	}
+	
+	public void updatePost(
+			int userId, String loginId,
+			int postId, String subject, String content,
+			MultipartFile file) {
+		
+		// 해당 글 가져오기
+		Post post = getPostByPostIdUserId(postId, userId);
+		logger.warn("[update post] post is null. postId:{}, userId:{}", postId, userId);
+		if(post == null) {
+			logger.warn("[update post] post is null. postId:{}, userId:{}", postId, userId);
+		}
+		
+		String imagePath = null;
+		if(file != null) {
+			// 업로드
+			imagePath = fileManager.saveFile(loginId, file);
+			
+			if(imagePath != null && post.getImagePath() != null) {
+				fileManager.deleteFile(post.getImagePath());
+			}
+		}
+		
+		postMapper.updatePostByPostId(postId, subject, content, imagePath);
+	}
+	
+	public int deletePostByPostidUserId(int postId, int userId) {
+		// 해당 글 가져오기
+		Post post = getPostByPostIdUserId(postId, userId);
+		if(post == null) {
+			logger.error("[글 삭제] post is null. postId:{}", postId, userId);
+			return 0;
+		}
+		
+		// 이미지 삭제
+		if(post.getImagePath() != null) {
+			fileManager.deleteFile(post.getImagePath());
+		}
+		
+		return postMapper.deletePostByPostIdUserId(postId, userId);
 	}
 
 }
