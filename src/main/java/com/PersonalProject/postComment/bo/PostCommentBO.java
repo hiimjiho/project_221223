@@ -51,5 +51,8 @@ public class PostCommentBO {
 		return CommenView;
 	}
 	
+	public List<PostComment> getPostCommentByPostIdUserIdPostCommentId(int postId, int userId, int postCommentId) {
+		return postCommentMapper.selectPostCommentByPostIdUserIdPostCommentId(postId, userId, postCommentId);
+	}
 	
 }

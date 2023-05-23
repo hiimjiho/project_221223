@@ -65,7 +65,7 @@
      	</div>
      	<div class="py-3 border-bottom">
      		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
-     		<a href="#" data-dismiss="modal" id="updateModalBtn">수정하기</a>
+     		<a href="/post_comment/update_view?postId=${postView.post.id}?postCommentId=${postView.postComment.id}" id="updateModalBtn">수정하기</a>
      	</div>
      	<div class="py-3">
      		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
@@ -75,8 +75,6 @@
   </div>
 </div>
 
-
-
 <script>
 	$(document).ready(function(){
 		$("#postCommentBtn").on("click", function(){
@@ -84,8 +82,9 @@
 			let content = $("#comment").val();
 			let postId = $(this).data("post-id");
 			
-			if(!comment){
+			if(!content){
 				alert("내용을 입력해주세요");
+				return;
 			}
 			$.ajax({
 				type:"post"

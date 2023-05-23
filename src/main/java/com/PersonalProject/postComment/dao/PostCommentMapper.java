@@ -18,4 +18,9 @@ public interface PostCommentMapper {
 	public List<PostComment> selectPostCommentListByPostId(int postId);
 	
 	public int deletePostCommentByCommentId(int postCommentId);
+	
+	public List<PostComment> selectPostCommentByPostIdUserIdPostCommentId(
+			@Param("postId")int postId,
+			@Param("userId")int userId,
+			@Param("postCommentId") int postCommentId);
 }

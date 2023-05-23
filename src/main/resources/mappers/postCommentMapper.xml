@@ -40,5 +40,21 @@
 	WHERE
 		`id` = #{postCommentId}
 </delete>
-
+<select id="selectPostCommentByPostIdUserIdPostCommentId" resultType="com.PersonalProject.postComment.model.PostComment" parameterType="map">
+	SELECT
+		`id`
+		, `userId`
+		, `postId`
+		, `content`
+		, `createdAt`
+		, `updatedAt`
+	FROM
+		 `postComment`
+	WHERE
+		`postId` = #{postId}
+	AND
+		`userId` = #{userId}
+	AND
+		`id` = #{postCommentId}
+</select>
  </mapper>

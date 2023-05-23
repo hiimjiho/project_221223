@@ -34,4 +34,6 @@ public interface PostMapper {
 			@Param("postId")int postId,
 			@Param("userId")int userId);
 	
+	// 코멘트 삭제를 위한 메서드
+	public Post selectPostByPostId(int postId);
 }

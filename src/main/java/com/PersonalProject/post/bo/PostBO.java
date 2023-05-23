@@ -44,6 +44,10 @@ public class PostBO {
 		return postMapper.selectPostList();
 	}
 	
+	// 코멘트 수정을 위한 메서드
+	public Post getPostByPostId(int postId) {
+		return postMapper.selectPostByPostId(postId);
+	}
 	
 	public List<PostView> generatePostList() {
 		
