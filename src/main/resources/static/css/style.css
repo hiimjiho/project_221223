@@ -209,3 +209,11 @@ footer {
 margin-bottom:50px;}
 
 .uploadImage{margin-left:270px;}
+
+.profileImg{
+	border-radius: 50%;
+	margin-right:50px;}
+	
+.profileDiv{margin-top:50px}
+
+.profileNickname{margin-right:200px;}
