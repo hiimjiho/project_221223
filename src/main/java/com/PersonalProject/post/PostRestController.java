@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,9 @@ import com.PersonalProject.post.bo.PostBO;
 @RequestMapping("/post")
 @RestController
 public class PostRestController {
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private PostBO postBO;
 	
@@ -26,7 +31,7 @@ public class PostRestController {
 	public Map<String, Object> postCreate(
 			HttpSession session,
 			@RequestParam("subject") String subject,
-			@RequestParam(value="content", required=false) String content,
+			@RequestParam("content") String content,
 			@RequestParam(value="file", required=false)MultipartFile file){
 		
 		int userId = (int)session.getAttribute("userId");
@@ -42,7 +47,7 @@ public class PostRestController {
 	public Map<String, Object> postUpdate(HttpSession session,
 			@RequestParam("postId") int postId,
 			@RequestParam("subject") String subject,
-			@RequestParam(value="content", required=false) String content,
+			@RequestParam("content") String content,
 			@RequestParam(value="file", required=false) MultipartFile file){
 		
 		int userId = (int)session.getAttribute("userId");
@@ -56,21 +61,21 @@ public class PostRestController {
 	}
 	
 	@DeleteMapping("/delete")
-	public Map<String, Object> postDelete(HttpSession session,
-			@RequestParam("postId") int postId){
+	public Map<String, Object> postDelete(
+			HttpSession session,
+			@RequestParam("postId")int postId){
 		
 		int userId = (int)session.getAttribute("userId");
 		Map<String, Object> result = new HashMap<>();
-		int rowCount = postBO.deletePostByPostidUserId(postId, userId);
+		logger.info("{},{},{}" + userId, postId);
+		int rowCount = postBO.deletePostByPostIdUserId(postId, userId);
 		if(rowCount > 0) {
 			result.put("code", 1);
 			result.put("result", "성공");
-			return result;
 		}else {
 			result.put("code", 500);
-			result.put("result", "errorMessage");
-			return result;
+			result.put("result", "errorMessage");	
 		}
-		
+		return result;
 	}
 }

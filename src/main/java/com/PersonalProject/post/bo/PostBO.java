@@ -44,6 +44,7 @@ public class PostBO {
 		return postMapper.selectPostList();
 	}
 	
+	
 	public List<PostView> generatePostList() {
 		
 		List<PostView> postViewList = new ArrayList<>();
@@ -108,7 +109,7 @@ public class PostBO {
 		postMapper.updatePostByPostId(postId, subject, content, imagePath);
 	}
 	
-	public int deletePostByPostidUserId(int postId, int userId) {
+	public int deletePostByPostIdUserId(int postId, int userId) {
 		// 해당 글 가져오기
 		Post post = getPostByPostIdUserId(postId, userId);
 		if(post == null) {

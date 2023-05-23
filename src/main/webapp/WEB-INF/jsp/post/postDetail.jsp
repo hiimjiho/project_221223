@@ -16,7 +16,7 @@
 <c:if test="${postView.post.userId eq userId}">
 <div class="d-flex justify-content-end">
 	<button type="button" class="btn btn-outline-danger mr-2" id="deletePostBtn" data-post-id="${postView.post.id}">글 삭제</button>
-	<button type="button" class="btn btn-outline-warning" id="updatePostBtn">글 수정</button>
+	<a class="btn btn-outline-info" href="/post/update_view?postId=${postView.post.id}">수정하기</a>
 </div>
 </c:if>
 
@@ -141,7 +141,7 @@
 			alert(postId);
 			
 			$.ajax({
-				type:"DELETE"
+				type:"delete"
 				, url:"/post/delete"
 				, data:{"postId":postId}
 			
@@ -157,6 +157,10 @@
 					alert("글을 삭제하는데 실패했습니다.");
 				}
 			});
+		});
+		
+		$("#updatePostBtn").on("click", function(){
+			type:""
 		});
 	});
 </script>

@@ -20,7 +20,9 @@ public interface PostMapper {
 	
 	public Post selectPost(int postId);
 	
-	public Post selectPostByPostIdUserId(int postId, int userId);
+	public Post selectPostByPostIdUserId(
+			@Param("postId") int postId,
+			@Param("userId") int userId);
 	
 	public void updatePostByPostId(
 			@Param("postId") int postId,
@@ -30,5 +32,6 @@ public interface PostMapper {
 	
 	public int deletePostByPostIdUserId(
 			@Param("postId")int postId,
-			@Param("useriD")int userId);
+			@Param("userId")int userId);
+	
 }

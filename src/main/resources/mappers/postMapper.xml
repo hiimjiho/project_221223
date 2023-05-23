@@ -89,4 +89,19 @@
  		AND
  			`userId` = #{userId}
  	</delete>
+ 	
+ 	<select id="selectPostByPostId" parameterType="int" resultType="com.PersonalProject.post.model.Post">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `subject`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		WHERE
+			`id` = #{postId}
+ 	</select>
  </mapper>
