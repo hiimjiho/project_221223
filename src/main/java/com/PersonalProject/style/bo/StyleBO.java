@@ -104,7 +104,7 @@ public class StyleBO {
 	public List<StyleCard> generateStyleCardByProductId(int productId, Integer userId){
 		List<StyleCard> styleCard = new ArrayList<>();
 		
-		List<Style> styleList = styleMapper.selectStyleList();
+		List<Style> styleList = styleMapper.selectStyleByProductId(productId);
 		
 		for(Style style : styleList) {
 			StyleCard card = new StyleCard();
