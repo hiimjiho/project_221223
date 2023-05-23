@@ -30,6 +30,8 @@
 		, `createdAt`
 		, `updatedAt`
 	FROM `postComment`
+	WHERE
+		`postId` = #{postId}
 </select>
 
 <delete id="deletePostCommentByCommentId" parameterType="int">

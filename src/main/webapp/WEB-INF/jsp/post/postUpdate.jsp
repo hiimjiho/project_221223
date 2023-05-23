@@ -35,6 +35,10 @@
 			let content = $("#content").val();
 			let file = $("#file").val();
 			let postId = $(this).data("post-id");
+			console.log(subject);
+			console.log(content);
+			console.log(file);
+			console.log(postId);
 			
 			if(!subject){
 				alert("제목을 입력해주세요");
@@ -56,9 +60,12 @@
 			}
 			// 이미지 업로드를 위해 폼 데이터 만들기
 			let formData = new FormData();
+			formData.append("postId", postId);
 			formData.append("subject", subject);
 			formData.append("content", content);
 			formData.append("file", $("#file")[0].files[0]);
+			console.log(formData);
+			
 			
 			$.ajax({
 				type:"put"
@@ -71,7 +78,7 @@
 				, success:function(data){
 					if(data.code == 1){
 						alert("글이 수정되었습니다");
-						location.href="/post/list_view";
+						location.href="/post/detail_view?postId=" + postId;
 					}
 				}
 				, error:function(request, status, error){

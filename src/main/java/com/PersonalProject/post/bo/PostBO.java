@@ -85,8 +85,11 @@ public class PostBO {
 	}
 	
 	public void updatePost(
-			int userId, String loginId,
-			int postId, String subject, String content,
+			int userId,
+			String loginId,
+			int postId,
+			String subject,
+			String content,
 			MultipartFile file) {
 		
 		// 해당 글 가져오기
