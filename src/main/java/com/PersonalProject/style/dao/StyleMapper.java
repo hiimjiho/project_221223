@@ -13,6 +13,9 @@ public interface StyleMapper {
 	
 	public List<Style> selectStyleByProductIdLimit4(int productId);
 	
+	// 유저 프로필정보때 사용할 스타일 리스트
+	public List<Style> selectStyleListByUserId(int userId);
+	
 	public int insertStyle(
 			@Param("productId")int productId,
 			@Param("content")String content,
@@ -31,4 +34,7 @@ public interface StyleMapper {
 	public void deleteStyleByUserIdStyleId(
 			@Param("styleId") int styleId,
 			@Param("userId")int userId);
+	
+	// 스타일 낱개 상세 페이지
+	public Style selectStyleByStyleId(int styleId);
 }

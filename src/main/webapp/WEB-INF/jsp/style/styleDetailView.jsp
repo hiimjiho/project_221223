@@ -40,7 +40,7 @@
 			</c:if>
 		</div>
 			<div class="ml-4">
-				<img src="${styleCard.style.shoesImagePath}" alt="스타일 사진" width=600px height=400px>
+				<a href="/style/style_detail_view?stlyId=${styleCard.style.id}"><img src="${styleCard.style.shoesImagePath}" alt="스타일 사진" width=600px height=400px></a>
 			</div>
 			<%--좋아요를 누를때(좋아요가 눌러져 있지 않을 때) --%>
 			<c:if test="${styleCard.hetherLike eq false}">

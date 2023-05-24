@@ -44,6 +44,11 @@ public class StyleBO {
 	@Autowired
 	private LikeBO likeBO;
 	
+	// 유저 프로필정보때 사용할 스타일 리스트
+	public List<Style> getStyleListByUserId(int userId) {
+		return styleMapper.selectStyleListByUserId(userId);
+	}
+	
 	public List<Style> getStyleByProductId(int productId) {
 		return styleMapper.selectStyleByProductId(productId);
 	}
@@ -145,8 +150,40 @@ public class StyleBO {
 		
 	}
 	
+	// 스타일 낱개 상세 페이지
+	public StyleCard generateStyle(int styleId, Integer userId) {
+		StyleCard styleCard = new StyleCard();
+		
+		Style style = styleMapper.selectStyleByStyleId(styleId);
+		
+		styleCard.setStyle(style);
+		
+		User user = userBO.getUserById(style.getUserId());
+		styleCard.setUser(user);
+		
+		// 댓글들(styleId)
+		List<CommentView> commentViewList = styleCommentBO.generateCommentViewList(style.getId());
+		styleCard.setCommentList(commentViewList);
+					
+					// 좋아요 눌렀는지 여부
+			if(userId == null) {
+						
+				styleCard.setHetherLike(false);
+				}else {
+						// 좋아요 누른 거
+				Like like = likeMapper.selectLike(style.getId(), userId);
+					if(like == null) {
+						styleCard.setHetherLike(false);
+				}else {
+					styleCard.setHetherLike(true);
+				}
+			}
+					
+		styleCard.setLikeCount(likeBO.likeCountByStyleIdUserId(style.getId()));
+		return styleCard;
+	}
 	
-	
+	// 스타일 낱개 상세 페이지
 	
 	public Style getStyleByidUserId(int styleId, int userId) {
 		return styleMapper.selectStyleByidUserId(styleId, userId);

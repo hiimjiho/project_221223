@@ -46,4 +46,18 @@ public class StyleController {
 		model.addAttribute("view", "style/styleDetailView");
 		return "template/layout";
 	}
+	
+	@GetMapping("/style_detail_view")
+	public String styleDetailView(
+			Model model,
+			HttpSession session,
+			@RequestParam("styleId") int styleId) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		StyleCard style = styleBO.generateStyle(styleId, userId);
+		model.addAttribute("style", style);
+		model.addAttribute("view", "style/styleSingleView");
+		return "template/layout";
+	}
 }

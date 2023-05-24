@@ -100,4 +100,35 @@
  		AND
  			`userId` = #{userId}
  	</delete>
+ 	
+ 	<select id="selectStyleListByUserId" parameterType="int" resultType="com.PersonalProject.style.model.Style">
+ 		SELECT
+ 			`id`
+			, `productId`
+			, `userId`
+			, `shoesImagePath`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			 `style`
+		WHERE
+			`userId` = #{userId}
+		ORDER BY `id` DESC
+ 	</select>
+ 	
+ 	<select id="selectStyleByStyleId" parameterType="int" resultType="com.PersonalProject.style.model.Style">
+ 		SELECT
+ 			`id`
+			, `productId`
+			, `userId`
+			, `shoesImagePath`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			 `style`
+		WHERE
+			`id` = #{styleId}
+ 	</select>
  </mapper>
