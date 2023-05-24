@@ -8,8 +8,10 @@
 </div>
 <div class="mt-4 d-flex justify-content-center">
 	<h3>${product.name}</h3>
-	<button type="button" class="favoriteBtn btn btn-outline-primary mb-3">관심상품 등록</button>
-	
+	<div class="favoriteChooseBtn">
+		<button type="button" class="favoriteAddBtn btn btn-outline-primary mb-3" data-product-id="${product.id}">관심상품 등록</button>
+		<button type="button" class="favoriteDeleteBtn btn btn-outline-danger d-none mb-3" data-product-id="${product.id}">관심상품 삭제</button>
+	</div>
 </div>
 
 <div class="d-flex justify-content-center">
@@ -44,7 +46,7 @@
 <div class="d-flex mt-4">
 	<div class="ml-5">
 	<c:forEach items="${styleList}" var="style">
-		<img src="${style.shoesImagePath}" alt="스타일 사진" width=250px height=250px class="shoesImg">
+		<a href="/style/style_detail_view?styleId=${style.id}"><img src="${style.shoesImagePath}" alt="스타일 사진" width=250px height=250px class="shoesImg"></a>
 	</c:forEach>
 	</div>
 </div>
@@ -137,6 +139,32 @@
 		$(".moreStyleBtn").on("click", function(){
 			let productId = $(this).data("product-id");
 			//alert(productId);
+		});
+		
+		// 관심상품 추가
+		$(".favoriteAddBtn").on("click", function(e){
+			e.preventDefault();
+			let productId = $(this).data("product-id");
+			//alert(productId);
+			
+			$.ajax({
+				type:"post"
+				, url:"/favorite/favorite_insert"
+				, data:{"productId" : productId}
+				
+				, success : function(data){
+					if(data.code == 1){
+						alert("관심상품 등록이 완료되었습니다.");
+						$(".favoriteAddBtn").addClass("d-none");
+						$(".favoriteDeleteBtn").removeClass("d-none");
+					}else{
+						alert(errorMessage);
+					}
+				}
+				, error : function(request, status, error){
+					alert("다시 시도해주세요");
+				}
+			});
 		});
 	});
 </script>
