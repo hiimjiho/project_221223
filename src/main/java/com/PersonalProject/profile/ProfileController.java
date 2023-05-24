@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.PersonalProject.post.bo.PostBO;
 import com.PersonalProject.post.model.Post;
@@ -30,10 +31,9 @@ public class ProfileController {
 	
 	@GetMapping("/profile_view")
 	public String profileView(Model model,
-			HttpSession session) {
+			HttpSession session,
+			@RequestParam("userId") int userId) {
 		
-		
-		Integer userId = (Integer)session.getAttribute("userId");
 		User user = userBO.getUserById(userId);
 		
 		model.addAttribute("user", user);
