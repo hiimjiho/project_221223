@@ -55,8 +55,8 @@ public class StyleController {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
-		StyleCard style = styleBO.generateStyle(styleId, userId);
-		model.addAttribute("style", style);
+		StyleCard styleCard = styleBO.generateStyle(styleId, userId);
+		model.addAttribute("styleCard", styleCard);
 		model.addAttribute("view", "style/styleSingleView");
 		return "template/layout";
 	}

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
-
+	<div class="d-flex justify-content-center">
 		<div class="styleContent mt-3">
 		<div class="d-flex justify-content-between">
 			<b class="styleWriter">${styleCard.user.nickname}</b>
@@ -57,3 +57,169 @@
 					</div>
 			</c:if>
 		</div>
+	</div>
+	
+<!-- commentModal -->
+<div class="modal fade" id="modal2">
+	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
+	<%--modal-sm 작은 모달. --%>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center">
+    	<div class="py-3 border-bottom">
+     		<a href="#" id="deleteCommentBtn">댓글 삭제하기</a>
+     	</div>
+     	<div class="py-3">
+     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
+     		<a href="#" data-dismiss="modal" id="deleteModalBtn">취소하기</a>
+     	</div>
+    </div>
+  </div>
+</div>
+
+<!-- postModal -->
+<div class="modal fade" id="postModal">
+	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
+	<%--modal-sm 작은 모달. --%>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center">
+    	<div class="py-3 border-bottom">
+     		<a href="#" id="deletePostBtn">글 삭제하기</a>
+     	</div>
+     	<div class="py-3">
+     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
+     		<a href="#" data-dismiss="modal" id="deleteModalBtn">취소하기</a>
+     	</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="likeModal">
+	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
+	<%--modal-sm 작은 모달. --%>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content text-center">
+    	<div class="py-3 border-bottom">
+     		
+     	</div>
+     	<div class="py-3">
+     		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
+     		
+     	</div>
+    </div>
+  </div>
+</div>
+<script>
+	$(document).ready(function(){
+		// 댓글 작성
+		$(".style-comment-btn").on("click", function(e){
+			e.preventDefault();
+			
+			let content = $(this).siblings("#comment").val();
+			let styleId = $(this).data("style-id");
+			//alert(styleId);
+			
+			if(!content){
+				alert("내용을 입력해주세요");
+				return
+			}
+			
+			$.ajax({
+				type : "post"
+				, url : "/style_comment/create"
+				, data: {
+					"styleId" : styleId ,
+					"content" : content
+					}
+				, success : function(data){
+					if(data.code == 1){
+						location.reload();
+					}else{
+						alert(data.errorMessage);
+					}
+				}
+				, error : function(request, status, error){
+					alert("글을 저장하는데 실패했습니다.");
+				}
+			});
+		});
+		
+		// 댓글 삭제
+		$(".styleCommentDelBtn").on("click", function(e){
+			e.preventDefault();
+			let commentId = $(this).data("comment-id");
+			//alert(commentId);
+			
+		});
+		$("#modal2 #deleteCommentBtn").on("click", function(e){
+			e.preventDefault();
+			let commentId = $("#styleCommentDelBtn").data("comment-id");
+			//console.log(commentId);
+			$.ajax({
+				type : "delete"
+				, url : "/style_comment/delete"
+				, data : {
+					"id" : commentId
+					}
+			
+				, success : function(data){
+					if(data.code == 1){
+						location.reload(true);
+					}else{
+						alert(errorMessage);
+					}
+				}
+				, errror : function(request, status, error){
+					alert("댓글 삭제에 실패했습니다");
+				}
+			});
+		});
+		
+		// 좋아요
+		$(".likeBtn").on("click", function(e){
+			e.preventDefault();
+			
+			let styleId = $(this).data("style-id");
+			//alert(styleId);
+			
+			$.ajax({
+				url: "/like/" + styleId
+				, success:function(data){
+					if(data.code == 1){
+						location.reload(true);
+					}else{
+						alert(data.errorMessage);
+					}
+				}
+				, error:function(request, status, error){
+					alert("다시 시도해주세요");
+				}
+			});
+		});
+		
+		// 글 삭제
+		$("#postModal #deletePostBtn").on("click", function(e){
+			e.preventDefault();
+			let styleId = $(".styleDelBtn").data("style-id");
+			//alert(styleId);
+			
+			$.ajax({
+				type : "delete"
+				, url : "/style/delete"
+				, data : {
+					"styleId" : styleId
+					}
+				, success:function(data){
+					if(data.code == 1){
+						alert("게시글이 삭제되었습니다");
+						location.reload(true);
+					}else{
+						alert(data.errorMessage);
+					}
+				}
+				, error:function(request, status, error){
+					alert("다시 시도해주세요");
+				}
+			});
+		});
+	});
+</script>

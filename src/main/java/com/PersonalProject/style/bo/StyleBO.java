@@ -105,7 +105,8 @@ public class StyleBO {
 		
 	}
 	
-
+	
+	// 스타일 뿌리기
 	public List<StyleCard> generateStyleCardByProductId(int productId, Integer userId){
 		List<StyleCard> styleCard = new ArrayList<>();
 		
@@ -166,8 +167,7 @@ public class StyleBO {
 		styleCard.setCommentList(commentViewList);
 					
 					// 좋아요 눌렀는지 여부
-			if(userId == null) {
-						
+			if(userId == null) {				
 				styleCard.setHetherLike(false);
 				}else {
 						// 좋아요 누른 거
