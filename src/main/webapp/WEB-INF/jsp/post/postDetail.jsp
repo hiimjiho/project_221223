@@ -53,7 +53,7 @@
 </div>
 
 
-
+<c:forEach items="${postCommentList}" var="comment">
 <!-- Modal -->
 <div class="modal fade" id="modal">
 	<!-- modal-dialog-centered: 모달 창을 수직 가운데 정렬 -->
@@ -65,7 +65,7 @@
      	</div>
      	<div class="py-3 border-bottom">
      		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
-     		<a href="/post_comment/update_view?postId=${postView.post.id}?postCommentId=${postView.postComment.id}" id="updateModalBtn">수정하기</a>
+     		<a href="/post_comment/update_view" id="updateModalBtn">수정하기</a>
      	</div>
      	<div class="py-3">
      		<%-- data-dismiss="modal" => 모달창 닫힘 --%>
@@ -74,7 +74,7 @@
     </div>
   </div>
 </div>
-
+</c:forEach>
 <script>
 	$(document).ready(function(){
 		$("#postCommentBtn").on("click", function(){

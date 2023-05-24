@@ -14,7 +14,7 @@
 			|
 			<a href="/user/sign_out" class="header-info font-weight-bold">로그아웃</a>
 			|
-			<a href="#" class="header-info">내 정보</a>
+			<a href="/profile/profile_view?userId=${userId}" class="header-info">내 정보</a>
 		</c:if> 
 		<c:if test="${empty userId}">
 			<a href="/user/sign_in_view" class="header-info font-weight-bold">로그인</a>

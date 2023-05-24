@@ -21,5 +21,27 @@
 
 <div class="profileBtnBox d-flex justify-content-center">
 	<div><a type="button" class="btn btn-outline-primary" id="profileUpdateBtn" href="/profile/profile_style_view?userId=${user.id}">스타일 보기</a></div>
-	<div><a type="button" class="btn btn-outline-primary" id="profileUpdateBtn" href="/profile/profile_post_view?userId=${user.id}">쓴 글 보기</a></div>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>NO</th>
+				<th>제목</th>
+				<th>시간</th>
+			</tr>
+		</thead>
+		<c:forEach items="${postList}" var="post">
+		<tbody>
+			<tr>
+				<td>${post.id}</td>
+				<td width=40%><a href="/post/detail_view?postId=${post.id}" class="postDetailLink">${post.subject}</a></td>
+				<td>
+					<fmt:formatDate value="${post.createdAt}" pattern="yyyy-MM-dd hh:mm:ss"/>
+				</td>
+			</tr>
+		</tbody>
+		</c:forEach>
+	</table>
 </div>

@@ -20,6 +20,11 @@
 </div>
 
 <div class="profileBtnBox d-flex justify-content-center">
-	<div><a type="button" class="btn btn-outline-primary" id="profileUpdateBtn" href="/profile/profile_style_view?userId=${user.id}">스타일 보기</a></div>
 	<div><a type="button" class="btn btn-outline-primary" id="profileUpdateBtn" href="/profile/profile_post_view?userId=${user.id}">쓴 글 보기</a></div>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+	<c:forEach items="${styleList}" var="style">
+		<img src="${style.shoesImagePath}" alt="스타일 사진" height=200px width=150px>
+	</c:forEach>
 </div>

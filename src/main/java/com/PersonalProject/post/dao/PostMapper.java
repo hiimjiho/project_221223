@@ -36,4 +36,7 @@ public interface PostMapper {
 	
 	// 코멘트 삭제를 위한 메서드
 	public Post selectPostByPostId(int postId);
+	
+	// 프로필 화면 구성할 때 쓸 포스트 리스트
+	public List<Post> selectPostListByUserId(int userId);
 }

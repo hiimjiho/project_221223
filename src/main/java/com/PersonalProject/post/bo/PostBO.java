@@ -31,6 +31,11 @@ public class PostBO {
 	@Autowired
 	private FileManagerService fileManager;
 	
+	// 프로필 화면 구성할 때 쓸 포스트 리스트
+	public List<Post> getPostListByUserId(int userId){
+		return postMapper.selectPostListByUserId(userId);
+	};
+	
 	public int addPost(int userId, String loginId, String subject, String content, MultipartFile file) {
 		String imagePath = null;
 		if(file != null) {
