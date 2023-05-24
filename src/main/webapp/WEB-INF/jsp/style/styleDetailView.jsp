@@ -32,7 +32,7 @@
 		<c:forEach items="${styleCardList}" var="styleCard">
 		<div class="styleContent mt-3">
 		<div class="d-flex justify-content-between">
-			<a href="/profile/profile_view?userId=${styleCard.user.id}" class="profileSend"><b class="styleWriter">${styleCard.user.nickname}</b></a>
+			<a href="/profile/profile_view?userId=${styleCard.style.userId}" class="profileSend"><b class="styleWriter">${styleCard.user.nickname}</b></a>
 			<c:if test="${styleCard.style.userId eq userId}">
 				<a href="#" data-toggle="modal" data-target="#postModal" data-style-id="${styleCard.style.id}" class="styleDelBtn">
 					<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
@@ -70,9 +70,11 @@
 				<div class="style-comment d-flex justify-content-between">
 				<div class="styleComment"><span class="font-weight-bold">${comment.user.nickname}</span><span class="styleCommentContent">${comment.styleComment.content}</span></div>
 				<div class="stylemore-btn">
+				<c:if test="${userId eq comment.user.id}">
 					<a href="#" data-toggle="modal" data-target="#modal2" data-comment-id="${comment.styleComment.id}" class="styleCommentDelBtn" id="styleCommentDelBtn">
 						<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
 					</a>
+				</c:if>
 				</div>
 			</div>
 			</c:forEach>

@@ -6,14 +6,14 @@
 	<div class="d-flex justify-content-center">
 		<div class="styleContent mt-3">
 		<div class="d-flex justify-content-between">
-			<b class="styleWriter">${styleCard.user.nickname}</b>
+			<b class="styleWriter ml-5">${styleCard.user.nickname}</b>
 			<c:if test="${styleCard.style.userId eq userId}">
-				<a href="#" data-toggle="modal" data-target="#postModal" data-style-id="${styleCard.style.id}" class="styleDelBtn">
+				<a href="#" data-toggle="modal" data-target="#postModal" data-style-id="${styleCard.style.id}" class="styleDelBtn mr-5">
 					<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
 				</a>
 			</c:if>
 		</div>
-			<div class="ml-4">
+			<div class="d-flex justify-content-center mt-5">
 				<img src="${styleCard.style.shoesImagePath}" alt="스타일 사진" width=600px height=400px>
 			</div>
 			<%--좋아요를 누를때(좋아요가 눌러져 있지 않을 때) --%>
@@ -43,6 +43,7 @@
 			<c:forEach items="${styleCard.commentList}" var="comment">
 				<div class="style-comment d-flex justify-content-between">
 				<div class="styleComment"><span class="font-weight-bold">${comment.user.nickname}</span><span class="styleCommentContent">${comment.styleComment.content}</span></div>
+				<hr>
 				<div class="stylemore-btn">
 					<a href="#" data-toggle="modal" data-target="#modal2" data-comment-id="${comment.styleComment.id}" class="styleCommentDelBtn" id="styleCommentDelBtn">
 						<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
