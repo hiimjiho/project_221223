@@ -16,7 +16,7 @@
 	<div><button type="button" class="btn btn-outline-primary" id="profileUpdateBtn">프로필 수정</button></div>
 </div>
 <div class="d-flex justify-content-start">
-	<button type="button" class="btn btn-outline-success btn-lg">관심상품</button>
+	<a href="/favorite/favorite_view?userId=${user.id}" type="button" class="btn btn-outline-success btn-lg">관심상품</a>
 </div>
 
 <div class="profileBtnBox d-flex justify-content-center">
@@ -25,6 +25,6 @@
 
 <div class="d-flex justify-content-center mt-3">
 	<c:forEach items="${styleList}" var="style">
-		<img src="${style.shoesImagePath}" alt="스타일 사진" height=200px width=150px>
+		<div class="ml-3"><a href="/style/style_detail_view?styleId=${style.id}"><img src="${style.shoesImagePath}" alt="스타일 사진" height=200px width=150px></a></div>
 	</c:forEach>
 </div>

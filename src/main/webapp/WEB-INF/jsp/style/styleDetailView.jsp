@@ -32,7 +32,7 @@
 		<c:forEach items="${styleCardList}" var="styleCard">
 		<div class="styleContent mt-3">
 		<div class="d-flex justify-content-between">
-			<b class="styleWriter">${styleCard.user.nickname}</b>
+			<a href="/profile/profile_view?userId=${styleCard.user.id}" class="profileSend"><b class="styleWriter">${styleCard.user.nickname}</b></a>
 			<c:if test="${styleCard.style.userId eq userId}">
 				<a href="#" data-toggle="modal" data-target="#postModal" data-style-id="${styleCard.style.id}" class="styleDelBtn">
 					<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
@@ -40,7 +40,7 @@
 			</c:if>
 		</div>
 			<div class="ml-4">
-				<a href="/style/style_detail_view?stlyId=${styleCard.style.id}"><img src="${styleCard.style.shoesImagePath}" alt="스타일 사진" width=600px height=400px></a>
+				<a href="/style/style_detail_view?styleId=${styleCard.style.id}"><img src="${styleCard.style.shoesImagePath}" alt="스타일 사진" width=600px height=400px></a>
 			</div>
 			<%--좋아요를 누를때(좋아요가 눌러져 있지 않을 때) --%>
 			<c:if test="${styleCard.hetherLike eq false}">
@@ -220,7 +220,7 @@
 		});
 		
 		// 댓글 작성
-		$(".comment-btn").on("click", function(e){
+		$(".style-comment-btn").on("click", function(e){
 			e.preventDefault();
 			
 			let content = $(this).siblings("#comment").val();

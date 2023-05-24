@@ -109,7 +109,7 @@ footer {
 	margin-top:5px;
 	}
 
-.favoriteBtn{margin-left:50px;}
+.favoriteChooseBtn{margin-left:50px;}
 
 .contents-box {width:650px;}
 
@@ -226,3 +226,21 @@ margin-top:40px;}
 .profileBtnBox{margin-right:200px;
 margin-top:50px;}
 
+.favoriteBrand{
+	font-size:25px;
+	margin-left:150px;
+	}
+
+.favoriteProduct{
+	font-size:20px;
+	margin-top:40px;
+}
+
+.favoriteProductBtn{
+	margin-top:90px;
+	margin-left:370px;
+}
+
+.profileSend:hover{
+	color:grey;
+}
