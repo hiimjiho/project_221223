@@ -26,4 +26,17 @@
 		AND
 			`userId` = #{userId}
 	</delete>
+	
+	<select id="selectFavoriteListByUserId" parameterType="int" resultType="com.PersonalProject.favorite.model.Favorite">
+		SELECT
+			`id`
+			, `userId`
+			, `productId`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`favorite`
+		WHERE
+			`userId` = #{userId}
+	</select>
 </mapper>

@@ -166,5 +166,30 @@
 				}
 			});
 		});
+		
+		// 관심상품 삭제
+		$(".favoriteDeleteBtn").on("click", function(e){
+			e.preventDefault();
+			let productId = $(this).data("product-id");
+			//alert(productId);
+			$.ajax({
+				type:"delete"
+				, url:"/favorite/favorite_delete"
+				, data:{"productId":productId}
+			
+				, success : function(data){
+					if(data.code == 1){
+						alert("관심상품이 삭제되었습니다.");
+						$(".favoriteDeleteBtn").addClass("d-none");
+						$(".favoriteAddBtn").removeClass("d-none");
+					}else{
+						alert(errorMessage);
+					}
+				}
+				, error:function(status, request, error){
+					alert("다시 시도해주세요");
+				}
+			});
+		});
 	});
 </script>

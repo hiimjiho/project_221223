@@ -9,16 +9,45 @@
 </div>
 <hr>
 <div>
-	<div class="d-flex mt-3"><img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/b7d9211c-26e7-431a-ac24-b0540fb3c00f/%EC%97%90%EC%96%B4-%ED%8F%AC%EC%8A%A4-1-07-%EB%82%A8%EC%84%B1-%EC%8B%A0%EB%B0%9C-TttlGpDb.png"
-	 alt="제품 사진" width=230px height=220px>
+	<c:forEach items="${favoriteView}" var="fav">
+	<div class="d-flex mt-3"><img src="${fav.product.productImagePath}" alt="제품 사진" width=230px height=230px>
 	 	 <div class="favoriteBrand mt-5 ml-5">
-	 	 	<b>브랜드</b>
-	 	 	<div class="favoriteProduct">제품명</div>
+	 	 	<b>${fav.product.brand}</b>
+	 	 	<div class="favoriteProduct">${fav.product.name}</div>
 	 	 </div>
 	 	 <div class="favoriteProductBtn justify-content-end">
-	 	 		<a href="#" type="button" class="btn btn-outline-primary btn-lg">보러가기</a>
-	 	 		<a href="#" type="button" class="btn btn-outline-danger btn-lg ml-2">관심상품 삭제</a>
+	 	 		<a href="/product/detail_view?productId=${fav.product.id}" type="button" class="btn btn-outline-primary btn-lg">보러가기</a>
+	 	 		<c:if test="${userId eq fav.user.id}">
+	 	 		<a href="#" type="button" class="btn btn-outline-danger btn-lg" id="favoriteDelteBtn" data-product-id="${fav.product.id}">관심상품 삭제</a>
+	 	 		</c:if>
 	 	 </div>
 	 </div>
 	 <hr>
+	 </c:forEach>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$("#favoriteDelteBtn").on("click", function(){
+			let productId = $(this).data("product-id");
+			alert(productId);
+			
+			$.ajax({
+				type:"delete"
+				, url:"/favorite/favorite_delete"
+				, data:{"productId":productId}
+			
+				, success:function(data){
+					if(data.code == 1){
+						location.reload();
+					} else{
+						alert(errorMessage);
+					} 
+				}
+				, error:function(request, status, error){
+					alert("다시 시도해주세요");
+				}
+			});
+		});
+	});
+</script>
