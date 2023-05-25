@@ -24,5 +24,5 @@ public class ProductBO {
 	public List<Product> getProductListByBrand(String brand){
 		return productMapper.selectProductListByBrand(brand);
 	}
-	
+		
 }

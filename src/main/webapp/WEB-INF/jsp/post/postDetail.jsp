@@ -10,7 +10,7 @@
 
 <div class="post-subject mt-5">
 	<h3 class="postDetailSubject">${postView.post.subject}</h3>	
-	작성자: <b>${postView.user.nickname}</b>
+	작성자: <a href="/profile/profile_view?userId=${postView.user.id}" class="profileSend"><b>${postView.user.nickname}</b></a>
 </div>
 
 <c:if test="${postView.post.userId eq userId}">
@@ -35,7 +35,8 @@
 <b class="postCmn">댓글</b>
 <c:forEach items="${postCommentList}" var="comment">
 	<div class="mt-2 d-flex justify-content-between">
-		<div><span class="font-weight-bold">${comment.user.nickname}</span> <span>${comment.postComment.content}</span></div>
+		<div><a href="/profile/profile_view?userId=${comment.user.id}" class="profileSend"><span class="font-weight-bold">${comment.user.nickname}</span></a>
+		 <span>${comment.postComment.content}</span></div>
 	
 	<c:if test="${comment.postComment.userId eq userId}">
 		<div class="more-btn">

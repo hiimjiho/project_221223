@@ -89,4 +89,13 @@
 		WHERE
 			`id` = #{id}
  	</select>
+ 	
+ 	<update id="updateUser" parameterType="map">
+ 		UPDATE `user`
+ 		SET
+ 			`profileImagePath` = #{profileImagePath}
+ 			, `nickname` = #{nickname}
+ 		WHERE
+ 			`id` = #{userId}
+ 	</update>
  </mapper>

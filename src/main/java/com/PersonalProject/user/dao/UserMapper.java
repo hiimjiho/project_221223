@@ -22,4 +22,9 @@ public interface UserMapper {
 			@Param("password")String password);
 	
 	public User selectUserById(int id);
+	
+	public void updateUser(
+			@Param("profileImagePath")String profileImagePath,
+			@Param("userId")int userId,
+			@Param("nickname") String nickname);
 }

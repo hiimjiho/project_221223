@@ -39,4 +39,32 @@
 		WHERE
 			`userId` = #{userId}
 	</select>
+	
+	<select id="selectFavoriteByProductIdUserId" parameterType="map" resultType="com.PersonalProject.favorite.model.Favorite">
+		SELECT
+			`id`
+			, `userId`
+			, `productId`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`favorite`
+		WHERE
+			`userId` = #{userId}
+		AND
+			`productId` = #{productId}
+	</select>
+	
+	<select id="selectFavoriteByProductId" parameterType="int" resultType="com.PersonalProject.favorite.model.Favorite">
+		SELECT
+			`id`
+			, `userId`
+			, `productId`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`favorite`
+		WHERE
+			`productId` = #{productId}
+	</select>
 </mapper>
