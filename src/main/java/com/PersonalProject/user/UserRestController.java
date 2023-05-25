@@ -8,9 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.PersonalProject.common.EncryptUtils;
 import com.PersonalProject.user.bo.UserBO;
@@ -94,4 +96,18 @@ public class UserRestController {
 		
 	}
 	
+	@PutMapping("/update")
+	public Map<String, Object> userUpdate(
+			HttpSession session,
+			@RequestParam("userId") int userId,
+			@RequestParam("nickname") String nickname,
+			@RequestParam(value="file", required=false) MultipartFile file){
+		
+		String userLoginId = (String)session.getAttribute("userLoginId");
+		userBO.updateUser(file, userId, userLoginId, nickname);
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 1);
+		result.put("result", "성공");
+		return result;
+	}	
 }

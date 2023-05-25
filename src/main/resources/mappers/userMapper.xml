@@ -91,10 +91,13 @@
  	</select>
  	
  	<update id="updateUser" parameterType="map">
- 		UPDATE `user`
+ 		UPDATE
+ 			`user`
  		SET
- 			`profileImagePath` = #{profileImagePath}
- 			, `nickname` = #{nickname}
+ 			`nickname` = #{nickname}
+ 			<if test="profileImagePath != null">
+ 			, `profileImagePath` = #{profileImagePath}
+ 			</if>
  		WHERE
  			`id` = #{userId}
  	</update>

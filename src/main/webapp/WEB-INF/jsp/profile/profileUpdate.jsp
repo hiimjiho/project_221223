@@ -32,7 +32,7 @@
 	</div>
 </div>
 <div class="d-flex justify-content-center mt-5 mr-5">
-	<button type="button" class="btn btn-outline-primary btn-lg" id="userProfileUpdateBtn">수정 완료</button>
+	<button type="button" class="btn btn-outline-primary btn-lg" id="userProfileUpdateBtn" data-user-id="${userId}">수정 완료</button>
 </div>
 
 <script>
@@ -67,8 +67,46 @@
 		});
 		
 		$("#userProfileUpdateBtn").on("click",function(){
-			let nickname = 	("#nickname").val().trim();
-			alert(nickname);
+			let nickname = $("#nickname").val().trim();
+			let file = $("#file").val();
+			let userId = $(this).data("user-id");
+			alert(userId);
+			if(!nickname){
+				alert("닉네임을 입력해주세요");
+			}
+			if(file != ""){
+				let ext = file.split(".").pop().toLowerCase();
+				// pop은 배열의 마지막 부분을 가져온다.
+				if($.inArray(ext, ['jpg', 'jpeg', 'png', 'gif']) == -1){
+					alert("이미지 파일만 업로드 할 수 있습니다");
+					$("#file").val("");
+					return;
+				}
+			}
+			// 이미지 업로드를 위해 폼 데이터 만들기
+			let formData = new FormData();
+			formData.append("nickname", nickname);
+			formData.append("userId", userId);
+			formData.append("file", $("#file")[0].files[0]);
+			console.log(formData);
+			
+			$.ajax({
+				url:"/user/update"
+				, type:"put"
+				, data:formData
+				, enctype:"multipart/form-data"
+				, processData:false	
+				, contentType:false
+				
+				, success:function(data){
+					if(data.code == 1){
+						location.href="/profile/profile_view?userId=" + userId;
+					}
+				}
+				, error:function(request, status, error){
+					alert("다시 시도해주세요");
+				}
+			});
 		});
 		
 	});
