@@ -10,6 +10,7 @@
 	<h3>${product.name}</h3>
 	<div class="favoriteChooseBtn">
 		<button type="button" class="favoriteAddBtn btn btn-outline-primary mb-3" data-product-id="${product.id}">관심상품 등록</button>
+
 		<button type="button" class="favoriteDeleteBtn btn btn-outline-danger d-none mb-3" data-product-id="${product.id}">관심상품 삭제</button>
 	</div>
 </div>
@@ -156,7 +157,6 @@
 					if(data.code == 1){
 						alert("관심상품 등록이 완료되었습니다.");
 						$(".favoriteAddBtn").addClass("d-none");
-						$(".favoriteDeleteBtn").removeClass("d-none");
 					}else{
 						alert(errorMessage);
 					}

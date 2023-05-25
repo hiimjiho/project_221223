@@ -18,4 +18,10 @@ public interface FavoriteMapper {
 			@Param("userId") int userId);
 	
 	public List<Favorite> selectFavoriteListByUserId(int userId);
+	
+	public Favorite selectFavoriteByProductIdUserId(
+			@Param("productId") int productId,
+			@Param("userId") int userId);
+	
+	public Favorite selectFavoriteByProductId(int productId);
 }
