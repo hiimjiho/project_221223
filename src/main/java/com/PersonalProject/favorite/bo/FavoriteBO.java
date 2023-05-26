@@ -58,31 +58,41 @@ public class FavoriteBO {
 		return favoriteViewList;
 	}
 	
-//	public FavoriteCard generateFavByUserId(int productId, Integer userId) {
-//		FavoriteCard favoriteView = new FavoriteCard();
-//		
-//		Favorite favorite = favoriteMapper.selectFavoriteByProductId(productId);
-//		
-//		favoriteView.setFavorite(favorite);
-//		
-//		User user = userBO.getUserById(favorite.getUserId());
-//		
-//		favoriteView.setUser(user);
-//		
-//		Product product = productBO.getProductByProductId(favorite.getProductId());
-//		
-//		favoriteView.setProduct(product);
-//		
-//		if(userId == null) {
-//			favoriteView.setHetherFavorite(false);
-//		}else {
-//			Favorite fav = favoriteMapper.selectFavoriteByProductIdUserId(product.getId(), userId);
-//			if(fav == null) {
-//				favoriteView.setHetherFavorite(false);
-//			}else {
-//				favoriteView.setHetherFavorite(true);
-//			}
-//		}
-//		return favoriteView;
-//	}
+	public void favoriteToggle(int userId, int productId) {
+		int favoriteCount = favoriteMapper.selectFavoriteByUserIdProductId(userId, productId);
+		
+		if(favoriteCount > 0) {
+			favoriteMapper.deleteFavoriteByUserIdProductId(userId, productId);
+		}else {
+			favoriteMapper.insertToggleFavoriteByUserIdProductId(userId, productId);
+		}
+	}
+	
+	public FavoriteCard generateFavByUserId(int productId, Integer userId) {
+		FavoriteCard favoriteView = new FavoriteCard();
+		
+		Favorite favorite = favoriteMapper.selectFavoriteByProductIdUserId(productId, userId);
+		
+		favoriteView.setFavorite(favorite);
+		
+		User user = userBO.getUserById(favorite.getUserId());
+		
+		favoriteView.setUser(user);
+		
+		Product product = productBO.getProductByProductId(productId);
+		
+		favoriteView.setProduct(product);
+		
+		if(userId == null) {
+			favoriteView.setHetherFavorite(false);
+		}else {
+			Favorite fav = favoriteMapper.selectFavoriteByProductIdUserId(product.getId(), userId);
+			if(fav == null) {
+				favoriteView.setHetherFavorite(false);
+			}else {
+				favoriteView.setHetherFavorite(true);
+			}
+		}
+		return favoriteView;
+	}
 }

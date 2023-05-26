@@ -2,6 +2,8 @@ package com.PersonalProject.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.PersonalProject.favorite.bo.FavoriteBO;
+import com.PersonalProject.favorite.model.FavoriteCard;
 import com.PersonalProject.product.bo.ProductBO;
 import com.PersonalProject.product.model.Product;
 import com.PersonalProject.review.bo.ReviewBO;
@@ -24,6 +28,8 @@ public class ProductController {
 	private StyleBO styleBO;
 	@Autowired
 	private ReviewBO reviewBO;
+	@Autowired
+	private FavoriteBO favoriteBO;
 	
 	@GetMapping("/main_view")
 	public String mainView(Model model) {
@@ -37,12 +43,16 @@ public class ProductController {
 	@GetMapping("/detail_view")
 	public String datailView(
 			Model model,
-			@RequestParam("productId") int productId) {
+			@RequestParam("productId") int productId,
+			HttpSession session) {
 		
+		Integer userId = (Integer)session.getAttribute("userId");
 		Product product = productBO.getProductByProductId(productId);
 		List<Style> styleList = styleBO.getStyleByProductIdLimit5(productId);
 		List<ReviewCard> reviewList = reviewBO.generateReview(productId);
+		FavoriteCard favoriteCard = favoriteBO.generateFavByUserId(productId, userId);
 		
+		model.addAttribute("favoriteCard", favoriteCard);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("styleList", styleList);
 		model.addAttribute("product", product);

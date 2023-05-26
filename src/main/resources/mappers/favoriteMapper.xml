@@ -67,4 +67,44 @@
 		WHERE
 			`productId` = #{productId}
 	</select>
+	
+	<select id="selectFavoriteByUserIdProductId" resultType="int" parameterType="map">
+		SELECT
+			`id`
+			, `userId`
+			, `productId`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`favorite`
+		WHERE
+			`productId` = #{productId}
+		AND
+			`userId` = #{userId}
+	</select>
+	
+	<delete id="deleteFavoriteByUserIdProductId" parameterType="map">
+		DELETE FROM `favorite`
+		WHERE
+			`productId` = #{productId}
+		AND
+			`userId` = #{userId}
+	</delete>
+	
+	<insert id="insertToggleFavoriteByUserIdProductId" parameterType="map">
+		INSERT INTO `favorite`
+		(
+			`userId`
+			, `productId`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{userId}
+			, #{productId}
+			, NOW()
+			, NOW()
+		)
+	</insert>
 </mapper>

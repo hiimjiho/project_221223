@@ -24,4 +24,19 @@ public interface FavoriteMapper {
 			@Param("userId") int userId);
 	
 	public Favorite selectFavoriteByProductId(int productId);
+	
+	// 토글만들 때 사용
+	public int selectFavoriteByUserIdProductId(
+			@Param("userId")int userId,
+			@Param("productId")int productId);
+	
+	// 토글
+	public void deleteFavoriteByUserIdProductId(
+			@Param("userId")int userId,
+			@Param("productId")int productId);
+	
+	// 토글
+	public void insertToggleFavoriteByUserIdProductId(
+			@Param("userId")int userId,
+			@Param("productId")int productId); 
 }

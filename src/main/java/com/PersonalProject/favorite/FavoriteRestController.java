@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,6 +44,25 @@ public class FavoriteRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);
 		result.put("result", "성공");
+		return result;
+	}
+	
+	@RequestMapping("/favorite/{productId}")
+	public Map<String, Object> favToggle(
+			@PathVariable("productId") int productId,
+			HttpSession session){
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		Map<String, Object> result = new HashMap<>();
+		if(userId == null) {
+			result.put("code", 500);
+			result.put("result", "error");
+			result.put("result", "errorMessage");
+			return result;
+		}
+		favoriteBO.favoriteToggle(userId, productId);
+		result.put("code", 1);
+		result.put("result", "성공");	
 		return result;
 	}
 }
