@@ -12,6 +12,7 @@
 
 <div class="d-flex justify-content-center my-4">
 	<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif" class="profileImgUpdateBtn">
+	<button class="btn btn-outline-danger">파일 삭제</button>
 </div>
 
 <div class="d-flex justify-content-center mt-5">
