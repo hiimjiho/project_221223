@@ -6,7 +6,8 @@
 	<div class="d-flex justify-content-center">
 		<div class="styleContent mt-3">
 		<div class="d-flex justify-content-between">
-			<b class="styleWriter ml-5">${styleCard.user.nickname}</b>
+			<div><img src="${styleCard.user.profileImagePath}" onerror=this.src="/static/img/user/empty_profile.png" alt="프로필 사진" width=60px height=50px class="profileImg">
+			<b class="styleWriter mr-5">${styleCard.user.nickname}</b></div>
 			<c:if test="${styleCard.style.userId eq userId}">
 				<a href="#" data-toggle="modal" data-target="#postModal" data-style-id="${styleCard.style.id}" class="styleDelBtn mr-5">
 					<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">

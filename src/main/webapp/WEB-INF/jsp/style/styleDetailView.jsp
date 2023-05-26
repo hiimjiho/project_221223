@@ -32,7 +32,11 @@
 		<c:forEach items="${styleCardList}" var="styleCard">
 		<div class="styleContent mt-3">
 		<div class="d-flex justify-content-between">
-			<a href="/profile/profile_view?userId=${styleCard.style.userId}" class="profileSend"><b class="styleWriter">${styleCard.user.nickname}</b></a>
+		<div>
+			<img src="${styleCard.user.profileImagePath}" onerror=this.src="/static/img/user/empty_profile.png" alt="프로필 사진" width=60px height=50px class="profileImg">
+			<a href="/profile/profile_view?userId=${styleCard.style.userId}" class="profileSend">
+			<b class="styleWriter">${styleCard.user.nickname}</b></a>
+		</div>
 			<c:if test="${styleCard.style.userId eq userId}">
 				<a href="#" data-toggle="modal" data-target="#postModal" data-style-id="${styleCard.style.id}" class="styleDelBtn">
 					<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
