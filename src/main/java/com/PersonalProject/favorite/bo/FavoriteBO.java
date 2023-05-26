@@ -68,25 +68,19 @@ public class FavoriteBO {
 		}
 	}
 	
-	public FavoriteCard generateFavByUserId(int productId) {
+	public FavoriteCard generateFavByUserId(int productId, Integer userId) {
 		FavoriteCard favoriteView = new FavoriteCard();
 		
-		Favorite favorite = favoriteMapper.selectFavoriteByProductId(productId);
-		
-		favoriteView.setFavorite(favorite);
-		
-		User user = userBO.getUserById(favorite.getUserId());
-		
-		favoriteView.setUser(user);
-		
 		Product product = productBO.getProductByProductId(productId);
-		
 		favoriteView.setProduct(product);
 		
-		if(user == null) {
+		User user = userBO.getUserByIntegerId(userId);
+		favoriteView.setUser(user);
+		
+		if(userId == null) {
 			favoriteView.setHetherFavorite(false);
 		}else {
-			Favorite fav = favoriteMapper.selectFavoriteByProductIdUserId(product.getId(), user.getId());
+			Favorite fav = favoriteMapper.selectFavoriteByProductIdUserId(productId, userId);
 			if(fav == null) {
 				favoriteView.setHetherFavorite(false);
 			}else {

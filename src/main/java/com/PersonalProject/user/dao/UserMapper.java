@@ -23,6 +23,8 @@ public interface UserMapper {
 	
 	public User selectUserById(int id);
 	
+	public User selectUserByIntegerId(Integer userId);
+	
 	public void updateUser(
 			@Param("profileImagePath")String profileImagePath,
 			@Param("userId")int userId,

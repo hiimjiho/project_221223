@@ -38,6 +38,10 @@ public class UserBO {
 		return userMapper.selectUserByLoginIdPassword(loginId, password);
 	}
 	
+	public User getUserByIntegerId(Integer userId) {
+		return userMapper.selectUserByIntegerId(userId);
+	}
+	
 	public User getUserById(int id) {
 		return userMapper.selectUserById(id);
 	}

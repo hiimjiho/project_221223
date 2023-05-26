@@ -5,13 +5,10 @@ import com.PersonalProject.user.model.User;
 
 public class FavoriteCard {
 
-	private Favorite favorite;
 	private Product product;
 	private User user;
+	private Favorite favorite;
 	
-	// 관심 상품 등록했는지 여부
-	private boolean hetherFavorite;
-
 	public Favorite getFavorite() {
 		return favorite;
 	}
@@ -19,6 +16,9 @@ public class FavoriteCard {
 	public void setFavorite(Favorite favorite) {
 		this.favorite = favorite;
 	}
+
+	// 관심 상품 등록했는지 여부
+	private boolean hetherFavorite;
 
 	public Product getProduct() {
 		return product;
