@@ -28,7 +28,7 @@ class FavoriteBOTest {
 		favoriteBO.deleteFavoriteByProductId(1, 1);
 	}
 	
-	@Test
+	//@Test
 	void 관심상품뿌리기() {
 		logger.info("########관심상품 정보 뿌리기#########");
 		favoriteBO.generateFavoriteByUserId(1);
@@ -37,6 +37,18 @@ class FavoriteBOTest {
 	//@Test
 	void test() {
 		fail("Not yet implemented");
+	}
+	
+	@Test
+	void 관심상품제너레이트() {
+		logger.info("######제너레이트######");
+		favoriteBO.generateFavByUserId(1, 1);
+	}
+	
+	//@Test
+	void 관심상품토글() {
+		logger.info("#####토글#######");
+		favoriteBO.favoriteToggle(1, 1);
 	}
 
 }

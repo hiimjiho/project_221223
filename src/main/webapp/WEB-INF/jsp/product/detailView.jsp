@@ -160,6 +160,7 @@
 				, success : function(data){
 					if(data.code == 1){
 						alert("관심상품 등록이 완료되었습니다.");
+						location.reload();
 					}else{
 						alert(errorMessage);
 					}
@@ -183,8 +184,7 @@
 				, success : function(data){
 					if(data.code == 1){
 						alert("관심상품이 삭제되었습니다.");
-						$(".favoriteDeleteBtn").addClass("d-none");
-						$(".favoriteAddBtn").removeClass("d-none");
+						location.reload();
 					}else{
 						alert(errorMessage);
 					}
@@ -194,5 +194,6 @@
 				}
 			});
 		});
+		
 	});
 </script>

@@ -59,7 +59,7 @@ public class FavoriteBO {
 	}
 	
 	public void favoriteToggle(int userId, int productId) {
-		int favoriteCount = favoriteMapper.selectFavoriteByUserIdProductId(userId, productId);
+		int favoriteCount = favoriteMapper.selectCountFavoriteByUserIdProductId(userId, productId);
 		
 		if(favoriteCount > 0) {
 			favoriteMapper.deleteFavoriteByUserIdProductId(userId, productId);
@@ -71,11 +71,11 @@ public class FavoriteBO {
 	public FavoriteCard generateFavByUserId(int productId, Integer userId) {
 		FavoriteCard favoriteView = new FavoriteCard();
 		
-		Favorite favorite = favoriteMapper.selectFavoriteByProductIdUserId(productId, userId);
+		Favorite favorite = favoriteMapper.selectFavoriteByProductId(productId);
 		
 		favoriteView.setFavorite(favorite);
 		
-		User user = userBO.getUserById(favorite.getUserId());
+		User user = userBO.getUserById(userId);
 		
 		favoriteView.setUser(user);
 		
@@ -86,7 +86,7 @@ public class FavoriteBO {
 		if(userId == null) {
 			favoriteView.setHetherFavorite(false);
 		}else {
-			Favorite fav = favoriteMapper.selectFavoriteByProductIdUserId(product.getId(), userId);
+			Favorite fav = favoriteMapper.selectFavoriteByProductIdUserId(productId, userId);
 			if(fav == null) {
 				favoriteView.setHetherFavorite(false);
 			}else {
