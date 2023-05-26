@@ -18,7 +18,7 @@
 	 	 <div class="favoriteProductBtn justify-content-end">
 	 	 		<a href="/product/detail_view?productId=${fav.product.id}" type="button" class="btn btn-outline-primary btn-lg">보러가기</a>
 	 	 		<c:if test="${userId eq fav.user.id}">
-	 	 		<a href="#" type="button" class="btn btn-outline-danger btn-lg" id="favoriteDelteBtn" data-product-id="${fav.product.id}">관심상품 삭제</a>
+	 	 		<button class="btn btn-outline-danger btn-lg" id="favoriteDelteBtn" data-product-id="${fav.product.id}">관심상품 삭제</button>
 	 	 		</c:if>
 	 	 </div>
 	 </div>

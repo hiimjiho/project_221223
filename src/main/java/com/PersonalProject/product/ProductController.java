@@ -2,8 +2,6 @@ package com.PersonalProject.product;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,14 +41,12 @@ public class ProductController {
 	@GetMapping("/detail_view")
 	public String datailView(
 			Model model,
-			@RequestParam("productId") int productId,
-			HttpSession session) {
+			@RequestParam("productId") int productId) {
 		
-		Integer userId = (Integer)session.getAttribute("userId");
 		Product product = productBO.getProductByProductId(productId);
 		List<Style> styleList = styleBO.getStyleByProductIdLimit5(productId);
 		List<ReviewCard> reviewList = reviewBO.generateReview(productId);
-		FavoriteCard favoriteCard = favoriteBO.generateFavByUserId(productId, userId);
+		FavoriteCard favoriteCard = favoriteBO.generateFavByUserId(productId);
 		
 		model.addAttribute("favoriteCard", favoriteCard);
 		model.addAttribute("reviewList", reviewList);

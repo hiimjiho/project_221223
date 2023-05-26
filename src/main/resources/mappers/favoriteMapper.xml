@@ -68,21 +68,6 @@
 			`productId` = #{productId}
 	</select>
 	
-	<select id="selectFavoriteByUserIdProductId" resultType="int" parameterType="map">
-		SELECT
-			`id`
-			, `userId`
-			, `productId`
-			, `createdAt`
-			, `updatedAt`
-		FROM
-			`favorite`
-		WHERE
-			`productId` = #{productId}
-		AND
-			`userId` = #{userId}
-	</select>
-	
 	<delete id="deleteFavoriteByUserIdProductId" parameterType="map">
 		DELETE FROM `favorite`
 		WHERE
@@ -107,4 +92,15 @@
 			, NOW()
 		)
 	</insert>
+	
+	<select id="selectCountFavoriteByUserIdProductId" parameterType="map" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			`favorite`
+		WHERE
+			`userId` = #{userId}
+		AND
+			`productId` = #{productId}
+	</select>
 </mapper>

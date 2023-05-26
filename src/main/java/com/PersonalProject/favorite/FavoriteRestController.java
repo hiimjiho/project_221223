@@ -54,13 +54,13 @@ public class FavoriteRestController {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		Map<String, Object> result = new HashMap<>();
+		favoriteBO.favoriteToggle(userId, productId);
 		if(userId == null) {
 			result.put("code", 500);
 			result.put("result", "error");
 			result.put("result", "errorMessage");
 			return result;
 		}
-		favoriteBO.favoriteToggle(userId, productId);
 		result.put("code", 1);
 		result.put("result", "성공");	
 		return result;
