@@ -42,7 +42,7 @@ class FavoriteBOTest {
 	@Test
 	void 관심상품제너레이트() {
 		logger.info("######제너레이트######");
-		favoriteBO.generateFavByUserId(1);
+		favoriteBO.generateFavByUserId(0, 1);
 	}
 	
 	//@Test

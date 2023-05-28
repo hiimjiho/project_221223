@@ -90,7 +90,7 @@
 			`id` = #{id}
  	</select>
  	
- 	<select id="selectUserByIntegerId" parameterType="int" resultType="com.PersonalProject.user.model.User">
+ 	<select id="selectUserByIntegerId" parameterType="Integer" resultType="com.PersonalProject.user.model.User">
  		SELECT
  			`id`
 			, `loginId`

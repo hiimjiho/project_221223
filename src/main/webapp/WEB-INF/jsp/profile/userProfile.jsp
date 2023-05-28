@@ -13,7 +13,9 @@
 	<img src="${user.profileImagePath}" onerror=this.src="/static/img/user/empty_profile.png" alt="프로필 사진" height=120px class="profileImg">
 	<span class="profileName font-weight-bold">${user.nickname}</span>
 	</div>
+	<c:if test="${userId eq user.id}">
 	<div><a href="/user/profile_update?userId=${user.id}" type="button" class="btn btn-outline-primary" id="profileUpdateBtn">프로필 수정</a></div>
+	</c:if>
 </div>
 <div class="d-flex justify-content-start">
 	<a href="/favorite/favorite_view?userId=${user.id}" type="button" class="btn btn-outline-success btn-lg">관심상품</a>

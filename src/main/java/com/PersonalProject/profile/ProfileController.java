@@ -31,7 +31,6 @@ public class ProfileController {
 	
 	@GetMapping("/profile_view")
 	public String profileView(Model model,
-			HttpSession session,
 			@RequestParam("userId") int userId) {
 		
 		User user = userBO.getUserById(userId);
@@ -42,11 +41,11 @@ public class ProfileController {
 	}
 	
 	@GetMapping("/profile_style_view")
-	public String profileStyleView(HttpSession session,
+	public String profileStyleView(
+			@RequestParam(value="userId", required=false) Integer userId,
 			Model model) {
 		
-		Integer userId = (Integer)session.getAttribute("userId");
-		User user = userBO.getUserById(userId);
+		User user = userBO.getUserByIntegerId(userId);
 		List<Style> styleList = styleBO.getStyleListByUserId(userId);
 		
 		model.addAttribute("user", user);
@@ -56,11 +55,11 @@ public class ProfileController {
 	}
 	
 	@GetMapping("/profile_post_view")
-	public String profilePostView(HttpSession session,
+	public String profilePostView(
+			@RequestParam(value="userId", required=false) Integer userId,
 			Model model) {
 		
-		Integer userId = (Integer)session.getAttribute("userId");
-		User user = userBO.getUserById(userId);
+		User user = userBO.getUserByIntegerId(userId);
 		List<Post> postList = postBO.getPostListByUserId(userId);
 		
 		model.addAttribute("user", user);

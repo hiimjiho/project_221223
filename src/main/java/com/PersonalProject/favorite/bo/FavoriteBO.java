@@ -80,8 +80,8 @@ public class FavoriteBO {
 		if(userId == null) {
 			favoriteView.setHetherFavorite(false);
 		}else {
-			Favorite fav = favoriteMapper.selectFavoriteByProductIdUserId(productId, userId);
-			if(fav == null) {
+			Favorite favorite = favoriteMapper.selectFavoriteByProductIdUserId(productId, userId);
+			if(favorite == null) {
 				favoriteView.setHetherFavorite(false);
 			}else {
 				favoriteView.setHetherFavorite(true);
