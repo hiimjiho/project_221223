@@ -39,4 +39,12 @@ public interface PostMapper {
 	
 	// 프로필 화면 구성할 때 쓸 포스트 리스트
 	public List<Post> selectPostListByUserId(int userId);
+	
+	public int countPost();
+	
+	public List<Post> pagingPostList(
+			@Param("pageStart") int pageStart,
+			@Param("pageLimit") int pageLimit);
+	
+	
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,9 @@ import com.PersonalProject.postComment.model.PostCommentView;
 @RequestMapping("/post")
 @Controller
 public class PostController {
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private PostBO postBO;
 	
@@ -26,11 +31,19 @@ public class PostController {
 	private PostCommentBO postCommentBO;
 	
 	@GetMapping("/list_view")
-	public String postListView(Model model) {
-		List<PostView> postList = postBO.generatePostList();
+	public String postListView(
+			Model model,
+			HttpSession session,
+			@RequestParam(value="page", required=false, defaultValue="1") int page) {
 		
+		Integer userId = (Integer)session.getAttribute("userId");
+		List<PostView> postList = postBO.generatePostList(page, userId);
+		//List<PostView> postList = postBO.generatePostList();
+		//model.addAttribute("pagingList", pagingList);
 		model.addAttribute("postList", postList);
 		model.addAttribute("view", "post/postListView");
+		System.out.println("page=" + page);
+		System.out.println("postList=" + postList);
 		return "template/layout";
 	}
 	

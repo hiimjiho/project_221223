@@ -1,7 +1,9 @@
 package com.PersonalProject.post.bo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,11 +56,18 @@ public class PostBO {
 		return postMapper.selectPostByPostId(postId);
 	}
 	
-	public List<PostView> generatePostList() {
+	public List<PostView> generatePostList(int page, Integer userId) {
+		
+		int pageLimit = 10;
+		int pageStart = (page -1) * pageLimit;
+		Map<String, Integer> pagingParams = new HashMap<>();
+		pagingParams.put("start", pageStart);
+		pagingParams.put("limit", pageLimit);
+		
 		
 		List<PostView> postViewList = new ArrayList<>();
 		
-		List<Post> postList = postMapper.selectPostList();
+		List<Post> postList = postMapper.pagingPostList(pageStart, pageLimit);
 		
 		for(Post post : postList) {
 			PostView postView = new PostView();
@@ -136,5 +145,24 @@ public class PostBO {
 		
 		return postMapper.deletePostByPostIdUserId(postId, userId);
 	}
+	
+	public int countPost() {
+		return postMapper.countPost();
+	}
+	
+//	public List<PostView> pagingPostList(int page){
+//		// 한 페이지에 들어가는 최대 글 수
+//		
+//		
+//		int pageLimit = 10;
+//		int pageStart = (page -1) * pageLimit;
+//		Map<String, Integer> pagingParams = new HashMap<>();
+//		pagingParams.put("start", pageStart);
+//		pagingParams.put("limit", pageLimit);
+//		List<PostView> postPagingList = postMapper.pagingPostList(pageStart, pageLimit);
+//		
+//		return  postPagingList;
+//		
+//	}
 
 }
