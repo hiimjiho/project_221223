@@ -9,6 +9,7 @@
 <div class="mt-4 d-flex justify-content-center">
 	<h3>${product.name}</h3>
 	<div class="favoriteChooseBtn">
+	
 	<c:if test="${favoriteCard.hetherFavorite eq false}">
 		<button type="button" class="favoriteAddBtn btn btn-outline-primary mb-3" data-product-id="${product.id}">관심상품 등록</button>
 	</c:if>

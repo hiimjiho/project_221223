@@ -32,4 +32,3 @@
 		</tbody>
 		</c:forEach>
 	</table>
-	
