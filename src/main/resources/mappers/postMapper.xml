@@ -120,4 +120,23 @@
 			`userId` = #{userId}
 		ORDER BY `id` DESC
  	</select>
+	
+	<select id="countPost" resultType="int">
+		SELECT COUNT(*) FROM `post`
+	</select>
+
+	<select id="pagingPostList" parameterType="map" resultType="com.PersonalProject.post.model.Post">
+		SELECT
+ 			`id`
+			, `userId`
+			, `subject`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		ORDER BY `id` desc
+		LIMIT #{pageStart}, #{pageLimit}
+	</select>	
  </mapper>
