@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.PersonalProject.favorite.bo.FavoriteBO;
 import com.PersonalProject.favorite.model.FavoriteCard;
+import com.PersonalProject.post.model.Paging;
 import com.PersonalProject.product.bo.ProductBO;
 import com.PersonalProject.product.model.Product;
 import com.PersonalProject.review.bo.ReviewBO;
@@ -32,9 +33,12 @@ public class ProductController {
 	private FavoriteBO favoriteBO;
 	
 	@GetMapping("/main_view")
-	public String mainView(Model model) {
-		List<Product> productList = productBO.getProductList();
+	public String mainView(Model model,
+			@RequestParam(value="page", required=false, defaultValue="1") int page) {
+		List<Product> productList = productBO.getProductList(page);
+		Paging paging = productBO.pagingParam(page);
 		
+		model.addAttribute("paging", paging);
 		model.addAttribute("productList", productList);
 		model.addAttribute("view", "product/mainView");
 		return "template/layout";
@@ -44,14 +48,18 @@ public class ProductController {
 	public String datailView(
 			Model model,
 			@RequestParam("productId") int productId,
+			@RequestParam(value="page", required=false, defaultValue="1") int page,
 			HttpSession session) {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		Product product = productBO.getProductByProductId(productId);
 		List<Style> styleList = styleBO.getStyleByProductIdLimit5(productId);
-		List<ReviewCard> reviewList = reviewBO.generateReview(productId);
+		Paging paging = reviewBO.pagingParamByProductId(page, productId);
+		
+		List<ReviewCard> reviewList = reviewBO.generateReview(productId, userId, page);
 		FavoriteCard favoriteCard = favoriteBO.generateFavByUserId(productId, userId);
 		
+		model.addAttribute("paging", paging);
 		model.addAttribute("favoriteCard", favoriteCard);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("styleList", styleList);
@@ -69,10 +77,14 @@ public class ProductController {
 	@GetMapping("/brand_detail_list_view")
 	public String brandDetailListView(
 			Model model,
+			@RequestParam(value="page", required=false, defaultValue="1") int page,
 			@RequestParam("brand") String brand) {
 		
-		List<Product> productBrandList = productBO.getProductListByBrand(brand);
+		List<Product> productBrandList = productBO.getProductListByBrand(brand, page);
+		Paging paging = productBO.pagingParamByBrand(page, brand);
+		
 		model.addAttribute("productBrandList", productBrandList);
+		model.addAttribute("paging", paging);
 		model.addAttribute("view", "product/brandDetailView");
 		return "template/layout";
 	}

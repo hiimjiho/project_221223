@@ -13,6 +13,7 @@
  		FROM
  			`product`
  		ORDER BY `id` DESC
+ 		LIMIT #{pageStart}, #{pageLimit}
  	</select>
  	<select id="selectProductByProductId" parameterType="int" resultType="com.PersonalProject.product.model.Product">
  		SELECT
@@ -28,7 +29,7 @@
  			`id` = #{productId}
  	</select>
  	
- 	<select id="selectProductListByBrand" parameterType="String" resultType="com.PersonalProject.product.model.Product">
+ 	<select id="selectProductListByBrand" parameterType="map" resultType="com.PersonalProject.product.model.Product">
  		SELECT
  			`id`
  			, `name`
@@ -36,6 +37,24 @@
  			, `productImagePath`
  			, `createdAt`
  			, `updatedAt`
+ 		FROM
+ 			`product`
+ 		WHERE
+ 			`brand` = #{brand}
+ 		ORDER BY `id` DESC
+ 		LIMIT #{pageStart}, #{pageLimit}
+ 	</select>
+ 	
+ 	<select id="productCount" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`product`
+ 	</select>
+ 	
+ 	<select id="productCountByBrand" parameterType="String" resultType="int">
+ 		SELECT
+ 			COUNT(*)
  		FROM
  			`product`
  		WHERE
