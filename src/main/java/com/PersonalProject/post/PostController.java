@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.PersonalProject.post.bo.PostBO;
+import com.PersonalProject.post.model.Paging;
 import com.PersonalProject.post.model.Post;
 import com.PersonalProject.post.model.PostView;
 import com.PersonalProject.postComment.bo.PostCommentBO;
@@ -38,9 +39,10 @@ public class PostController {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		List<PostView> postList = postBO.generatePostList(page, userId);
-		//List<PostView> postList = postBO.generatePostList();
-		//model.addAttribute("pagingList", pagingList);
+		Paging paging = postBO.pagingParam(page);
+		
 		model.addAttribute("postList", postList);
+		model.addAttribute("paging", paging);
 		model.addAttribute("view", "post/postListView");
 		System.out.println("page=" + page);
 		System.out.println("postList=" + postList);

@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.PersonalProject.common.FileManagerService;
 import com.PersonalProject.post.dao.PostMapper;
+import com.PersonalProject.post.model.Paging;
 import com.PersonalProject.post.model.Post;
 import com.PersonalProject.post.model.PostView;
 import com.PersonalProject.user.bo.UserBO;
@@ -32,6 +33,10 @@ public class PostBO {
 	
 	@Autowired
 	private FileManagerService fileManager;
+	
+	int pageLimit = 10; // 한 페이지당 보여줄 글 갯수
+	
+	int blockLimit = 10; // 
 	
 	// 프로필 화면 구성할 때 쓸 포스트 리스트
 	public List<Post> getPostListByUserId(int userId){
@@ -58,7 +63,6 @@ public class PostBO {
 	
 	public List<PostView> generatePostList(int page, Integer userId) {
 		
-		int pageLimit = 10;
 		int pageStart = (page -1) * pageLimit;
 		Map<String, Integer> pagingParams = new HashMap<>();
 		pagingParams.put("start", pageStart);
@@ -150,19 +154,29 @@ public class PostBO {
 		return postMapper.countPost();
 	}
 	
-//	public List<PostView> pagingPostList(int page){
-//		// 한 페이지에 들어가는 최대 글 수
-//		
-//		
-//		int pageLimit = 10;
-//		int pageStart = (page -1) * pageLimit;
-//		Map<String, Integer> pagingParams = new HashMap<>();
-//		pagingParams.put("start", pageStart);
-//		pagingParams.put("limit", pageLimit);
-//		List<PostView> postPagingList = postMapper.pagingPostList(pageStart, pageLimit);
-//		
-//		return  postPagingList;
-//		
-//	}
+	public Paging pagingParam(int page) {
+		 // 전체 글 갯수 조회
+        int boardCount = postMapper.countPost();
+        
+        // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
+        int maxPage = (int) (Math.ceil((double) boardCount / pageLimit));
+        
+        // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
+        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+        
+        // 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
+        int endPage = startPage + blockLimit - 1;
+        
+        if (endPage > maxPage) {
+            endPage = maxPage;
+        }
+        Paging paging = new Paging();
+        
+        paging.setPage(page);
+        paging.setMaxPage(maxPage);
+        paging.setStartPage(startPage);
+        paging.setEndPage(endPage);
+        return paging;
+	}
 
 }
