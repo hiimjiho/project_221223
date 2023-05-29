@@ -34,9 +34,9 @@ public class PostBO {
 	@Autowired
 	private FileManagerService fileManager;
 	
-	int pageLimit = 10; // 한 페이지당 보여줄 글 갯수
+	private static final int PAGE_LIMIT = 10; // 한 페이지당 보여줄 글 갯수
 	
-	int blockLimit = 10; // 
+	private static final int BLOCK_LIMIT = 10; // 
 	
 	// 프로필 화면 구성할 때 쓸 포스트 리스트
 	public List<Post> getPostListByUserId(int userId){
@@ -63,15 +63,15 @@ public class PostBO {
 	
 	public List<PostView> generatePostList(int page, Integer userId) {
 		
-		int pageStart = (page -1) * pageLimit;
+		int pageStart = (page -1) * PAGE_LIMIT;
 		Map<String, Integer> pagingParams = new HashMap<>();
 		pagingParams.put("start", pageStart);
-		pagingParams.put("limit", pageLimit);
+		pagingParams.put("limit", PAGE_LIMIT);
 		
 		
 		List<PostView> postViewList = new ArrayList<>();
 		
-		List<Post> postList = postMapper.pagingPostList(pageStart, pageLimit);
+		List<Post> postList = postMapper.pagingPostList(pageStart, PAGE_LIMIT);
 		
 		for(Post post : postList) {
 			PostView postView = new PostView();
@@ -159,13 +159,13 @@ public class PostBO {
         int boardCount = postMapper.countPost();
         
         // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
-        int maxPage = (int) (Math.ceil((double) boardCount / pageLimit));
+        int maxPage = (int) (Math.ceil((double) boardCount / PAGE_LIMIT));
         
         // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
-        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+        int startPage = (((int)(Math.ceil((double) page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
         
         // 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
-        int endPage = startPage + blockLimit - 1;
+        int endPage = startPage + BLOCK_LIMIT - 1;
         
         if (endPage > maxPage) {
             endPage = maxPage;
