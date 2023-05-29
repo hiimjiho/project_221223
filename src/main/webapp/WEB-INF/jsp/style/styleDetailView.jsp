@@ -66,13 +66,14 @@
 			</c:if>
 			
 			<div class="d-flex ml-3">
-				<b class="styleWriter mt-2">${styleCard.user.nickname}</b>
+				<a href="/profile/profile_view?userId=${styleCard.user.id}"><b class="styleWriter mt-2">${styleCard.user.nickname}</b></a>
 				<span class="ml-2 mt-2">${styleCard.style.content}</span>
 			</div>
 			<hr>
 			<c:forEach items="${styleCard.commentList}" var="comment">
 				<div class="style-comment d-flex justify-content-between">
-				<div class="styleComment"><span class="font-weight-bold">${comment.user.nickname}</span><span class="styleCommentContent">${comment.styleComment.content}</span></div>
+				<div class="styleComment">
+				<a href="/profile/profile_view?userId=${comment.user.id}"><span class="font-weight-bold">${comment.user.nickname}</a></span>:<span class="styleCommentContent">${comment.styleComment.content}</span></div>
 				<div class="stylemore-btn">
 				<c:if test="${userId eq comment.user.id}">
 					<a href="#" data-toggle="modal" data-target="#modal2" data-comment-id="${comment.styleComment.id}" class="styleCommentDelBtn" id="styleCommentDelBtn">
