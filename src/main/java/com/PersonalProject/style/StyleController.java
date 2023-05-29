@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.PersonalProject.post.model.Paging;
 import com.PersonalProject.product.bo.ProductBO;
 import com.PersonalProject.product.model.Product;
 import com.PersonalProject.style.bo.StyleBO;
@@ -30,6 +31,7 @@ public class StyleController {
 	@GetMapping("/detail_view")
 	public String detailView(Model model,
 			@RequestParam("productId") int productId,
+			@RequestParam(value="page", required=false, defaultValue="1") int page,
 			HttpSession session) {
 		
 		Product product = productBO.getProductByProductId(productId);
@@ -37,8 +39,10 @@ public class StyleController {
 //		List<StyleComment> commentList = styleCommentBO.getStyleComment();
 		
 		Integer userId = (Integer)session.getAttribute("userId");
-		List<StyleCard> styleCardList = styleBO.generateStyleCardByProductId(productId, userId);
+		List<StyleCard> styleCardList = styleBO.generateStyleCardByProductId(productId, userId, page);
+		Paging paging = styleBO.pagingParamByProductId(page, productId);
 		
+		model.addAttribute("paging", paging);
 		model.addAttribute("styleCardList", styleCardList);
 		//model.addAttribute("styleList", styleList);
 		model.addAttribute("product", product);

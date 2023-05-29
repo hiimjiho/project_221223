@@ -1,7 +1,9 @@
 package com.PersonalProject.style.bo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import com.PersonalProject.common.FileManagerService;
 import com.PersonalProject.like.bo.LikeBO;
 import com.PersonalProject.like.dao.LikeMapper;
 import com.PersonalProject.like.model.Like;
+import com.PersonalProject.post.model.Paging;
 import com.PersonalProject.product.bo.ProductBO;
 import com.PersonalProject.product.model.Product;
 import com.PersonalProject.style.dao.StyleMapper;
@@ -49,9 +52,9 @@ public class StyleBO {
 		return styleMapper.selectStyleListByUserId(userId);
 	}
 	
-	public List<Style> getStyleByProductId(int productId) {
-		return styleMapper.selectStyleByProductId(productId);
-	}
+//	public List<Style> getStyleByProductId(int productId) {
+//		return styleMapper.selectStyleByProductId(productId);
+//	}
 	
 	public List<Style> getStyleByProductIdLimit5(int productId) {
 		return styleMapper.selectStyleByProductIdLimit4(productId);
@@ -65,7 +68,12 @@ public class StyleBO {
 		return styleMapper.insertStyle(productId, content, userId, imagePath);
 	}
 	
+	private static final int PAGE_LIMIT = 5; // 한 페이지당 보여줄 글 갯수
+	
+	private static final int BLOCK_LIMIT = 5; // 
+	
 	public List<StyleCard> generateStyleCard(Integer userId){
+		
 		List<StyleCard> styleCard = new ArrayList<>();
 		
 		List<Style> styleList = styleMapper.selectStyleList();
@@ -107,10 +115,15 @@ public class StyleBO {
 	
 	
 	// 스타일 뿌리기
-	public List<StyleCard> generateStyleCardByProductId(int productId, Integer userId){
+	public List<StyleCard> generateStyleCardByProductId(int productId, Integer userId, int page){
+		int pageStart = (page -1) * PAGE_LIMIT;
+		Map<String, Integer> pagingParams = new HashMap<>();
+		pagingParams.put("start", pageStart);
+		pagingParams.put("limit", PAGE_LIMIT);
+		
 		List<StyleCard> styleCard = new ArrayList<>();
 		
-		List<Style> styleList = styleMapper.selectStyleByProductId(productId);
+		List<Style> styleList = styleMapper.selectStyleByProductId(productId, pageStart, PAGE_LIMIT);
 		
 		for(Style style : styleList) {
 			StyleCard card = new StyleCard();
@@ -149,6 +162,31 @@ public class StyleBO {
 		}
 		return styleCard;
 		
+	}
+	
+	public Paging pagingParamByProductId(int page, int productId) {
+		 // 전체 글 갯수 조회
+       int styleCount = styleMapper.countStyleByProductId(productId);
+       
+       // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
+       int maxPage = (int) (Math.ceil((double) styleCount / PAGE_LIMIT));
+       
+       // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
+       int startPage = (((int)(Math.ceil((double) page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
+       
+       // 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
+       int endPage = startPage + BLOCK_LIMIT - 1;
+       
+       if (endPage > maxPage) {
+           endPage = maxPage;
+       }
+       Paging paging = new Paging();
+       
+       paging.setPage(page);
+       paging.setMaxPage(maxPage);
+       paging.setStartPage(startPage);
+       paging.setEndPage(endPage);
+       return paging;
 	}
 	
 	// 스타일 낱개 상세 페이지

@@ -9,7 +9,12 @@ import com.PersonalProject.style.model.Style;
 
 @Repository
 public interface StyleMapper {
-	public List<Style> selectStyleByProductId(int productId);
+	public List<Style> selectStyleByProductId(
+			@Param("productId")int productId,
+			@Param("pageStart") int pageStart,
+			@Param("pageLimit") int pageLimit);
+	
+	public int countStyleByProductId(int productId);
 	
 	public List<Style> selectStyleByProductIdLimit4(int productId);
 	

@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.PersonalProject.style.dao.StyleMapper">
- 	<select id="selectStyleByProductId" parameterType="int" resultType="com.PersonalProject.style.model.Style">
+ 
+ 	<select id="selectStyleByProductId" parameterType="map" resultType="com.PersonalProject.style.model.Style">
  		SELECT
  			`id`
 			, `productId`
@@ -16,7 +17,18 @@
 		WHERE
 			`productId` = #{productId}
 		ORDER BY `id` DESC
+		LIMIT #{pageStart}, #{pageLimit}
  	</select>
+ 	
+ 	<select id="countStyleByProductId" parameterType="int" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`style`
+ 		WHERE
+ 			`productId` = #{productId}
+ 	</select>
+ 	
  	<select id="selectStyleByProductIdLimit4" parameterType="int" resultType="com.PersonalProject.style.model.Style">
  		SELECT
  			`id`
