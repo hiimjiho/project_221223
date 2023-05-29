@@ -18,5 +18,10 @@ public interface ReviewMapper {
 	
 	public int deleteReviewById(int reviewId);
 	
-	public List<Review> selectReviewListByProductId(int productId);
+	public List<Review> selectReviewListByProductId(
+			@Param("productId")int productId,
+			@Param("pageStart") int pageStart,
+			@Param("pageLimit") int pageLimit);
+	
+	public int reviewCountByProductId(int productId);
 }

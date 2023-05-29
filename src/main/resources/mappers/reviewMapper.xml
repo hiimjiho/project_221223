@@ -51,5 +51,16 @@
 			`review`
 		WHERE
 			`productId` = #{productId}
+		ORDER BY `id` DESC
+		LIMIT #{pageStart}, #{pageLimit}
+ 	</select>
+ 	
+ 	<select id="reviewCountByProductId" parameterType="int" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`review`
+ 		WHERE
+ 			`productId` = #{productId}
  	</select>
  </mapper>
