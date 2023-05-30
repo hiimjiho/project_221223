@@ -17,7 +17,13 @@ public interface FavoriteMapper {
 			@Param("productId")int productId,
 			@Param("userId") int userId);
 	
-	public List<Favorite> selectFavoriteListByUserId(int userId);
+	// 페이징
+	public List<Favorite> selectFavoriteListByUserId(
+			@Param("userId")int userId,
+			@Param("pageStart") int pageStart,
+			@Param("pageLimit") int pageLimit);
+	
+	public int countFavoriteByUserId(int userId);
 	
 	public Favorite selectFavoriteByProductIdUserId(
 			@Param("productId") int productId,
@@ -38,4 +44,5 @@ public interface FavoriteMapper {
 	public int selectCountFavoriteByUserIdProductId(
 			@Param("userId")int userId,
 			@Param("productId")int productId);
+	
 }

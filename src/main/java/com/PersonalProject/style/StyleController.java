@@ -16,6 +16,7 @@ import com.PersonalProject.product.bo.ProductBO;
 import com.PersonalProject.product.model.Product;
 import com.PersonalProject.style.bo.StyleBO;
 import com.PersonalProject.style.model.StyleCard;
+import com.PersonalProject.styleComment.bo.StyleCommentBO;
 
 @RequestMapping("/style")
 @Controller
@@ -24,8 +25,8 @@ public class StyleController {
 	private ProductBO productBO;
 	@Autowired
 	private StyleBO styleBO;
-//	@Autowired
-//	private StyleCommentBO styleCommentBO;
+	@Autowired
+	private StyleCommentBO styleCommentBO;
 	
 	
 	@GetMapping("/detail_view")
@@ -55,11 +56,15 @@ public class StyleController {
 	public String styleDetailView(
 			Model model,
 			HttpSession session,
-			@RequestParam("styleId") int styleId) {
+			@RequestParam("styleId") int styleId,
+			@RequestParam(value="page", required=false, defaultValue="1") int page) {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
-		StyleCard styleCard = styleBO.generateStyle(styleId, userId);
+		StyleCard styleCard = styleBO.generateStyle(styleId, userId, page);
+		Paging paging = styleCommentBO.pagingParam(page, styleId);
+		
+		model.addAttribute("paging", paging);
 		model.addAttribute("styleCard", styleCard);
 		model.addAttribute("view", "style/styleSingleView");
 		return "template/layout";

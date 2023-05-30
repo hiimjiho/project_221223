@@ -190,7 +190,13 @@ public class StyleBO {
 	}
 	
 	// 스타일 낱개 상세 페이지
-	public StyleCard generateStyle(int styleId, Integer userId) {
+	public StyleCard generateStyle(int styleId, Integer userId, int page) {
+		
+		int pageStart = (page -1) * PAGE_LIMIT;
+		Map<String, Integer> pagingParams = new HashMap<>();
+		pagingParams.put("start", pageStart);
+		pagingParams.put("limit", PAGE_LIMIT);
+		
 		StyleCard styleCard = new StyleCard();
 		
 		Style style = styleMapper.selectStyleByStyleId(styleId);
@@ -201,7 +207,7 @@ public class StyleBO {
 		styleCard.setUser(user);
 		
 		// 댓글들(styleId)
-		List<CommentView> commentViewList = styleCommentBO.generateCommentViewList(style.getId());
+		List<CommentView> commentViewList = styleCommentBO.generateCommentViewListByStyleId(styleId, page);
 		styleCard.setCommentList(commentViewList);
 					
 					// 좋아요 눌렀는지 여부

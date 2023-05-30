@@ -51,6 +51,8 @@
 			`styleComment`
 		WHERE
 			`styleId` = #{styleId}
+		ORDER BY `id` DESC
+		LIMIT 3
  	</select>
  	
  	<delete id="deleteCommentByStyleId" parameterType="map">
@@ -58,4 +60,29 @@
  		WHERE 		
  			`styleId` = #{styleId}
  	</delete>
+ 	
+ 	<select id="countStyleCommentByStyleId" resultType="int" parameterType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`styleComment`
+ 		WHERE
+ 			`styleId` = #{styleId}
+ 	</select>
+ 	
+ 	<select id="selectStyleCommentByStyleId" parameterType="map" resultType="com.PersonalProject.styleComment.model.StyleComment">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `styleId`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`styleComment`
+		WHERE
+			`styleId` = #{styleId}
+		ORDER BY `id` DESC
+		LIMIT #{pageStart}, #{pageLimit}
+ 	</select>
  </mapper>

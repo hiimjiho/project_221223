@@ -29,10 +29,10 @@ class FavoriteBOTest {
 	}
 	
 	//@Test
-	void 관심상품뿌리기() {
-		logger.info("########관심상품 정보 뿌리기#########");
-		favoriteBO.generateFavoriteByUserId(1);
-	}
+//	void 관심상품뿌리기() {
+//		logger.info("########관심상품 정보 뿌리기#########");
+//		favoriteBO.generateFavoriteByUserId(1);
+//	}
 	
 	//@Test
 	void test() {

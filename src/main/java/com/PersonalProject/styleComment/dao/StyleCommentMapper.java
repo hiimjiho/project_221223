@@ -21,4 +21,13 @@ public interface StyleCommentMapper {
 	public List<StyleComment> selectStyleCommentListByStyleId(int styleId);
 	
 	public void deleteCommentByStyleId(int StyleId);
+	
+	// 페이징
+	public int countStyleCommentByStyleId(int styleId);
+	
+	// 페이징
+	public List<StyleComment> selectStyleCommentByStyleId(
+			@Param("styleId")int styleId,
+			@Param("pageStart") int pageStart,
+			@Param("pageLimit") int pageLimit);
 }

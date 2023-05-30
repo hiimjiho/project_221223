@@ -60,6 +60,7 @@ public class ProductBO {
 		return productMapper.selectProductByProductId(productId);
 	}
 	
+	// 브랜드 명 페이징
 	public List<Product> getProductListByBrand(String brand, int page){
 		int pageStart = (page -1) * PAGE_LIMIT;
 		Map<String, Integer> pagingParams = new HashMap<>();
@@ -70,6 +71,7 @@ public class ProductBO {
 		return productListByBrand;
 	}
 	
+	// 브랜드 명 페이징
 	public Paging pagingParamByBrand(int page, String brand) {
 		 // 전체 글 갯수 조회
       int boardCount = productMapper.productCountByBrand(brand);
