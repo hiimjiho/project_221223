@@ -30,7 +30,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		Integer userId = (Integer)session.getAttribute("userId");
 		
-		// 비로그인 && /create로 온 경우 => 로그인 페이지로 리다이렉트, return false(기존 컨트롤러 수행 방지)
+		// 비로그인 && /Post create로 온 경우 => 로그인 페이지로 리다이렉트, return false(기존 컨트롤러 수행 방지)
 		if (userId == null && uri.startsWith("/post/create_view")) {
 			response.sendRedirect("/user/sign_in_view");
 			return false; // 컨트롤러 수행 안함
