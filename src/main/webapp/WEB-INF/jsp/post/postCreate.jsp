@@ -4,28 +4,35 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 
-<div class="d-flex justify-content-center mt-3">
-	<div class="w-50">
-		<h2>글 작성</h2>
-		<input type="text" class="form-control" name="subject" id="subject" placeholder="제목을 입력해주세요.">
-		<textarea rows="15" class="form-control mt-3" id="content" placeholder="내용을 입력해주세요."></textarea>
-		<div class="d-flex justify-content-end my-4">
-			<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif">
-		</div>
-	</div>
-</div>
 
-<div class="postBtnDiv d-flex justify-content-end">
-		<button type="button" class="btn btn-outline-dark mt-3 mr-3" id="postWriteBtn">작성 완료</button>
-		<button type="button" class="btn btn-outline-dark mt-3" id="fileBtn">사진 첨부</button>
-</div>
+		<div class="form-group">
+			Title
+			<input type="text" class="form-control" placeholder="Enter title" id="subject" >
+		</div>
+		
+		<div class="form-group">
+			Content
+			<textarea class="form-control summernote" rows="5" cols="" id="content"></textarea>
+		</div>
+	
+	<button id="postWriteBtn" class="btn btn-primary">글쓰기</button>
+		
 
 <div class="d-flex justify-content-start" id="postListBtn">
 		<button type="button" class="btn btn-outline-dark mt-3">글 목록</button>
 </div>
 
-<script>
+<script>	
 	$(document).ready(function(){
+		
+		 $('.summernote').summernote({
+			 height:400,
+			 callbacks: {
+		          onImageUpload : function(files){
+		        	  uploadSummernoteImageFile(files[0],this);
+		                }
+		            } 
+		 });
 		
 		$("#postWriteBtn").on("click", function(){
 			// validation
@@ -46,12 +53,12 @@
 			
 			if(file != ""){
 				
-				let ext = file.split(".").pop().toLowerCase();
+			let ext = file.split(".").pop().toLowerCase();
 				// pop은 배열의 마지막 부분을 가져온다.
 				if($.inArray(ext, ['jpg', 'jpeg', 'png', 'gif']) == -1){
 					alert("이미지 파일만 업로드 할 수 있습니다");
-					$("#file").val("");
-					return;
+				$("#file").val("");
+				return;
 				}
 			}
 			

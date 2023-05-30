@@ -27,7 +27,7 @@
 			`userId` = #{userId}
 	</delete>
 	
-	<select id="selectFavoriteListByUserId" parameterType="int" resultType="com.PersonalProject.favorite.model.Favorite">
+	<select id="selectFavoriteListByUserId" parameterType="map" resultType="com.PersonalProject.favorite.model.Favorite">
 		SELECT
 			`id`
 			, `userId`
@@ -38,6 +38,8 @@
 			`favorite`
 		WHERE
 			`userId` = #{userId}
+		ORDER BY `id` DESC
+		LIMIT #{pageStart}, #{pageLimit}
 	</select>
 	
 	<select id="selectFavoriteByProductIdUserId" parameterType="map" resultType="com.PersonalProject.favorite.model.Favorite">
@@ -102,5 +104,14 @@
 			`userId` = #{userId}
 		AND
 			`productId` = #{productId}
+	</select>
+	
+	<select id="countFavoriteByUserId" parameterType="int" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			`favorite`
+		WHERE
+			`userId` = #{userId}
 	</select>
 </mapper>

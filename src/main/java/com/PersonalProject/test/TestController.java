@@ -35,5 +35,11 @@ public class TestController {
 //	public List<Post> test3(){
 //		return postBO.getPostList();
 //	}
-//	
+	
+	
+	@RequestMapping("/summernote")
+	public String summerNote() {
+		
+		return "test/summerTest";
+	}
 }
