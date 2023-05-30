@@ -233,6 +233,56 @@ public class StyleBO {
 		return styleMapper.selectStyleByidUserId(styleId, userId);
 	}
 	
+	// 스타일 뿌리기
+	public List<StyleCard> generateStyleCard(Integer userId, int page){
+		int pageStart = (page -1) * PAGE_LIMIT;
+		Map<String, Integer> pagingParams = new HashMap<>();
+		pagingParams.put("start", pageStart);
+		pagingParams.put("limit", PAGE_LIMIT);
+			
+		List<StyleCard> styleCard = new ArrayList<>();
+		
+		// 스타일 리스트
+		List<Style> styleList = styleMapper.selectStyle(pageStart, PAGE_LIMIT);
+			
+		for(Style style : styleList) {
+			StyleCard card = new StyleCard();
+				
+			// 신발 정보
+			//Product product = productBO.getProductByProductId(productId);
+			//card.setProduct(product);
+				
+			// 글
+			card.setStyle(style);
+				
+			// 글쓴 사람 정보
+			User user = userBO.getUserById(style.getUserId());
+			card.setUser(user);
+				
+			// 댓글들(styleId)
+			List<CommentView> commentViewList = styleCommentBO.generateCommentViewList(style.getId());
+			card.setCommentList(commentViewList);
+				
+				// 좋아요 눌렀는지 여부
+			if(userId == null) {
+					
+				card.setHetherLike(false);
+			}else {
+				// 좋아요 누른 거
+				Like like = likeMapper.selectLike(style.getId(), userId);
+				if(like == null) {
+					card.setHetherLike(false);
+				}else {
+					card.setHetherLike(true);
+				}
+			}
+				
+				card.setLikeCount(likeBO.likeCountByStyleIdUserId(style.getId()));
+				styleCard.add(card);
+			}
+			return styleCard;
+		}
+	
 	// 게시글 삭제
 	public void deleteStyleByStyleIdUserId(int styleId, int userId) {
 		// 삭제할 때 좋아요 갯수와 댓글 내용 사진 모두 삭제해 주어야 한다.

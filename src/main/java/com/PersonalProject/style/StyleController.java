@@ -69,4 +69,10 @@ public class StyleController {
 		model.addAttribute("view", "style/styleSingleView");
 		return "template/layout";
 	}
+	
+	@GetMapping("/style_list_view")
+	public String styleListView(Model model) {
+		
+		return "template/layout";
+	}
 }

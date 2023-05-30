@@ -78,7 +78,7 @@
 			, `updatedAt`
 		FROM
 			`style`
-		ORDER BY `id` desc
+		ORDER BY `id` DESC
  	</select>
  	
  	<delete id="deleteStyleByStyleId" parameterType="int">
@@ -142,5 +142,21 @@
 			 `style`
 		WHERE
 			`id` = #{styleId}
+ 	</select>
+ 	
+ 	<select id="selectStyle" parameterType="map" resultType="com.PersonalProject.style.model.Style">
+ 		SELECT
+ 			LECT
+ 			`id`
+			, `productId`
+			, `userId`
+			, `shoesImagePath`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			 `style`
+		ORDER BY `id` DESC
+		LIMIT #{pageStart}, #{pageLimit}
  	</select>
  </mapper>

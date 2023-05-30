@@ -42,4 +42,9 @@ public interface StyleMapper {
 	
 	// 스타일 낱개 상세 페이지
 	public Style selectStyleByStyleId(int styleId);
+	
+	// 스타일 뿌리기(페이징도 포함)
+	public List<Style> selectStyle(
+			@Param("pageStart") int pageStart,
+			@Param("pageLimit") int pageLimit);
 }
