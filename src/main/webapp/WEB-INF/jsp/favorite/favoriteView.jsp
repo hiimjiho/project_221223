@@ -9,7 +9,7 @@
 </div>
 <hr>
 <div>
-	<c:forEach items="${favoriteView}" var="fav">
+	<c:forEach items="${favoriteView}" var="fav" varStatus="status">
 	<div class="d-flex mt-3"><img src="${fav.product.productImagePath}" alt="제품 사진" width=230px height=230px>
 	 	 <div class="favoriteBrand mt-5 ml-5">
 	 	 	<b>${fav.product.brand}</b>
@@ -21,6 +21,7 @@
 	 	 		<button class="btn btn-outline-danger btn-lg" id="favoriteDelteBtn" data-product-id="${fav.product.id}">관심상품 삭제</button>
 	 	 		</c:if>
 	 	 </div>
+	 	 
 	 </div>
 	 <hr>
 	 </c:forEach>
