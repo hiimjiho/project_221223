@@ -146,7 +146,6 @@
  	
  	<select id="selectStyle" parameterType="map" resultType="com.PersonalProject.style.model.Style">
  		SELECT
- 			LECT
  			`id`
 			, `productId`
 			, `userId`
@@ -158,5 +157,12 @@
 			 `style`
 		ORDER BY `id` DESC
 		LIMIT #{pageStart}, #{pageLimit}
+ 	</select>
+ 	
+ 	<select id="countStyle" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`style`
  	</select>
  </mapper>

@@ -16,6 +16,7 @@ import com.PersonalProject.product.bo.ProductBO;
 import com.PersonalProject.product.model.Product;
 import com.PersonalProject.style.bo.StyleBO;
 import com.PersonalProject.style.model.StyleCard;
+import com.PersonalProject.style.model.StyleView;
 import com.PersonalProject.styleComment.bo.StyleCommentBO;
 
 @RequestMapping("/style")
@@ -71,7 +72,17 @@ public class StyleController {
 	}
 	
 	@GetMapping("/style_list_view")
-	public String styleListView(Model model) {
+	public String styleListView(Model model,
+			HttpSession session,
+			@RequestParam(value="page", required=false, defaultValue="1") int page) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		List<StyleView> styleList = styleBO.generateStyleCard(userId, page);
+		Paging paging = styleBO.pagingParam(page);
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("styleList", styleList);
+		model.addAttribute("view", "style/styleListView");
 		
 		return "template/layout";
 	}

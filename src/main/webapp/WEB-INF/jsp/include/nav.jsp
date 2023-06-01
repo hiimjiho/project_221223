@@ -15,5 +15,5 @@
       </div>
     </div>
 	<li class="nav-item dropbtn"><a class="nav-link" href="/post/list_view"><b>신발 게시판</b></a></li>
-	<li class="nav-item dropbtn"><a class="nav-link" href="#"><b>스타일</b></a></li>
+	<li class="nav-item dropbtn"><a class="nav-link" href="/style/style_list_view"><b>스타일</b></a></li>
 </ul>

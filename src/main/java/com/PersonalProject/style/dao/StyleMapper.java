@@ -47,4 +47,7 @@ public interface StyleMapper {
 	public List<Style> selectStyle(
 			@Param("pageStart") int pageStart,
 			@Param("pageLimit") int pageLimit);
+	
+	// 스타일 리스트 페이징에 필요함
+	public int countStyle();
 }

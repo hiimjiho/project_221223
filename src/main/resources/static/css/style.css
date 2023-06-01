@@ -211,8 +211,7 @@ margin-bottom:50px;}
 .uploadImage{margin-left:270px;}
 
 .profileImg{
-	border-radius: 50%;
-	margin-right:50px;}
+	border-radius: 50%;}
 	
 .profileDiv{margin-top:50px}
 
@@ -243,4 +242,13 @@ margin-top:50px;}
 
 .profileSend:hover{
 	color:grey;
+}
+
+.profile-div{
+	margin-bottom:10px;
+	width:650px;
+}
+
+.comment-write{
+	width:620px;
 }

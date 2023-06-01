@@ -19,6 +19,7 @@ import com.PersonalProject.product.model.Product;
 import com.PersonalProject.style.dao.StyleMapper;
 import com.PersonalProject.style.model.Style;
 import com.PersonalProject.style.model.StyleCard;
+import com.PersonalProject.style.model.StyleView;
 import com.PersonalProject.styleComment.bo.StyleCommentBO;
 import com.PersonalProject.styleComment.model.CommentView;
 import com.PersonalProject.user.bo.UserBO;
@@ -189,6 +190,32 @@ public class StyleBO {
        return paging;
 	}
 	
+	// 스타일 페이지 페이징 
+	public Paging pagingParam(int page) {
+		 // 전체 글 갯수 조회
+      int styleCount = styleMapper.countStyle();
+      
+      // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
+      int maxPage = (int) (Math.ceil((double) styleCount / PAGE_LIMIT));
+      
+      // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
+      int startPage = (((int)(Math.ceil((double) page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
+      
+      // 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
+      int endPage = startPage + BLOCK_LIMIT - 1;
+      
+      if (endPage > maxPage) {
+          endPage = maxPage;
+      }
+      Paging paging = new Paging();
+      
+      paging.setPage(page);
+      paging.setMaxPage(maxPage);
+      paging.setStartPage(startPage);
+      paging.setEndPage(endPage);
+      return paging;
+	}
+	
 	// 스타일 낱개 상세 페이지
 	public StyleCard generateStyle(int styleId, Integer userId, int page) {
 		
@@ -234,23 +261,20 @@ public class StyleBO {
 	}
 	
 	// 스타일 뿌리기
-	public List<StyleCard> generateStyleCard(Integer userId, int page){
+	public List<StyleView> generateStyleCard(Integer userId, int page){
+		
 		int pageStart = (page -1) * PAGE_LIMIT;
 		Map<String, Integer> pagingParams = new HashMap<>();
 		pagingParams.put("start", pageStart);
 		pagingParams.put("limit", PAGE_LIMIT);
 			
-		List<StyleCard> styleCard = new ArrayList<>();
+		List<StyleView> styleCard = new ArrayList<>();
 		
 		// 스타일 리스트
 		List<Style> styleList = styleMapper.selectStyle(pageStart, PAGE_LIMIT);
 			
 		for(Style style : styleList) {
-			StyleCard card = new StyleCard();
-				
-			// 신발 정보
-			//Product product = productBO.getProductByProductId(productId);
-			//card.setProduct(product);
+			StyleView card = new StyleView();
 				
 			// 글
 			card.setStyle(style);
