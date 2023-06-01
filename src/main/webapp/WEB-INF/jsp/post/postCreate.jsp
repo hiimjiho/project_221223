@@ -11,7 +11,7 @@
 		<div class="form-group">
 			Content
 			<textarea class="form-control summernote" rows="5" cols="" id="content"></textarea>
-			<img id="preview">
+			<img id="preview" src="">
 		</div>
 	
 	<button id="postWriteBtn" class="btn btn-primary">글쓰기</button>
@@ -28,28 +28,30 @@
 			 height:400,
 			 lang: "ko-KR",	// 한글 설정
 			 callbacks: {	//이미지를 첨부하는 부분
-				onImageUpload : function(files) {
-				uploadSummernoteImageFile(files[0],this);
+				onImageUpload : function(file) {
+				uploadSummernoteImageFile(file[0],this);
 				
 				}
 			 }	
 		 });
 		 	
-		 $(".note-image-input").on("change", function(e) {
-
-			    var file = target.files[0];
-
-			    var reader = new FileReader(); 
-			    reader.onload = function(e) {
-
-			        $("#preview").attr("src", e.target.result);
-			    }
-
-			    reader.readAsDataURL(file);
-			    console.log(file);
-			});
+		
 		 
 		 function uploadSummernoteImageFile(file, editor) {
+			 
+			 $(".note-image-input").on("change", function(event) {
+
+				    var file = event.target.file[0];
+
+				    var reader = new FileReader(); 
+				    reader.onload = function(e) {
+
+				        $("#preview").attr("src", e.target.result);
+				    }
+
+				    reader.readAsDataURL(file);
+				    console.log(file);
+				});
 			 
 			 $("#postWriteBtn").on("click", function(){
 					// validation
