@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
-
-
 		<div class="form-group">
 			Title
 			<input type="text" class="form-control" placeholder="Enter title" id="subject" >
@@ -13,6 +11,7 @@
 		<div class="form-group">
 			Content
 			<textarea class="form-control summernote" rows="5" cols="" id="content"></textarea>
+			<img id="preview">
 		</div>
 	
 	<button id="postWriteBtn" class="btn btn-primary">글쓰기</button>
@@ -31,12 +30,27 @@
 			 callbacks: {	//이미지를 첨부하는 부분
 				onImageUpload : function(files) {
 				uploadSummernoteImageFile(files[0],this);
+				
 				}
-			 }
+			 }	
 		 });
-		 			
+		 	
+		 $(".note-image-input").on("change", function(e) {
+
+			    var file = target.files[0];
+
+			    var reader = new FileReader(); 
+			    reader.onload = function(e) {
+
+			        $("#preview").attr("src", e.target.result);
+			    }
+
+			    reader.readAsDataURL(file);
+			    console.log(file);
+			});
 		 
 		 function uploadSummernoteImageFile(file, editor) {
+			 
 			 $("#postWriteBtn").on("click", function(){
 					// validation
 					var subject = $("#subject").val();
