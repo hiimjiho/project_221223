@@ -18,7 +18,7 @@
 	 	 <div class="favoriteProductBtn justify-content-end">
 	 	 		<a href="/product/detail_view?productId=${fav.product.id}" type="button" class="btn btn-outline-primary btn-lg">보러가기</a>
 	 	 		<c:if test="${userId eq fav.user.id}">
-	 	 		<button class="btn btn-outline-danger btn-lg" id="favoriteDelteBtn" data-product-id="${fav.product.id}">관심상품 삭제</button>
+	 	 		<button class="btn favoriteDelteBtn btn-outline-danger btn-lg" data-product-id="${fav.product.id}">관심상품 삭제</button>
 	 	 		</c:if>
 	 	 </div>
 	 	 
@@ -66,7 +66,7 @@
 
 <script>
 	$(document).ready(function(){
-		$("#favoriteDelteBtn").on("click", function(){
+		$(".favoriteDelteBtn").on("click", function(){
 			let productId = $(this).data("product-id");
 			alert(productId);
 			
