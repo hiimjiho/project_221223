@@ -11,7 +11,8 @@
 		<div class="form-group">
 			Content
 			<textarea class="form-control summernote" rows="5" cols="" id="content"></textarea>
-			<img id="preview" src="">
+			<img id="preview" alt=썸네일 width=300 height=150>
+			<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif">	
 		</div>
 	
 	<button id="postWriteBtn" class="btn btn-primary">글쓰기</button>
@@ -25,39 +26,42 @@
 	$(document).ready(function(){
 		
 		 $('.summernote').summernote({
-			 height:400,
-			 lang: "ko-KR",	// 한글 설정
-			 callbacks: {	//이미지를 첨부하는 부분
-				onImageUpload : function(file) {
-				uploadSummernoteImageFile(file[0],this);
-				
-				}
-			 }	
+			   toolbar: [
+				    ['style', ['style']],
+				    ['font', ['bold', 'italic', 'underline', 'clear']],
+				    ['fontname', ['fontname']],
+				    ['color', ['color']],
+				    ['para', ['ul', 'ol', 'paragraph']],
+				    ['height', ['height']],
+				    ['table', ['table']],
+				    ['insert', ['link', 'hr']],
+				    ['view', ['fullscreen','codeview']],
+				    ['help', ['help']]
+				  ]
+		 		, height:300
 		 });
-		 	
-		
 		 
-		 function uploadSummernoteImageFile(file, editor) {
-			 
-			 $(".note-image-input").on("change", function(event) {
+		 
+		 	
+		 
+		 $("#file").on("change", function(event) {
 
-				    var file = event.target.file[0];
+			    var file = event.target.files[0];
 
-				    var reader = new FileReader(); 
-				    reader.onload = function(e) {
+			    var reader = new FileReader(); 
+			    reader.onload = function(e) {
 
-				        $("#preview").attr("src", e.target.result);
-				    }
+			        $("#preview").attr("src", e.target.result);
+			    }
 
-				    reader.readAsDataURL(file);
-				    console.log(file);
-				});
+			    reader.readAsDataURL(file);
+			});
 			 
 			 $("#postWriteBtn").on("click", function(){
 					// validation
 					var subject = $("#subject").val();
 					var content = $("#content").val();
-					//let file = $("#file").val();
+					var file = $("#file").val();
 					//alert(subject);
 					//alert(content);
 					if(!subject){
@@ -70,21 +74,21 @@
 						return;
 					}
 					
-					//if(file != ""){
+					if(file != ""){
 						
-					//let ext = file.split(".").pop().toLowerCase();
-						// pop은 배열의 마지막 부분을 가져온다.
-					//	if($.inArray(ext, ['jpg', 'jpeg', 'png', 'gif']) == -1){
-					//		alert("이미지 파일만 업로드 할 수 있습니다");
-					//	$("#file").val("");
-					//	return;
-					//	}
-				//	}
+					let ext = file.split(".").pop().toLowerCase();
+						 //pop은 배열의 마지막 부분을 가져온다.
+						if($.inArray(ext, ['jpg', 'jpeg', 'png', 'gif']) == -1){
+							alert("이미지 파일만 업로드 할 수 있습니다");
+						$("#file").val("");
+						return;
+						}
+					}
 					
 						let formData = new FormData();
 						formData.append("subject", subject);
 						formData.append("content", content);
-						formData.append("file", file);
+						formData.append("file", $("#file")[0].files[0]);
 					
 					$.ajax({
 						// request
@@ -101,8 +105,6 @@
 								// 성공
 								alert("메모가 저장되었습니다.");
 								location.href="/post/list_view";
-								$(editor).summernote('insertImage', data.url);
-								 $("#thumbnailPath").append("<option value="+data.url+">"+data.originName+"</option>");
 							} else{
 								// 실패
 								alert(data.errorMessage)
@@ -113,15 +115,7 @@
 						}
 					});
 				
-				});
-		 }
-		 
-		 $("div.note-editable").on('drop',function(e){
-	         for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
-	         	uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i],$("#summernote")[0]);
-	         }
-	        e.preventDefault();
-	   })
+				}); 
 	});
 
 </script>
