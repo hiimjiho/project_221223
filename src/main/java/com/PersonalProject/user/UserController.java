@@ -33,15 +33,4 @@ public class UserController {
 		return "redirect:/user/sign_in_view";
 	}
 	
-	@RequestMapping("/profile_update")
-	public String profileUpdate(
-			Model model,
-			HttpSession session) {
-		
-		
-		model.addAttribute("view", "profile/profileUpdate");
-		return "template/layout";
-	}
-
-
 }
