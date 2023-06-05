@@ -68,7 +68,7 @@
 	$(document).ready(function(){
 		$(".favoriteDelteBtn").on("click", function(){
 			let productId = $(this).data("product-id");
-			alert(productId);
+			//alert(productId);
 			
 			$.ajax({
 				type:"delete"
