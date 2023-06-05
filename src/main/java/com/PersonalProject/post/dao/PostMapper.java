@@ -48,4 +48,7 @@ public interface PostMapper {
 	// 어드민 페이지에서 사용할 포스트 삭제
 	public int deletePostByPostId(int postId);
 	
+	// 어드민 페이지 유저 탈퇴 기능에 사용할 포스트 삭제
+	public void deletePostByUserId(int userId);
+	
 }

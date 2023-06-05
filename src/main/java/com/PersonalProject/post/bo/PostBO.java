@@ -159,6 +159,22 @@ public class PostBO {
 		return postMapper.countPost();
 	}
 	
+	// 어드민 페이지 유저 탈퇴 기능에 사용할 포스트 삭제
+	public void deletePostByUserId(int userId) {
+		List<Post> postList = postMapper.selectPostListByUserId(userId);
+		
+		for(Post post : postList) {
+			// 댓글 삭제
+			postMapper.deletePostByPostId(post.getId());
+			// 이미지 삭제
+			if(post.getImagePath() != null) {
+				fileManager.deleteFile(post.getImagePath());
+			}
+			// 포스트 삭제
+			postMapper.deletePostByUserId(userId);
+		}
+	}
+	
 	public Paging pagingParam(int page) {
 		 // 전체 글 갯수 조회
         int boardCount = postMapper.countPost();

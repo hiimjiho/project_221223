@@ -65,4 +65,10 @@
 		`postId` = #{postId}
 </delete>
 
+<delete id="deleteCommentByUserId" parameterType="int">
+	DELETE FROM
+		`postComment`
+	WHERE
+		`userId` = #{userId}
+</delete>
  </mapper>

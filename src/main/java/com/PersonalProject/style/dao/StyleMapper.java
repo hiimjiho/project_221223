@@ -57,4 +57,8 @@ public interface StyleMapper {
 	
 	// 스타일 리스트 페이징에 필요함
 	public int countStyle();
+	
+	// 어드민 페이지 유저 삭제에 필요한 스타일
+	public void deleteStyleByUserId(int userId);
+	
 }

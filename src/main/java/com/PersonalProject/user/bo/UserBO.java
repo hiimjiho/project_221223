@@ -77,7 +77,16 @@ public class UserBO {
 		return userMapper.selectUserList();
 	}
 	
-	public int deleteUserByUserId(int userId) {
-		return userMapper.deleteUserByUserId(userId);
+	public void deleteUserByUserId(int userId) {
+		User user = userMapper.selectUserByUserId(userId);
+		if(user.getProfileImagePath() != null) {
+			fileManager.deleteFile(user.getProfileImagePath());
+		}
+		userMapper.deleteUserByUserId(userId);
+	}
+	
+	// 어드민 페이지 유저 관리
+	public User getUserByUserId(int userId) {
+		return userMapper.selectUserByUserId(userId);
 	}
 }

@@ -59,4 +59,9 @@ public class PostCommentBO {
 		postCommentMapper.deletePostCommentByPostId(postId);;
 	}
 	
+	// 어드민 페이지 유저 삭제 기능에 사용할 포스트 코멘트 삭제
+	public void deleteCommentByUserId(int userId) {
+		postCommentMapper.deleteCommentByUserId(userId);
+	}
+	
 }

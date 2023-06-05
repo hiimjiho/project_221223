@@ -128,4 +128,9 @@ public class FavoriteBO {
 		}
 		return favoriteView;
 	}
+	
+	// 어드민 페이지 유저 삭제할때 사용할 즐겨찾기 삭제
+	public void deleteFavoriteByUserId(int userId) {
+		favoriteMapper.deleteFavoriteByUserId(userId);
+	}
 }

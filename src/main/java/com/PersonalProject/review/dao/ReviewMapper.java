@@ -26,4 +26,6 @@ public interface ReviewMapper {
 	public int reviewCountByProductId(int productId);
 	
 	public void deleteReviewByProductId(int productId);
+	
+	public void deleteReviewByUserId(int userId);
 }

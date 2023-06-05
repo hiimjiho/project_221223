@@ -64,4 +64,10 @@
  			`styleId` = #{styleId}
  	
  	</delete>
+ 	
+ 	<delete id="deleteLikeByUserId" parameterType="int">
+ 		DELETE FROM `like`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</delete>
  </mapper>

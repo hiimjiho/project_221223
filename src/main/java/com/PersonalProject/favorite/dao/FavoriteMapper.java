@@ -45,4 +45,6 @@ public interface FavoriteMapper {
 			@Param("userId")int userId,
 			@Param("productId")int productId);
 	
+	public void deleteFavoriteByUserId(int userId);
+	
 }

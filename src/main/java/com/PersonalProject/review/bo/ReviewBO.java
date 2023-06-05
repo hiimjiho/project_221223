@@ -96,4 +96,9 @@ public class ReviewBO {
        paging.setEndPage(endPage);
        return paging;
 	}
+	
+	// 관리자 페이지 전용 유저 댓글 삭제
+	public void deleteReviewByUserId(int userId) {
+		reviewMapper.deleteReviewByUserId(userId);
+	}
 }

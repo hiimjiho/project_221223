@@ -85,4 +85,10 @@
 		ORDER BY `id` DESC
 		LIMIT #{pageStart}, #{pageLimit}
  	</select>
+ 	
+ 	<delete id="deleteStyleCommentByUserId" parameterType="int">
+ 		DELETE FROM `styleComment`
+ 		WHERE 		
+ 			`userId` = #{userId}
+ 	</delete>
  </mapper>

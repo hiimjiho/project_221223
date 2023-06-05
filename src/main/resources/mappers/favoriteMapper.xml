@@ -114,4 +114,10 @@
 		WHERE
 			`userId` = #{userId}
 	</select>
+	
+	<delete id="deleteFavoriteByUserId" parameterType="int">
+		DELETE FROM `favorite`
+		WHERE
+			`userId` = #{userId}
+	</delete>
 </mapper>

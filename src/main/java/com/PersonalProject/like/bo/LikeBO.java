@@ -29,4 +29,9 @@ public class LikeBO {
 		likeMapper.deleteLikeByStyleId(styleId);
 	}
 	
+	// 어드민 페이지에 사용할 좋아요 삭제
+	public void deleteLikeByUserId(int userId) {
+		likeMapper.deleteLikeByUserId(userId);
+	}
+	
 }

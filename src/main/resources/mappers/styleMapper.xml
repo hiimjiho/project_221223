@@ -186,4 +186,11 @@
  		WHERE
  			`id` = #{styleId}
  	</delete>
+ 	
+ 	<delete id="deleteStyleByUserId" parameterType="int">
+ 		DELETE FROM
+ 			`style`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</delete>
  </mapper>

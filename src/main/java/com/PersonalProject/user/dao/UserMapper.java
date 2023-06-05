@@ -34,5 +34,7 @@ public interface UserMapper {
 	
 	public List<User> selectUserList();
 	
-	public int deleteUserByUserId(int userId);
+	public void deleteUserByUserId(int userId);
+	
+	public User selectUserByUserId(int userId);
 }

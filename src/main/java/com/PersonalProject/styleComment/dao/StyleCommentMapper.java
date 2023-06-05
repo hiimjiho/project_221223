@@ -30,4 +30,7 @@ public interface StyleCommentMapper {
 			@Param("styleId")int styleId,
 			@Param("pageStart") int pageStart,
 			@Param("pageLimit") int pageLimit);
+	
+	// 어드민 페이지 유저 탈퇴 기능에 사용할 스타일 코멘트 삭제
+	public void deleteStyleCommentByUserId(int userId);
 }

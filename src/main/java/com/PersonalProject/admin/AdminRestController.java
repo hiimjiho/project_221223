@@ -16,16 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.PersonalProject.admin.bo.AdminBO;
 import com.PersonalProject.admin.model.Admin;
 import com.PersonalProject.product.bo.ProductBO;
-import com.PersonalProject.user.bo.UserBO;
 @RequestMapping("/admin")
 @RestController
 public class AdminRestController {
 	
 	@Autowired
 	private AdminBO adminBO;
-	
-	@Autowired
-	private UserBO userBO;
 	
 	@Autowired
 	private ProductBO productBO;
@@ -66,15 +62,9 @@ public class AdminRestController {
 			HttpSession session){
 		
 		Map<String, Object> result = new HashMap<>();
-		int rowCount = userBO.deleteUserByUserId(userId);
-		
-		if(rowCount > 0) {
-			result.put("code", 1);
-			result.put("result", "성공");
-		}else {
-			result.put("code", 500);
-			result.put("result", "실패");
-		}
+		adminBO.deleteUserByUserId(userId);
+		result.put("code", 1);
+		result.put("result", "성공");
 		return result;
 	}
 	

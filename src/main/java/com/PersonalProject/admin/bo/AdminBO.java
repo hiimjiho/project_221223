@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.PersonalProject.admin.dao.AdminMapper;
 import com.PersonalProject.admin.model.Admin;
 import com.PersonalProject.common.FileManagerService;
+import com.PersonalProject.favorite.bo.FavoriteBO;
 import com.PersonalProject.like.bo.LikeBO;
 import com.PersonalProject.post.bo.PostBO;
 import com.PersonalProject.post.model.Post;
@@ -19,6 +20,7 @@ import com.PersonalProject.style.bo.StyleBO;
 import com.PersonalProject.style.model.Style;
 import com.PersonalProject.styleComment.bo.StyleCommentBO;
 import com.PersonalProject.user.bo.UserBO;
+import com.PersonalProject.user.model.User;
 
 @Service
 public class AdminBO {
@@ -54,6 +56,9 @@ public class AdminBO {
 
 	@Autowired
 	private FileManagerService fileManager;
+	
+	@Autowired
+	private FavoriteBO favoriteBO;
 
 	public Admin getAdminByAdminIdPassword(String adminLoginId, String adminPassword) {
 		return adminMapper.selectAdminByAdminIdPassword(adminLoginId, adminPassword);
@@ -107,5 +112,23 @@ public class AdminBO {
 		
 		return productBO.deleteProductByProductId(productId);
 		
+	}
+	
+	public void deleteUserByUserId(int userId) {
+		// 해당 유저의 리뷰
+		reviewBO.deleteReviewByUserId(userId);
+		// 해당 유저의 포스트
+		postBO.deletePostByUserId(userId);
+		// 해당 유저의 포스트 댓글
+		postCommentBO.deleteCommentByUserId(userId);
+		// 해당 유저의 스타일
+		styleBO.deleteStyleByUserId(userId);
+		// 해당 유저의 스타일 댓글
+		styleCommentBO.deleteStyleCommentByUserId(userId);
+		// 해당 유저의 즐겨찾기 삭제
+		favoriteBO.deleteFavoriteByUserId(userId);
+		
+		// 유저 삭제
+		userBO.deleteUserByUserId(userId);
 	}
 }

@@ -343,4 +343,21 @@ public class StyleBO {
 		
 	}
 	
+	// 어드민 페이지에서 유저 탈퇴시킬때 쓸 스타일 삭제
+	public void deleteStyleByUserId(int userId) {
+	
+		// 해당 스타일 리스트를 가져온다.
+		List<Style> styleList  = styleMapper.selectStyleListByUserId(userId);
+		
+		for(Style style : styleList) {
+			// 이미지 삭제
+			fileManager.deleteFile(style.getShoesImagePath());
+			// 좋아요 삭제
+			likeBO.deleteLikeByUserId(userId);
+			// 댓글 삭제
+			styleCommentBO.deleteCommentByStyleId(style.getId());
+			
+			styleMapper.deleteStyleByUserIdStyleId(style.getId(), userId);
+		}
+	}
 }

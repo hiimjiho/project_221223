@@ -40,7 +40,22 @@
 			let userId = $(this).data("user-id");
 			//console.log(userId);
 			
-			
+			$.ajax({
+				type : "delete"
+				, url : "/admin/user_delete"
+				, data : {"userId" : userId}
+				, success : function(data){
+					if(data.code == 1){
+						alert("유저 탈퇴가 완료되었습니다");
+						location.reload();
+					}else{
+						alert("다시 시도해주세요");
+					}
+				}
+				, error : function(request, error, status){
+					alert("관리자에게 문의해주세요");
+				}
+			});
 		});
 	});
 </script>
