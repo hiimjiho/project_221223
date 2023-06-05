@@ -29,6 +29,7 @@
 			<td>
 			<a href="/admin/product_update_view?productId=${product.id}" class="btn btn-info">수정</a>
 			<button class="productDeleteBtn btn btn-danger" data-product-id="${product.id}">삭제</button>
+			<a href="/product/detail_view?productId=${product.id}" class="btn btn-secondary">보러가기</a>
 			</td>
 		</tr>
 	</tbody>

@@ -216,6 +216,10 @@ margin-bottom:50px;}
 
 .profileImg{
 	border-radius: 50%;}
+
+.profileThumbnail{
+	border-radius: 50%;
+}
 	
 .profileDiv{margin-top:50px}
 
@@ -261,3 +265,4 @@ margin-top:50px;}
 .styleDelBtn{
 	margin-top:10px;
 }
+

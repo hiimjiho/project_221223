@@ -19,6 +19,7 @@
 			<td>${post.id}</td>
 			<td>${post.subject}</td>
 			<td><button class="adminPostDeleteBtn btn btn-danger" data-post-id="${post.id}">삭제</button></td>
+			<td><a href="/post/detail_view?postId=${post.id}" class="btn btn-info">상세내용</a></td>
 		</tr>
 	</tbody>
 	</c:forEach>

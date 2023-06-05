@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<h1>관리자 페이지</h1>
 
 <a href="/admin/user_management_view">유저 관리</a>
 |

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <div class="h-100 d-flex justify-content-between align-items-center">
+<h1><a href="/admin/admin_main_view">관리자 페이지</a></h1>
 	<div>
 		<div>
 		<c:if test="${not empty adminId}">
