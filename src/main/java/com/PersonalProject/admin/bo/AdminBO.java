@@ -14,13 +14,11 @@ import com.PersonalProject.post.bo.PostBO;
 import com.PersonalProject.post.model.Post;
 import com.PersonalProject.postComment.bo.PostCommentBO;
 import com.PersonalProject.product.bo.ProductBO;
-import com.PersonalProject.product.model.Product;
 import com.PersonalProject.review.bo.ReviewBO;
 import com.PersonalProject.style.bo.StyleBO;
 import com.PersonalProject.style.model.Style;
 import com.PersonalProject.styleComment.bo.StyleCommentBO;
 import com.PersonalProject.user.bo.UserBO;
-import com.PersonalProject.user.model.User;
 
 @Service
 public class AdminBO {
@@ -105,7 +103,6 @@ public class AdminBO {
 	
 	// 신발 삭제 기능
 	public int deleteProductByProductId(int productId) {
-		Product product = productBO.getProductByProductId(productId);
 		
 		// 한줄평 삭제
 		reviewBO.deleteReviewByProductId(productId);
