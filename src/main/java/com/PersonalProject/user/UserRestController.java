@@ -96,7 +96,7 @@ public class UserRestController {
 		
 	}
 	
-	@PutMapping("/update")
+	@PutMapping("/user_update")
 	public Map<String, Object> userUpdate(
 			HttpSession session,
 			@RequestParam("userId") int userId,

@@ -14,7 +14,7 @@
 	<span class="profileName font-weight-bold">${user.nickname}</span>
 	</div>
 	<c:if test="${userId eq user.id}">
-	<div><a href="/user/profile_update?userId=${user.id}" type="button" class="btn btn-outline-primary" id="profileUpdateBtn">프로필 수정</a></div>
+	<div><a href="/profile/profile_update?userId=${user.id}" type="button" class="btn btn-outline-primary" id="profileUpdateBtn">프로필 수정</a></div>
 	</c:if>
 </div>
 <div class="d-flex justify-content-start">

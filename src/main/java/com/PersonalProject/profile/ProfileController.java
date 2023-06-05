@@ -2,6 +2,8 @@ package com.PersonalProject.profile;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,4 +67,18 @@ public class ProfileController {
 		model.addAttribute("view", "profile/userProfilePost");
 		return "template/layout";
 	}
+	
+	@RequestMapping("/profile_update")
+	public String profileUpdate(
+			@RequestParam("userId") int userId,
+			Model model,
+			HttpSession session) {
+		
+		User user = userBO.getUserById(userId);
+		model.addAttribute("user", user);
+		model.addAttribute("view", "profile/profileUpdate");
+		return "template/layout";
+	}
+
+
 }

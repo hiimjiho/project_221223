@@ -8,11 +8,12 @@
 
 <div class="d-flex justify-content-center mt-5">
 <img src="${user.profileImagePath}" onerror=this.src="/static/img/user/empty_profile.png" alt="프로필 사진" height=120px class="profileImg">
+<img id="preview" alt=썸네일 height=120px class="profileThumbnail d-none">
 </div>
 
 <div class="d-flex justify-content-center my-4">
 	<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif" class="profileImgUpdateBtn">
-	<button class="btn btn-outline-danger">파일 삭제</button>
+	<button class="profileImgDelBtn btn btn-outline-danger">파일 삭제</button>
 </div>
 
 <div class="d-flex justify-content-center mt-5">
@@ -38,6 +39,28 @@
 
 <script>
 	$(document).ready(function(){
+		
+		$(".profileImgDelBtn").on("click", function(){
+			$(".profileImg").val("");
+			$("#file").val("");
+			$("#preview").addClass("d-none");
+			$(".profileImg").removeClass("d-none");
+		});
+		
+		 $("#file").on("change", function(event) {
+				$("#preview").removeClass("d-none");
+				$(".profileImg").addClass("d-none");
+			    var file = event.target.files[0];
+
+			    var reader = new FileReader(); 
+			    reader.onload = function(e) {
+
+			        $("#preview").attr("src", e.target.result);
+			    }
+
+			    reader.readAsDataURL(file);
+			});
+		
 		$("#profileNicknameCheckBtn").on("click", function(){
 			
 			$("#nicknameLengthCheck").addClass("d-none");
@@ -71,7 +94,7 @@
 			let nickname = $("#nickname").val().trim();
 			let file = $("#file").val();
 			let userId = $(this).data("user-id");
-			alert(userId);
+			//alert(userId);
 			if(!nickname){
 				alert("닉네임을 입력해주세요");
 			}
@@ -92,10 +115,10 @@
 			console.log(formData);
 			
 			$.ajax({
-				url:"/user/update"
-				, type:"put"
-				, data:formData
-				, enctype:"multipart/form-data"
+				type : "put"
+				, url : "/user/user_update"
+				, data : formData
+				, enctype : "multipart/form-data"
 				, processData:false	
 				, contentType:false
 				
