@@ -120,6 +120,10 @@ footer {
 	margin-top:50px;
 }
 
+.product-name{
+	position: absolute;
+}
+
 .secondLogo{margin-left:150px;}
 
 .styleWriter{font-size:20px;}
@@ -236,8 +240,9 @@ margin-top:50px;}
 }
 
 .favoriteProductBtn{
+	position: absolute;
 	margin-top:90px;
-	margin-left:230px;
+	margin-left:800px;
 }
 
 .profileSend:hover{
