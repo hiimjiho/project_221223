@@ -1,24 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="d-flex justify-content-center mt-3">
-	<div class="w-50">
-		<h2>글 수정</h2>
-		<input type="text" class="form-control" name="subject" id="subject" placeholder="제목을 입력해주세요." value="${post.subject}">
-		<textarea rows="15" class="form-control mt-3" id="content" placeholder="내용을 입력해주세요.">${post.content}</textarea>
-		<div class="d-flex justify-content-end my-4">
-			<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif">
+<div class="form-group">
+			Title
+			<input type="text" class="form-control" placeholder="Enter title" id="subject" value="${post.subject}">
 		</div>
-		<div class="uploadImage">
-			<c:if test="${not empty post.imagePath}">
-				<img class="fu-img-box" src="${post.imagePath}" alt="업로드 된 이미지" width="200">
-			</c:if>	
+		
+		<div class="form-group">
+			Content
+			<textarea class="form-control summernote" rows="5" cols="" id="content">${post.content}</textarea>
+			<img id="preview" alt=썸네일 width=300 height=150>
+			<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif">	
 		</div>
-	</div>
-</div>
 
-<div class="postBtnDiv d-flex justify-content-end">
-		<button type="button" class="btn btn-outline-dark mt-3 mr-3" id="postWriteBtn" data-post-id="${post.id}">수정 완료</button>
-		<button type="button" class="btn btn-outline-dark mt-3" id="fileBtn">사진 첨부</button>
+<div class="postBtnDiv d-flex justify-content-center">
+		<button type="button" class="btn btn-outline-dark ml-5" id="postWriteBtn" data-post-id="${post.id}">수정 완료</button>
 </div>
 
 <div class="d-flex justify-content-start mb-5">
@@ -27,6 +22,35 @@
 
 <script>
 	$(document).ready(function(){
+		
+		 $('.summernote').summernote({
+			   toolbar: [
+				    ['style', ['style']],
+				    ['font', ['bold', 'italic', 'underline', 'clear']],
+				    ['fontname', ['fontname']],
+				    ['color', ['color']],
+				    ['para', ['ul', 'ol', 'paragraph']],
+				    ['height', ['height']],
+				    ['table', ['table']],
+				    ['insert', ['link', 'hr']],
+				    ['view', ['fullscreen','codeview']],
+				    ['help', ['help']]
+				  ]
+		 		, height:300
+		 });
+		 
+		 $("#file").on("change", function(event) {
+
+			    var file = event.target.files[0];
+
+			    var reader = new FileReader(); 
+			    reader.onload = function(e) {
+
+			        $("#preview").attr("src", e.target.result);
+			    }
+
+			    reader.readAsDataURL(file);
+			});
 		
 		// 수정버튼
 		$("#postWriteBtn").on("click", function(){
