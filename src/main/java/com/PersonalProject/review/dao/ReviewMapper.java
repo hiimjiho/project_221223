@@ -24,4 +24,6 @@ public interface ReviewMapper {
 			@Param("pageLimit") int pageLimit);
 	
 	public int reviewCountByProductId(int productId);
+	
+	public void deleteReviewByProductId(int productId);
 }

@@ -60,4 +60,68 @@
  		WHERE
  			`brand` = #{brand}
  	</select>
+ 	
+ 	<select id="adminSelectProductList" resultType="com.PersonalProject.product.model.Product">
+ 		SELECT
+ 			`id`
+ 			, `name`
+ 			, `brand`
+ 			, `productImagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`product`
+ 		ORDER BY `id` desc
+ 	</select>
+ 	
+ 	<select id="adminSelectProductByProductId" resultType="com.PersonalProject.product.model.Product" parameterType="int">
+ 		SELECT
+ 			`id`
+ 			, `name`
+ 			, `brand`
+ 			, `productImagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`product`
+ 		WHERE
+ 			`id` = #{productId}
+ 	</select>
+ 	
+ 	<update id="updateProduct" parameterType="map">
+ 		UPDATE
+ 			`product`
+ 		SET
+ 			`name` = #{name}
+ 			, `brand` = #{brand}
+ 			, `productImagePath` = #{productImagePath}
+ 		WHERE
+ 			`id` = #{productId}
+ 	</update>
+ 	
+ 	<insert id="addProduct" parameterType="map">
+ 		INSERT INTO `product`
+ 		(
+			`name`
+			, `brand`
+			, `productImagePath`
+			, `createdAt`
+			, `updatedAt`
+		)
+		value
+		(
+			#{name}
+    		, #{brand}
+    		, #{productImagePath}
+    		, now()
+    		, NOW()
+		)
+ 	</insert>
+ 	
+ 	<delete id="deleteProductByProductId" parameterType="int">
+ 		DELETE FROM
+ 			`product`
+ 		WHERE
+ 			`id` = #{productId}
+ 	</delete>
  </mapper>

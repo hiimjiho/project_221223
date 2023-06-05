@@ -63,4 +63,10 @@
  		WHERE
  			`productId` = #{productId}
  	</select>
+ 	
+ 	<delete id="deleteReviewByProductId" parameterType="int">
+ 		DELETE FROM `review`
+ 		WHERE
+ 			`productId` = #{productId}
+ 	</delete>
  </mapper>

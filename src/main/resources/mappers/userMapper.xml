@@ -117,4 +117,25 @@
  		WHERE
  			`id` = #{userId}
  	</update>
+ 	
+ 	<select id="selectUserList" resultType="com.PersonalProject.user.model.User">
+ 		SELECT
+ 			`id`
+			, `loginId`
+			, `password`
+			, `nickname`
+			, `email`
+			, `profileImagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+ 	</select>
+ 	
+ 	<delete id="deleteUserByUserId" parameterType="int">
+ 		DELETE FROM
+ 			`user`
+ 		WHERE
+ 			`id` = #{userId}
+ 	</delete>
  </mapper>

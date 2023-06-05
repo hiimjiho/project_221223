@@ -150,6 +150,11 @@ public class PostBO {
 		return postMapper.deletePostByPostIdUserId(postId, userId);
 	}
 	
+	// 어드민 페이지에서 사용할 포스트 삭제
+	public int deletePostByPostId(int postId) {
+		return postMapper.deletePostByPostId(postId);
+	}
+	
 	public int countPost() {
 		return postMapper.countPost();
 	}

@@ -139,4 +139,11 @@
 		ORDER BY `id` desc
 		LIMIT #{pageStart}, #{pageLimit}
 	</select>	
+	
+	<delete id="deletePostByPostId" parameterType="int">
+		DELETE FROM
+			`post`
+		WHERE
+			`id` = #{postId}
+	</delete>
  </mapper>

@@ -1,5 +1,7 @@
 package com.PersonalProject.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -29,4 +31,8 @@ public interface UserMapper {
 			@Param("profileImagePath")String profileImagePath,
 			@Param("userId")int userId,
 			@Param("nickname") String nickname);
+	
+	public List<User> selectUserList();
+	
+	public int deleteUserByUserId(int userId);
 }

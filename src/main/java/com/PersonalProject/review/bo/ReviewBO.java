@@ -34,6 +34,11 @@ public class ReviewBO {
 		return reviewMapper.deleteReviewById(reviewId);
 	}
 	
+	// 어드민 페이지에서 사용할 리뷰 삭제
+	public void deleteReviewByProductId(int productId) {
+		reviewMapper.deleteReviewByProductId(productId);
+	}
+	
 	private static final int PAGE_LIMIT = 5; // 한 페이지당 보여줄 글 갯수
 	
 	private static final int BLOCK_LIMIT = 10; // 

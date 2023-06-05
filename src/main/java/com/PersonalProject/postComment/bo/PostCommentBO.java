@@ -55,4 +55,8 @@ public class PostCommentBO {
 		return postCommentMapper.selectPostCommentByPostIdUserIdPostCommentId(postId, userId, postCommentId);
 	}
 	
+	public void deletePostCommentByPostId(int postId) {
+		postCommentMapper.deletePostCommentByPostId(postId);;
+	}
+	
 }

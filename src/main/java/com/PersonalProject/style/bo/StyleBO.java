@@ -48,6 +48,21 @@ public class StyleBO {
 	@Autowired
 	private LikeBO likeBO;
 	
+	// 어드민 용
+	public List<Style> getStyleList(){
+		return styleMapper.selectAdminStyleList();
+	}
+	
+	// 어드민이 스타일 삭제할때 스타일
+	public Style getStyleByStyleId(int styleId) {
+		return styleMapper.selectStyleByStyleId(styleId);
+	}
+	
+	// 어드민이 삭제할때 사용
+	public void adminDeleteStyleByStyleId(int styleId) {
+		styleMapper.adminDeleteStyleByStyleId(styleId);;
+	}
+	
 	// 유저 프로필정보때 사용할 스타일 리스트
 	public List<Style> getStyleListByUserId(int userId) {
 		return styleMapper.selectStyleListByUserId(userId);

@@ -1,6 +1,8 @@
 package com.PersonalProject.user.bo;
 
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +70,14 @@ public class UserBO {
 			}
 		}
 		userMapper.updateUser(profileImagePath, userId, nickname);
+	}
+	
+	// 어드민 페이지 유저 관리용
+	public List<User> getUserList(){
+		return userMapper.selectUserList();
+	}
+	
+	public int deleteUserByUserId(int userId) {
+		return userMapper.deleteUserByUserId(userId);
 	}
 }

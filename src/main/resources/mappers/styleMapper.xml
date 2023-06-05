@@ -3,6 +3,20 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.PersonalProject.style.dao.StyleMapper">
  
+ 	<select id="selectAdminStyleList" resultType="com.PersonalProject.style.model.Style">
+ 		SELECT
+ 			`id`
+			, `productId`
+			, `userId`
+			, `shoesImagePath`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`style`
+		ORDER BY `id` desc
+ 	</select>
+ 
  	<select id="selectStyleByProductId" parameterType="map" resultType="com.PersonalProject.style.model.Style">
  		SELECT
  			`id`
@@ -165,4 +179,11 @@
  		FROM
  			`style`
  	</select>
+ 	
+ 	<delete id="adminDeleteStyleByStyleId" parameterType="int">
+ 		DELETE FROM
+ 			`style`
+ 		WHERE
+ 			`id` = #{styleId}
+ 	</delete>
  </mapper>

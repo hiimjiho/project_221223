@@ -9,6 +9,13 @@ import com.PersonalProject.style.model.Style;
 
 @Repository
 public interface StyleMapper {
+	
+	// 어드민 페이지 전용
+	public List<Style> selectAdminStyleList();
+	
+	// 어드민 페이지 스타일 삭제
+	public void adminDeleteStyleByStyleId(int styleId);
+	
 	public List<Style> selectStyleByProductId(
 			@Param("productId")int productId,
 			@Param("pageStart") int pageStart,

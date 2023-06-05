@@ -45,6 +45,7 @@ public interface PostMapper {
 	public List<Post> pagingPostList(
 			@Param("pageStart") int pageStart,
 			@Param("pageLimit") int pageLimit);
-	
+	// 어드민 페이지에서 사용할 포스트 삭제
+	public int deletePostByPostId(int postId);
 	
 }

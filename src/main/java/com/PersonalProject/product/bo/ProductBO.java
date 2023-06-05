@@ -96,5 +96,37 @@ public class ProductBO {
       paging.setEndPage(endPage);
       return paging;
 	}
-		
+	
+	// 어드민 페이지에 뿌려줄 신발 리스트
+	public List<Product> adminGetProductList(){
+		return productMapper.adminSelectProductList();
+	}
+	
+	// 어드민 페이지에 뿌려줄 신발
+	public Product adminGetProductByProductId(int productId) {
+		return productMapper.adminSelectProductByProductId(productId);
+	}
+	
+	// 어드민 페이지에서 신발 정보 수정
+	public void updateProduct(
+			int productId,
+			String brand,
+			String name,
+			String productImagePath
+			) {
+		productMapper.updateProduct(productId, brand, name, productImagePath);
+	}
+	
+	// 어드민 페이지에서 신발 추가
+	public int addProduct(
+			String name,
+			String brand,
+			String productImagePath) {
+		return productMapper.addProduct(name, brand, productImagePath);
+	}
+	
+	// 어드민 페이지에서 신발 삭제
+	public int deleteProductByProductId(int productId) {
+		return productMapper.deleteProductByProductId(productId);
+	}
 }
