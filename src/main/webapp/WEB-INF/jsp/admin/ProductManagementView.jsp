@@ -40,9 +40,8 @@
 	$(document).ready(function(){
 		$(".productDeleteBtn").on("click", function(){
 			let productId = $(this).data("product-id");
-			
-			
-			$,ajax({
+				
+			$.ajax({
 				type : "delete"
 				, url : "/admin/product_delete"
 				, data : {"productId" : productId}
