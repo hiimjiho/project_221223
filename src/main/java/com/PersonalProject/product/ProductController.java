@@ -84,6 +84,7 @@ public class ProductController {
 		Paging paging = productBO.pagingParamByBrand(page, brand);
 		
 		model.addAttribute("productBrandList", productBrandList);
+		model.addAttribute("brand", brand);
 		model.addAttribute("paging", paging);
 		model.addAttribute("view", "product/brandDetailView");
 		return "template/layout";
