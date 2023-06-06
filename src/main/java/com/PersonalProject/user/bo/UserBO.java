@@ -67,9 +67,16 @@ public class UserBO {
 			
 			if(profileImagePath != null && user.getProfileImagePath() != null) {
 				fileManager.deleteFile(user.getProfileImagePath());
-			}
+			}						
 		}
+		
 		userMapper.updateUser(profileImagePath, userId, nickname);
+	}
+	
+	// 프로필 사진 없애기
+	public void deleteProfileImg(int userId) {
+								
+		userMapper.deleteProfileImg(userId);
 	}
 	
 	// 어드민 페이지 유저 관리용
