@@ -221,6 +221,9 @@ margin-bottom:50px;}
 	border-radius: 50%;
 }
 	
+.emptyProfile{
+	border-radius: 50%;
+}
 .profileDiv{margin-top:50px}
 
 .profileNickname{margin-right:200px;}
@@ -264,5 +267,9 @@ margin-top:50px;}
 
 .styleDelBtn{
 	margin-top:10px;
+}
+
+.main_view{
+	margin-right:17px;
 }
 
