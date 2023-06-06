@@ -8,7 +8,14 @@
  
  <div>
  <b>브랜드</b>
- <input type="text" name="brand" id="brand" class="form-control" value="${product.brand}"> 
+ <select name="brand" id="brand" class="form-control">
+            <option>NIKE</option>
+            <option>ADIDAS</option>
+            <option>NEW BALANCE</option>
+            <option>CONVERSE</option>
+            <option>ASICS</option>
+            <option>VANS</option>
+</select>
  </div>
  
  <div>
@@ -46,7 +53,7 @@
  				, success : function(data){
  					if(data.code == 1){
  						alert("수정이 완료되었습니다,");
- 						location.reload();
+ 						location.href="/admin/product_management_view";
  					}else{
  						alert("다시 시도해주세요");
  					}

@@ -8,7 +8,14 @@
  
  <div>
  <b>브랜드</b>
- <input type="text" name="brand" id="brand" class="form-control"> 
+  <select name="brand" id="brand" class="form-control">
+            <option>NIKE</option>
+            <option>ADIDAS</option>
+            <option>NEW BALANCE</option>
+            <option>CONVERSE</option>
+            <option>ASICS</option>
+            <option>VANS</option>
+</select>
  </div>
  
  <div>
