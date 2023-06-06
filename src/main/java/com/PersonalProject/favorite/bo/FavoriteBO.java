@@ -133,4 +133,8 @@ public class FavoriteBO {
 	public void deleteFavoriteByUserId(int userId) {
 		favoriteMapper.deleteFavoriteByUserId(userId);
 	}
+	
+	public void adminDeleteFavoriteByProductId(int productId) {
+		favoriteMapper.adminDeleteFavoriteByProductId(productId);
+	}
 }

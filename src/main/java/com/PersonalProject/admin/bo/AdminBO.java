@@ -102,13 +102,14 @@ public class AdminBO {
 	}
 	
 	// 신발 삭제 기능
-	public int deleteProductByProductId(int productId) {
+	public void deleteProductByProductId(int productId) {
 		
 		// 한줄평 삭제
 		reviewBO.deleteReviewByProductId(productId);
-		
-		return productBO.deleteProductByProductId(productId);
-		
+		// 신발 삭제
+		productBO.deleteProductByProductId(productId);
+		// 즐겨찾기에서 삭제
+		favoriteBO.adminDeleteFavoriteByProductId(productId);
 	}
 	
 	public void deleteUserByUserId(int userId) {

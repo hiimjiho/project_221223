@@ -47,4 +47,7 @@ public interface FavoriteMapper {
 	
 	public void deleteFavoriteByUserId(int userId);
 	
+	// 관리자 신발 삭제할때 사용
+	public void adminDeleteFavoriteByProductId(int productId);
+	
 }

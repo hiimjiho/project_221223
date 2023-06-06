@@ -120,4 +120,10 @@
 		WHERE
 			`userId` = #{userId}
 	</delete>
+	
+	<delete id="adminDeleteFavoriteByProductId" parameterType="int">
+		DELETE FROM `favorite`
+		WHERE
+			`productId` = #{productId}
+	</delete>
 </mapper>
