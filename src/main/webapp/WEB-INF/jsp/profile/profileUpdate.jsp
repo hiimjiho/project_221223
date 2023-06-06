@@ -7,13 +7,14 @@
 <div class="d-flex justify-content-center postLogo mt-5">${userNickname}님의 프로필 수정</div>
 
 <div class="d-flex justify-content-center mt-5">
-<img src="${user.profileImagePath}" onerror=this.src="/static/img/user/empty_profile.png" alt="프로필 사진" height=120px class="profileImg">
+<img src="${user.profileImagePath}" onerror=this.src="/static/img/user/empty_profile.png" alt="프로필 사진" height=120px class="profileImg" id="profileImg">
 <img id="preview" alt=썸네일 height=120px class="profileThumbnail d-none">
+<img src="/static/img/user/empty_profile.png" alt="빈 프로필"  height=120px class="emptyProfile d-none">
 </div>
 
 <div class="d-flex justify-content-center my-4">
 	<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif" class="profileImgUpdateBtn">
-	<button class="profileImgDelBtn btn btn-outline-danger">파일 삭제</button>
+	<button class="profileImgDelBtn btn btn-outline-danger" data-user-id="${user.id}">기본 이미지로 바꾸기</button>
 </div>
 
 <div class="d-flex justify-content-center mt-5">
@@ -40,11 +41,33 @@
 <script>
 	$(document).ready(function(){
 		
-		$(".profileImgDelBtn").on("click", function(){
-			$(".profileImg").val("");
+	/*	$(".profileImgDelBtn").on("click", function(e){
+			e.preventDefault();
+			$("#profileImg").val("");
 			$("#file").val("");
 			$("#preview").addClass("d-none");
 			$(".profileImg").removeClass("d-none");
+			let userId = $(this).data("user-id");
+			$.ajax({
+				type : "PUT"
+				, url : "/user/profile_img_delete"
+				, data : {"userId" : userId}
+				, success : function(data){
+					if(data.code == 1){
+						location.reload();
+					}
+				}
+				, error : function(request, status, error){
+					alert("관리자에게 문의해주세요");
+				}
+			});
+			
+		}); */
+		
+		$(".profileImgDelBtn").on("click", function(e){
+			$(".emptyProfile").removeClass("d-none");
+			$("#preview").addClass("d-none");			
+			$(".profileImg").addClass("d-none");
 		});
 		
 		 $("#file").on("change", function(event) {
@@ -54,10 +77,9 @@
 
 			    var reader = new FileReader(); 
 			    reader.onload = function(e) {
-
 			        $("#preview").attr("src", e.target.result);
+			        $(".emptyProfile").addClass("d-none");
 			    }
-
 			    reader.readAsDataURL(file);
 			});
 		
@@ -94,43 +116,66 @@
 			let nickname = $("#nickname").val().trim();
 			let file = $("#file").val();
 			let userId = $(this).data("user-id");
-			//alert(userId);
-			if(!nickname){
-				alert("닉네임을 입력해주세요");
-			}
+			console.log(file);
 			if(file != ""){
-				let ext = file.split(".").pop().toLowerCase();
-				// pop은 배열의 마지막 부분을 가져온다.
-				if($.inArray(ext, ['jpg', 'jpeg', 'png', 'gif']) == -1){
-					alert("이미지 파일만 업로드 할 수 있습니다");
-					$("#file").val("");
-					return;
+				//alert(userId);
+				if(!nickname){
+					alert("닉네임을 입력해주세요");
 				}
-			}
-			// 이미지 업로드를 위해 폼 데이터 만들기
-			let formData = new FormData();
-			formData.append("nickname", nickname);
-			formData.append("userId", userId);
-			formData.append("file", $("#file")[0].files[0]);
-			console.log(formData);
-			
-			$.ajax({
-				type : "put"
-				, url : "/user/user_update"
-				, data : formData
-				, enctype : "multipart/form-data"
-				, processData:false	
-				, contentType:false
-				
-				, success:function(data){
-					if(data.code == 1){
-						location.href="/profile/profile_view?userId=" + userId;
+				if(file != ""){
+					let ext = file.split(".").pop().toLowerCase();
+					// pop은 배열의 마지막 부분을 가져온다.
+					if($.inArray(ext, ['jpg', 'jpeg', 'png', 'gif']) == -1){
+						alert("이미지 파일만 업로드 할 수 있습니다");
+						$("#file").val("");
+						return;
 					}
 				}
-				, error:function(request, status, error){
-					alert("다시 시도해주세요");
-				}
-			});
+				
+				// 이미지 업로드를 위해 폼 데이터 만들기
+				let formData = new FormData();
+				formData.append("nickname", nickname);
+				formData.append("userId", userId);
+				formData.append("file", $("#file")[0].files[0]);
+				console.log(formData);
+				console.log($("#file")[0].files[0]);
+				$.ajax({
+					type : "put"
+					, url : "/user/user_update"
+					, data : formData
+					, enctype : "multipart/form-data"
+					, processData:false	
+					, contentType:false
+					
+					, success:function(data){
+						if(data.code == 1){
+							alert("프로필 수정이 완료되었습니다");
+							location.href="/profile/profile_view?userId=" + userId;
+						}
+					}
+					, error:function(request, status, error){
+						alert("다시 시도해주세요");
+					}
+				});
+				
+			}else{
+				$.ajax({
+					type : "PUT"
+					, url : "/user/profile_img_delete"
+					, data : {"userId" : userId}
+					, success : function(data){
+						if(data.code == 1){
+							
+							alert("프로필 수정이 완료되었습니다");
+							location.href="/profile/profile_view?userId=" + userId;
+						}
+					}
+					, error : function(request, status, error){
+						alert("관리자에게 문의해주세요");
+					}
+				});
+			}
+
 		});
 		
 	});

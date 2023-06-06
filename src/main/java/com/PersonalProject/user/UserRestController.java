@@ -109,5 +109,16 @@ public class UserRestController {
 		result.put("code", 1);
 		result.put("result", "성공");
 		return result;
-	}	
+	}
+	
+	@PutMapping("/profile_img_delete")
+	public Map<String, Object> profileImgDelete(HttpSession session){
+		
+		int userId = (int)session.getAttribute("userId");
+		userBO.deleteProfileImg(userId);
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 1);
+		result.put("result", "성공");
+		return result;
+	}
 }

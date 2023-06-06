@@ -27,6 +27,6 @@ public class WebMvcConfig implements WebMvcConfigurer{
 			registry
 			.addInterceptor(interceptor) // 등록할 인터셉터 설정
 			.addPathPatterns("/**")	// 적용할 URL 패턴 설정
-			.excludePathPatterns("/favicon.ico", "/error", "/static/**", "/user/sign_out", "/user/user_update");	// 인터셉터를 제외할 url 패턴 등록
+			.excludePathPatterns("/favicon.ico", "/error", "/static/**", "/user/sign_out", "/user/user_update" , "/user/profile_img_delete");	// 인터셉터를 제외할 url 패턴 등록
 		}
 }

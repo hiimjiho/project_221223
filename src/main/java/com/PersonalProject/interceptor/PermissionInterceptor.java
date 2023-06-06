@@ -48,34 +48,46 @@ public class PermissionInterceptor implements HandlerInterceptor {
 			response.sendRedirect("/product/main_view");
 			return false; // 컨트롤러 수행 안함
 		}
-
+		
+		// 어드민 로그인 없이 어드민 메인뷰로 이동 불가
 		if (adminId == null && uri.startsWith("/admin/admin_main_view")) {
 			response.sendRedirect("/admin/login_page_view");
 			return false; // 컨트롤러 수행 안함
 		}
-
+		
+		// 어드민 아이디 없이 스타일 관리 페이지로 이동 불가
 		if (adminId == null && uri.startsWith("/admin/style_management_view")) {
 			response.sendRedirect("/admin/login_page_view");
 			return false; // 컨트롤러 수행 안함
 		}
-
+		
+		// 어드민 아이디 없이 물건 관리 페이지로 이동 불가
 		if (adminId == null && uri.startsWith("/admin/product_management_view")) {
 			response.sendRedirect("/admin/login_page_view");
 			return false; // 컨트롤러 수행 안함
 		}
-
+		
+		// 어드민 아이디 없이 신발 업데이트 페이지로 이동 불가
 		if (adminId == null && uri.startsWith("/admin/product_update_view")) {
 			response.sendRedirect("/admin/login_page_view");
 			return false; // 컨트롤러 수행 안함
 		}
-
+		
+		// 어드민 아이디 없이 신발 생성 페이지 이동 불가
 		if (adminId == null && uri.startsWith("/admin/product_create_view")) {
 			response.sendRedirect("/admin/login_page_view");
 			return false; // 컨트롤러 수행 안함
 		}
-
+		
+		// 어드민 아이디 없이 유저 관리 페이지 이동 불가
 		if (adminId == null && uri.startsWith("/admin/user_management_view")) {
 			response.sendRedirect("/admin/login_page_view");
+			return false; // 컨트롤러 수행 안함
+		}
+		
+		// 어드민 페이지 로그인 한 상태로 로그인 페이지 이동 불가
+		if (adminId != null && uri.startsWith("/admin/login_page_view")) {
+			response.sendRedirect("/admin/admin_main_view");
 			return false; // 컨트롤러 수행 안함
 		}
 
