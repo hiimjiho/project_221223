@@ -36,9 +36,10 @@ public class AdminController {
 	private PostBO postBO;
 	
 	@GetMapping("/login_page_view")
-	public String pageView() {
+	public String pageView(Model model) {
 		
-		return "admin/adminSignInView";
+		model.addAttribute("view", "admin/adminSignInView");
+		return "template/adminLayout";
 	}
 	
 	@GetMapping("/admin_main_view")
