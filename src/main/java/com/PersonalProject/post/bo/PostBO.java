@@ -16,6 +16,7 @@ import com.PersonalProject.post.dao.PostMapper;
 import com.PersonalProject.post.model.Paging;
 import com.PersonalProject.post.model.Post;
 import com.PersonalProject.post.model.PostView;
+import com.PersonalProject.postComment.bo.PostCommentBO;
 import com.PersonalProject.user.bo.UserBO;
 import com.PersonalProject.user.model.User;
 
@@ -30,6 +31,9 @@ public class PostBO {
 	
 	@Autowired
 	private UserBO userBO;
+	
+	@Autowired
+	private PostCommentBO postCommentBO; 
 	
 	@Autowired
 	private FileManagerService fileManager;
@@ -146,6 +150,8 @@ public class PostBO {
 		if(post.getImagePath() != null) {
 			fileManager.deleteFile(post.getImagePath());
 		}
+		
+		postCommentBO.deletePostCommentByPostId(postId);
 		
 		return postMapper.deletePostByPostIdUserId(postId, userId);
 	}
