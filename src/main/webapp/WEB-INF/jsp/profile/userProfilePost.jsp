@@ -4,27 +4,35 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
     
-<div class="d-flex justify-content-center postLogo mt-3">
-	${user.nickname}님의 프로필
+<div class="d-flex justify-content-center postLogo">
+	<span class="profileNickname">${user.nickname}님의 프로필</span>
 </div>
-
+<hr>
 <div class="d-flex justify-content-center profileDiv">
-	<div>
-	<img src="${user.profileImagePath}" onerror=this.src="/static/img/user/empty_profile.png" alt="프로필 사진" height=120px class="profileImg">
-	<span class="profileName font-weight-bold">${user.nickname}</span>
+	<div class="profileImgDiv">
+	<img src="${user.profileImagePath}" onerror=this.src="/static/img/user/empty_profile.png" alt="프로필 사진" height=200px class="profileImg">
+	<span class="profileName font-weight-bold ml-2">${user.nickname}</span>
 	</div>
-	<div><button type="button" class="btn btn-outline-primary" id="profileUpdateBtn">프로필 수정</button></div>
+	
+	<div class="profileBtnDiv">
+		<c:if test="${userId eq user.id}">
+			<div><a href="/profile/profile_update?userId=${user.id}" type="button" class="btn btn-outline-primary my-2 profileBtn">프로필 수정</a></div>
+		</c:if>
+		<div>
+			<a href="/favorite/favorite_view?userId=${user.id}" type="button" class="btn btn-outline-success my-2 profileBtn">관심상품</a>
+		</div>
+		<div>
+			<div><a type="button" class="btn btn-outline-primary my-2 profileBtn" href="/profile/profile_style_view?userId=${user.id}">스타일 보기</a></div>
+		</div>
+		<div>
+			<div><a type="button" class="btn btn-outline-primary my-2 profileBtn" href="/profile/profile_view?userId=${user.id}">쓴 글 보기</a></div>
+		</div>
+	</div>
 </div>
-<div class="d-flex justify-content-start">
-	<a href="/favorite/favorite_view?userId=${user.id}" type="button" class="btn btn-outline-success btn-lg">관심상품</a>
-</div>
-
-<div class="profileBtnBox d-flex justify-content-center">
-	<div><a type="button" class="btn btn-outline-primary" id="profileUpdateBtn" href="/profile/profile_style_view?userId=${user.id}">스타일 보기</a></div>
-</div>
+<hr>
 
 <div class="d-flex justify-content-center mt-3">
-	<table class="table">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>NO</th>
