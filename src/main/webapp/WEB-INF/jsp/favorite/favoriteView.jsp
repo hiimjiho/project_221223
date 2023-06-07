@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 
 <div class="d-flex justify-content-center mt-3 postLogo">
-	관심상품
+	<span class="profileNickname">${user.nickname}님의 관심상품</span>
 </div>
 <hr>
 <div>
