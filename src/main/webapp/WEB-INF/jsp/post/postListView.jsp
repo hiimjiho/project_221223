@@ -10,7 +10,7 @@
 <div class="d-flex justify-content-end">
 	<button type="button" class="btn btn-outline-dark mb-2"><a href="/post/create_view">글 쓰기</a></button>
 </div>
-	<table class="table">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>NO</th>

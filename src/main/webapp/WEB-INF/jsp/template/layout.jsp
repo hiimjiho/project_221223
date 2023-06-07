@@ -14,6 +14,9 @@
 <!-- 내가 만든 스타일시트 -->
 <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 
+<!-- 글꼴 -->
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Poor+Story&display=swap" rel="stylesheet">
+
 <!-- 섬머노트 -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>

@@ -2,14 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Poor+Story&display=swap" rel="stylesheet">
-
-
 
 <!-- 로고 -->
 <div class="h-100 d-flex justify-content-between align-items-center">
 	<div>
-		<h1 class="font-weight-bold"><a class="headerLogo font-family: fantasy" href="/product/main_view">신발신공</a></h1>
+		<h1 class="font-weight-bold"><a class="headerLogo" href="/product/main_view">신발신공</a></h1>
 	</div>
 	
 	<div>

@@ -138,7 +138,6 @@
 		});
 		$("#deletePostBtn").on("click", function(){
 			let postId = $(this).data("post-id");
-			alert(postId);
 			
 			$.ajax({
 				type:"delete"
