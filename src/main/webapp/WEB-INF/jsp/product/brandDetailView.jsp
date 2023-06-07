@@ -3,18 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <div class="d-flex shoesList">
 	<c:forEach items="${productBrandList}" var="postList">
-		<div class="mt-5 ml-5"><a id="productInfo" href="/product/detail_view?productId=${postList.id}">
+		<div class="main_view mt-5"><a id="productInfo" href="/product/detail_view?productId=${postList.id}">
 			<img src="${postList.productImagePath}" alt="물건사진" width=225px height=250px>
 			<p class="font-weight-bold">${postList.brand}</p>
-			<p class="small">${postList.name}</p>
+			<p class="product-name small">${postList.name}</p>
 			</a>
 		</div>
 	</c:forEach>
 </div>
-	<div>
+	<div class="mt-5">
     <c:choose>
         <%-- 현재 페이지가 1페이지면 이전 글자만 보여줌 --%>
         <c:when test="${paging.page<=1}">

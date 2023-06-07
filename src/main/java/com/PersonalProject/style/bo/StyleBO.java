@@ -76,12 +76,12 @@ public class StyleBO {
 		return styleMapper.selectStyleByProductIdLimit4(productId);
 	}
 	
-	public int addStyle(int productId, String content, int userId, MultipartFile file) {
+	public int addStyle(int productId, String content, int userId, String loginId, MultipartFile file) {
 		String imagePath = null;
 		if(file != null) {
-			imagePath = fileManager.saveFile(imagePath, file);
+			imagePath = fileManager.saveFile(loginId, file);
 		}
-		return styleMapper.insertStyle(productId, content, userId, imagePath);
+		return styleMapper.insertStyle(productId, content, userId, loginId, imagePath);
 	}
 	
 	private static final int PAGE_LIMIT = 5; // 한 페이지당 보여줄 글 갯수
@@ -358,6 +358,23 @@ public class StyleBO {
 			styleCommentBO.deleteCommentByStyleId(style.getId());
 			
 			styleMapper.deleteStyleByUserIdStyleId(style.getId(), userId);
+		}
+	}
+	
+	public void deleteStyleByProductId(int productId) {
+		List<Style> styleList = styleMapper.selectStyleListByProductId(productId);
+		
+		for(Style style : styleList) {
+			// 사진 삭제
+			fileManager.deleteFile(style.getShoesImagePath());
+			
+			// 좋아요 삭제
+			likeBO.deleteLikeByStyleId(style.getId());
+			
+			// 댓글 삭제
+			styleCommentBO.deleteCommentByStyleId(style.getId());
+			
+			styleMapper.deleteStyleByProductId(productId);
 		}
 	}
 }

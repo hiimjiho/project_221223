@@ -27,15 +27,10 @@ public class StyleRestController {
 			@RequestParam(value = "file", required=false) MultipartFile file,
 			HttpSession session){
 		
-		Integer userId = (Integer)session.getAttribute("userId");
+		int userId = (int)session.getAttribute("userId");
+		String loginId = (String)session.getAttribute("userLoginId");
 		Map<String, Object> result = new HashMap<>();
-		if(userId == null) {
-			result.put("code", 500);
-			result.put("result", "error");
-			result.put("errorMessage", "error");
-			return result;
-		}
-		styleBO.addStyle(productId, content, userId, file);
+		styleBO.addStyle(productId, content, userId, loginId, file);
 		result.put("code", 1);
 		result.put("result", "성공");
 		return result;

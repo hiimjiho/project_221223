@@ -32,6 +32,7 @@ public class UserBO {
 		return userMapper.selectUserByNickname(nickname);
 	}
 	
+	// 회원가입
 	public int insertMembership(String loginId, String nickname, String password, String email) {
 		return userMapper.insertMembership(loginId, nickname, password, email);
 	}
@@ -48,6 +49,7 @@ public class UserBO {
 		return userMapper.selectUserById(id);
 	}
 	
+	// 유저 프로필 수정
 	public void updateUser(
 			MultipartFile file,
 			int userId,
@@ -74,9 +76,9 @@ public class UserBO {
 	}
 	
 	// 프로필 사진 없애기
-	public void deleteProfileImg(int userId) {
-								
-		userMapper.deleteProfileImg(userId);
+	public void deleteProfileImg(int userId, String nickname) {		
+		
+		userMapper.deleteProfileImg(userId, nickname);
 	}
 	
 	// 어드민 페이지 유저 관리용

@@ -33,7 +33,7 @@ class StyleBOTest {
 	//@Test
 	void 글쓰기() {
 		logger.info("#######글쓰기");
-		styleBO.addStyle(1, "dd", 1, null);
+		styleBO.addStyle(10, "d", 6, null, null);
 	}
 	
 	//@Test

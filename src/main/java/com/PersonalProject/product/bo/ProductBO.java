@@ -20,6 +20,7 @@ public class ProductBO {
 	@Autowired
 	private ProductMapper productMapper;
 	
+	// 메인 화면에 뿌릴 신발 리스트(페이징)
 	public List<Product> getProductList(int page){
 		int pageStart = (page -1) * PAGE_LIMIT;
 		Map<String, Integer> pagingParams = new HashMap<>();
@@ -31,6 +32,7 @@ public class ProductBO {
 		return productList;
 	}
 	
+	// 페이징 파람
 	public Paging pagingParam(int page) {
 		 // 전체 글 갯수 조회
        int boardCount = productMapper.productCount();

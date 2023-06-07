@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,7 @@ import com.PersonalProject.user.model.User;
 @RequestMapping("/user")
 @RestController
 public class UserRestController {
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private UserBO userBO;
 	
@@ -112,13 +115,23 @@ public class UserRestController {
 	}
 	
 	@PutMapping("/profile_img_delete")
-	public Map<String, Object> profileImgDelete(HttpSession session){
-		
+	public Map<String, Object> profileImgDelete(
+			HttpSession session,
+			@RequestParam("nickname") String nickname){
+		logger.info("@@@@@ nickname @@@@@@@ nickname:{}", nickname);
 		int userId = (int)session.getAttribute("userId");
-		userBO.deleteProfileImg(userId);
+		userBO.deleteProfileImg(userId, nickname);
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);
 		result.put("result", "성공");
+		
+		User user = userBO.getUserById(userId);
+
+		if(user != null) {
+			session.setAttribute("userId", user.getId());
+			session.setAttribute("userLoginId", user.getLoginId());
+			session.setAttribute("userNickname", user.getNickname());
+		}
 		return result;
 	}
 }

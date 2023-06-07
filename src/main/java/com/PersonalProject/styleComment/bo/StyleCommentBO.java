@@ -27,10 +27,12 @@ public class StyleCommentBO {
 	
 	private static final int BLOCK_LIMIT = 3; // 
 	
+	// 스타일 코멘트 작성
 	public int addStyleComment(int userId, int styleId, String content) {
 		return styleCommentMapper.insertStyleComment(userId, styleId, content);
 	}
 	
+	// 스타일 코멘트 삭제
 	public int deleteStyleComment(int styleCommentId) {
 		return styleCommentMapper.deleteStyleComment(styleCommentId);
 	}

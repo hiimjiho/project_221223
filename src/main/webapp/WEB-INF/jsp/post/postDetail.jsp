@@ -21,7 +21,7 @@
 </c:if>
 
 <c:if test="${not empty postView.post.imagePath}">
-<div class="d-flex">
+<div class="d-flex mt-5">
 	<img src="${postView.post.imagePath}" alt="포스트 사진">
 </div>
 </c:if>

@@ -55,6 +55,7 @@ public class PostCommentBO {
 		return postCommentMapper.selectPostCommentByPostIdUserIdPostCommentId(postId, userId, postCommentId);
 	}
 	
+	// 포스트에 있는 댓글 삭제하기
 	public void deletePostCommentByPostId(int postId) {
 		postCommentMapper.deletePostCommentByPostId(postId);;
 	}

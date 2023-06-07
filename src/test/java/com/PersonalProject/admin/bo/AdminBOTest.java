@@ -26,10 +26,22 @@ class AdminBOTest {
 		fail("Not yet implemented");
 	}
 	
-	@Test
+	//@Test
 	void 유저삭제() {
 		logger.info("#####유저 삭제#######");
 		adminBO.deleteUserByUserId(7);
+	}
+	
+	//@Test
+	void 스타일삭제() {
+		logger.info("#######스타일 삭제########");
+		adminBO.deleteStyleByStyleId(27);
+	}
+	
+	@Test
+	void 신발삭제() {
+		logger.info("###########신발 삭제###########");
+		adminBO.deleteProductByProductId(19);
 	}
 
 }

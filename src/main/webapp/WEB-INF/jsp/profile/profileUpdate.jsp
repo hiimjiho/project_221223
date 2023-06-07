@@ -65,6 +65,7 @@
 		}); */
 		
 		$(".profileImgDelBtn").on("click", function(e){
+			$("#file").val("");
 			$(".emptyProfile").removeClass("d-none");
 			$("#preview").addClass("d-none");			
 			$(".profileImg").addClass("d-none");
@@ -116,8 +117,14 @@
 			let nickname = $("#nickname").val().trim();
 			let file = $("#file").val();
 			let userId = $(this).data("user-id");
-			console.log(file);
+			
+			if($("#AvailableNickname").hasClass("d-none")){
+				alert("닉네임 중복확인을 해주세요");
+				return
+			}
+			
 			if(file != ""){
+				console.log('11');
 				//alert(userId);
 				if(!nickname){
 					alert("닉네임을 입력해주세요");
@@ -133,12 +140,13 @@
 				}
 				
 				// 이미지 업로드를 위해 폼 데이터 만들기
-				let formData = new FormData();
+				var formData = new FormData();
 				formData.append("nickname", nickname);
 				formData.append("userId", userId);
 				formData.append("file", $("#file")[0].files[0]);
 				console.log(formData);
 				console.log($("#file")[0].files[0]);
+				console.log(nickname);
 				$.ajax({
 					type : "put"
 					, url : "/user/user_update"
@@ -158,14 +166,16 @@
 					}
 				});
 				
-			}else{
+			} else { // img 가 널일때
+
 				$.ajax({
 					type : "PUT"
 					, url : "/user/profile_img_delete"
-					, data : {"userId" : userId}
+					, data : {
+						"nickname" : nickname			
+					}
 					, success : function(data){
-						if(data.code == 1){
-							
+						if(data.code == 1){							
 							alert("프로필 수정이 완료되었습니다");
 							location.href="/profile/profile_view?userId=" + userId;
 						}

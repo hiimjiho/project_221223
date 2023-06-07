@@ -93,7 +93,7 @@
 	</div>
 </div>
 
-<button type="button" class="moreStyleBtn btn btn-outline-primary mt-5" data-product-id="${product.id}"><a href="/style/detail_view?productId=${product.id}">자세히 보기</a></button>
+<a href="/style/detail_view?productId=${product.id}" class="btn mt-5 btn-outline-primary">스타일 작성하러 가기</a>
 
 
 

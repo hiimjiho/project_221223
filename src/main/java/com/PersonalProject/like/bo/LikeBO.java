@@ -10,6 +10,7 @@ public class LikeBO {
 	@Autowired
 	private LikeMapper likeMapper;
 	
+	// 좋아요 기능 토글
 	public void likeToggole(int userId, int styleId) {
 		
 		int likeCount = likeMapper.likeCountByUserIdStyleId(styleId, userId);

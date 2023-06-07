@@ -95,7 +95,10 @@ footer {
 
 #productInfo:hover{color: grey;}
 
-.headerLogo{color:black;}
+.headerLogo{
+	color:black;
+	font-family: 'Poor Story', cursive;
+	font-size:48px;}
 
 .headerLogo{text-decoration:none;}
 
@@ -124,6 +127,10 @@ footer {
 	position: absolute;
 }
 
+.profileNickname{
+	font-family: 'Poor Story', cursive;
+}
+
 .secondLogo{margin-left:150px;}
 
 .styleWriter{font-size:20px;}
@@ -135,6 +142,10 @@ footer {
 .header-info:hover{
 	color:grey;
 	text-decoration:none;
+}
+
+.profileName{
+	font-family: 'Poor Story', cursive;
 }
 
 .productInfo{margin-right:500px;}
@@ -270,6 +281,10 @@ margin-top:50px;}
 }
 
 .main_view{
-	margin-right:17px;
+	margin-right:70px;
+}
+
+.styleFont{
+	color:info;
 }
 

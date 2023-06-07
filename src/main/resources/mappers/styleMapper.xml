@@ -193,4 +193,26 @@
  		WHERE
  			`userId` = #{userId}
  	</delete>
+ 	
+ 	<select id="selectStyleListByProductId" parameterType="int" resultType="com.PersonalProject.style.model.Style">
+ 		SELECT
+ 			`id`
+			, `productId`
+			, `userId`
+			, `shoesImagePath`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			 `style`
+		WHERE
+			`productId` = #{productId}
+ 	</select>
+ 	
+ 	<delete id="deleteStyleByProductId" parameterType="int">
+ 		DELETE FROM
+ 			`style`
+ 		WHERE
+ 			`productId` = #{productId}
+ 	</delete>
  </mapper>

@@ -32,7 +32,9 @@ public interface UserMapper {
 			@Param("userId")int userId,
 			@Param("nickname") String nickname);
 	
-	public void deleteProfileImg(int userId);
+	public void deleteProfileImg(
+			@Param("userId")int userId,
+			@Param("nickname") String nickname);
 	
 	public List<User> selectUserList();
 	

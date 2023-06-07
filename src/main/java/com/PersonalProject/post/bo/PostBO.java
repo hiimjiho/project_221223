@@ -56,6 +56,7 @@ public class PostBO {
 		return postMapper.insertPost(userId, loginId, subject, content, imagePath);
 	}
 	
+	// 모든 포스트 불러오기
 	public List<Post> getPostList(){
 		return postMapper.selectPostList();
 	}
@@ -65,6 +66,7 @@ public class PostBO {
 		return postMapper.selectPostByPostId(postId);
 	}
 	
+	// 게시판에 글 목록 뿌리기(페이징 포함)
 	public List<PostView> generatePostList(int page, Integer userId) {
 		
 		int pageStart = (page -1) * PAGE_LIMIT;
@@ -91,6 +93,7 @@ public class PostBO {
 		return postViewList;
 	}
 	
+	// 게시판 글 상세 페이지
 	public PostView generatePostViewByPostId(int postId) {
 		PostView postView = new PostView();
 		
@@ -106,10 +109,12 @@ public class PostBO {
 		return postView;
 	}
 	
+	// 글 수정 기능에 사용할 해당 글 찾아오기
 	public Post getPostByPostIdUserId(int postId, int userId) {
 		return postMapper.selectPostByPostIdUserId(postId, userId);
 	}
 	
+	// 글 수정
 	public void updatePost(
 			int userId,
 			String loginId,
@@ -138,6 +143,7 @@ public class PostBO {
 		postMapper.updatePostByPostId(postId, subject, content, imagePath);
 	}
 	
+	// 글 삭제
 	public int deletePostByPostIdUserId(int postId, int userId) {
 		// 해당 글 가져오기
 		Post post = getPostByPostIdUserId(postId, userId);
@@ -161,6 +167,7 @@ public class PostBO {
 		return postMapper.deletePostByPostId(postId);
 	}
 	
+	// 페이징에 사용할 포스트 카운트
 	public int countPost() {
 		return postMapper.countPost();
 	}
@@ -181,6 +188,7 @@ public class PostBO {
 		}
 	}
 	
+	// 페이징 파람
 	public Paging pagingParam(int page) {
 		 // 전체 글 갯수 조회
         int boardCount = postMapper.countPost();

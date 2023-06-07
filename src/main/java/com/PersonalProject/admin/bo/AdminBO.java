@@ -57,7 +57,8 @@ public class AdminBO {
 	
 	@Autowired
 	private FavoriteBO favoriteBO;
-
+	
+	// 어드민 로그인
 	public Admin getAdminByAdminIdPassword(String adminLoginId, String adminPassword) {
 		return adminMapper.selectAdminByAdminIdPassword(adminLoginId, adminPassword);
 	}
@@ -110,8 +111,10 @@ public class AdminBO {
 		productBO.deleteProductByProductId(productId);
 		// 즐겨찾기에서 삭제
 		favoriteBO.adminDeleteFavoriteByProductId(productId);
+		// 해당 신발의 스타일 삭제
+		styleBO.deleteStyleByProductId(productId);
 	}
-	
+	// 유저 삭제
 	public void deleteUserByUserId(int userId) {
 		// 해당 유저의 리뷰
 		reviewBO.deleteReviewByUserId(userId);

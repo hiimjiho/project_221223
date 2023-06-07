@@ -49,6 +49,16 @@ public class AdminController {
 		return "template/adminLayout";
 	}
 	
+	@RequestMapping("/sign_out")
+	public String signOut(HttpSession session) {
+		// 세션에 있는 모든 것을 비운다.
+		session.removeAttribute("adminId");
+		session.removeAttribute("adminLoginId");
+		session.removeAttribute("adminPassword");
+		
+		return "redirect:/admin/login_page_view";
+	}
+	
 	@GetMapping("/user_management_view")
 	public String userManagementView(Model model,
 			HttpSession session) {

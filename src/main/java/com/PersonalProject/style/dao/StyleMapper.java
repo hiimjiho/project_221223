@@ -28,10 +28,12 @@ public interface StyleMapper {
 	// 유저 프로필정보때 사용할 스타일 리스트
 	public List<Style> selectStyleListByUserId(int userId);
 	
+	// 스타일 작성
 	public int insertStyle(
 			@Param("productId")int productId,
 			@Param("content")String content,
-			@Param("userId")int userId,			
+			@Param("userId")int userId,
+			@Param("loginId")String loginId,			
 			@Param("shoesImagePath")String shoesImagePath);
 	
 	public List<Style> selectStyleList();
@@ -61,4 +63,9 @@ public interface StyleMapper {
 	// 어드민 페이지 유저 삭제에 필요한 스타일
 	public void deleteStyleByUserId(int userId);
 	
+	// 어드민 신발 삭제 기능에 사용할 스타일 리스트
+	public List<Style> selectStyleListByProductId(int productId);
+	
+	// 어드민 신발 삭제 기능에 사용할 신발 삭제
+	public void deleteStyleByProductId(int productId);
 }

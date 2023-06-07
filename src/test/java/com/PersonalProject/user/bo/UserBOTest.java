@@ -26,7 +26,17 @@ class UserBOTest {
 		userBO.insertMembership("test567", "bbbb", "bbb", "bbbb@bbbb.com");
 	}
 	
+	//@Test
+	void 유저업데이트() {
+		userBO.updateUser(null, 6, "ccccc", "ccccc");
+	}
+	
 	@Test
+	void 유저프로필사진삭제() {
+		userBO.deleteProfileImg(6, "ccccc");
+	}
+	
+	//@Test
 	void 유저가져오기() {
 		User user = userBO.getUserByLoginId("aaaaa");
 		assertNotNull(user);

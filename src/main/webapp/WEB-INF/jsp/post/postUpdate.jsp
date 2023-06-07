@@ -7,19 +7,18 @@
 		
 		<div class="form-group">
 			Content
-			<textarea class="form-control summernote" rows="5" cols="" id="content">${post.content}</textarea>
-			<img id="preview" alt=썸네일 width=300 height=150>
+			<textarea class="form-control summernote mt-5" rows="5" cols="" id="content">${post.content}</textarea>
+			<img id="preview" alt=썸네일 width=300 height=150 class="d-none">
 			<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif">	
 		</div>
 
-<div class="postBtnDiv d-flex justify-content-center">
-		<button type="button" class="btn btn-outline-dark ml-5" id="postWriteBtn" data-post-id="${post.id}">수정 완료</button>
+<div class="d-flex justify-content-start" id="postListBtn">
+		<button type="button" class="btn btn-outline-info" id="postWriteBtn" data-post-id="${post.id}">수정 완료</button>
 </div>
 
-<div class="d-flex justify-content-start mb-5">
-		<button type="button" class="postListBtn btn btn-outline-dark">글 목록</button>
+<div class="d-flex justify-content-start" id="postListBtn">
+<a href="/post/list_view"><button type="button" class="btn btn-outline-dark mt-3">글 목록</button></a>
 </div>
-
 <script>
 	$(document).ready(function(){
 		
@@ -42,7 +41,7 @@
 		 $("#file").on("change", function(event) {
 
 			    var file = event.target.files[0];
-
+			    $("#preview").removeClass("d-none");
 			    var reader = new FileReader(); 
 			    reader.onload = function(e) {
 

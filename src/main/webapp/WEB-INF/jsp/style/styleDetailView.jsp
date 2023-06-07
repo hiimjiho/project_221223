@@ -87,11 +87,12 @@
 			</c:forEach>
 			<c:if test="${not empty userId}">
 					<div class="comment-write d-flex border-top mb-2 ml-2">
-						<input type="text" class="style-comment-text form-control border-0 mr-2 comment-input" placeholder="댓글 달기" id="comment"/> 
+						<input type="text" class="style-comment-text form-control border-0 mr-2 comment-input col-10" placeholder="댓글 달기" id="comment"/> 
 						<button type="button" class="style-comment-btn btn btn-light" data-style-id="${styleCard.style.id}">게시</button>
 					</div>
 			</c:if>
 		</div>
+		<hr>
 		</c:forEach>
 	</div>
 </div>
@@ -268,6 +269,8 @@
 			
 			let content = $(this).siblings("#comment").val();
 			let styleId = $(this).data("style-id");
+			console.log(content);
+			console.log(styleId);
 			//alert(styleId);
 			
 			if(!content){

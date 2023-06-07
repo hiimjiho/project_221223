@@ -154,13 +154,13 @@
 		WHERE
 			`id` = #{userId}
  	</select>
- 	<update id="deleteProfileImg" parameterType="int">
+ 	
+ 	<update id="deleteProfileImg" parameterType="map">
  		UPDATE
  			`user`
- 		<if test="profileImagePath != null">
  		SET
- 			`profileImagePath` = null
- 		</if>
+ 			`nickname` = #{nickname}
+ 			,`profileImagePath` = null
  		WHERE
  			`id` = #{userId} 
  	</update>
