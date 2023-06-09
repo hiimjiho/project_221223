@@ -21,7 +21,8 @@ public class FileManagerService {
 	// 실제 업로드 된 이미지가 저장될 경로(서버)
 	// 상수 선언시 대문자로
 	// F:\\박지호\\7_personal_project\\workspace\\images/
-	public static final String FILE_UPLOAD_PATH = "C:\\Users\\user\\Documents\\박지호\\박지호\\6_spring_project\\personal project\\workspace\\images/";
+	//public static final String FILE_UPLOAD_PATH = "C:\\Users\\user\\Documents\\박지호\\박지호\\6_spring_project\\personal project\\workspace\\images/";
+	public static final String FILE_UPLOAD_PATH = "/home/ec2-user/images";
 	
 	// input : MultipartFile(이미지 파일), loginId(이미지가 겹치지 않게 하기위해)
 	// output : image path(String)
