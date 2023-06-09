@@ -14,6 +14,7 @@
 				</a>
 			</c:if>
 		</div>
+		<hr>
 			<div class="d-flex justify-content-center mt-5">
 				<img src="${styleCard.style.shoesImagePath}" alt="스타일 사진" width=600px height=400px>
 			</div>
