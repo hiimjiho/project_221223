@@ -11,7 +11,7 @@
       <div class="dropdown-content">
         <a href="/product/brand_detail_list_view?brand=NIKE">NIKE</a>
         <a href="/product/brand_detail_list_view?brand=ADIDAS">ADIDAS</a>
-        <a href="/product/brand_detail_list_view?brand=NEWBALANCE">NEW BALANCE</a>
+        <a href="/product/brand_detail_list_view?brand=NEW BALANCE">NEW BALANCE</a>
         <a href="/product/brand_detail_list_view?brand=CONVERSE">CONVERSE</a>
         <a href="/product/brand_detail_list_view?brand=ASICS">ASICS</a>
         <a href="/product/brand_detail_list_view?brand=VANS">VANS</a>
