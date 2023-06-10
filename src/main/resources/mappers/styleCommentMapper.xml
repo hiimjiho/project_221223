@@ -37,6 +37,7 @@
 			, `updatedAt`
 		FROM
 			`styleComment`
+		ORDER BY `id` desc
  	</select>
  	
  	<select id="selectStyleCommentListByStyleId" parameterType="int" resultType="com.PersonalProject.styleComment.model.StyleComment">
