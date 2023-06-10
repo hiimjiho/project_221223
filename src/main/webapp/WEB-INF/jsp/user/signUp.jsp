@@ -25,7 +25,7 @@
 	<div id="nicknameLengthCheck" class="d-none text-danger">
 		닉네임은 2자 이상 입력해주세요.
 	</div>
-	<div id="nicknameDuplicatedCheck " class="d-none text-danger">
+	<div id="nicknameDuplicatedCheck" class="d-none text-danger">
 		중복된 닉네임입니다.
 	</div>
 	<div id="AvailableNickname" class="d-none text-success">
@@ -72,9 +72,9 @@
 				, success:function(data){
 					if(data.result){
 						//중복
-						$("#idDuplicatedCheck").removeClass("d-none")
+						$("#idDuplicatedCheck").removeClass("d-none");
 					}else{
-						$("#AvailableId").removeClass("d-none")
+						$("#AvailableId").removeClass("d-none");
 					}
 				}
 			});
