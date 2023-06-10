@@ -11,10 +11,10 @@
 	</a>
 	</div>
 	<div class="secondLogo">
-	<a href="/product/brand_detail_list_view?brand=ASICS"><img src="/static/img/brand/asics-logo.png" alt="아식스 로고" width=250px height=200px></a>
+	<a href="/product/brand_detail_list_view?brand=ASICS"><img src="/static/img/brand/asics-Logo.png" alt="아식스 로고" width=250px height=200px></a>
 	</div>
 	<div class="secondLogo">
-	<a href="/product/brand_detail_list_view?brand=CONVERSE"><img src="/static/img/brand/converse-logo.png" alt="컨버스 로고" width=250px height=200px></a>	
+	<a href="/product/brand_detail_list_view?brand=CONVERSE"><img src="/static/img/brand/converse-Logo.png" alt="컨버스 로고" width=250px height=200px></a>	
 	</div>
 </div>
 <div class="brandLogo d-flex">
@@ -22,7 +22,7 @@
 	<a href="/product/brand_detail_list_view?brand=NEWBALANCE"><img src="/static/img/brand/new-balance-logo.png" alt="뉴발란스 로고" width=250px height=200px></a>
 	</div>
 	<div class="secondLogo">
-	<a href="/product/brand_detail_list_view?brand=NIKE"><img src="/static/img/brand/nike-logo.png" alt="나이키 로고" width=250px height=200px></a>
+	<a href="/product/brand_detail_list_view?brand=NIKE"><img src="/static/img/brand/nike-Logo.png" alt="나이키 로고" width=250px height=200px></a>
 	</div>
 	<div class="secondLogo">
 	<a href="/product/brand_detail_list_view?brand=PUMA"><img src="/static/img/brand/puma-logo.png" alt="푸마 로고" width=250px height=200px></a>	
